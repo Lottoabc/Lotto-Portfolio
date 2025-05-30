@@ -3,21 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>案例与作品</title>
+    <title>案例与作品展示</title>
     <style>
         body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .video-container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            gap: 20px;
+        }
+        iframe {
+            width: 80%;
+            max-width: 800px;
+            height: 450px;
         }
     </style>
 </head>
 <body>
-    <h1>PicoSDK交互案例(资源托管至Youtube，可能需要网络代理)</h1>
-    <iframe width="1200" height="675" src="https://www.youtube.com/embed/WsgrYkP2PNE" 
-        frameborder="0" allowfullscreen></iframe>
+    <h1>PicoSDK 交互案例展示</h1>
+    <p>资源托管至 YouTube，可能需要网络代理</p>
+    
+    <div class="video-container">
+        <div>
+            <h2>案例 1: 交互式体验演示</h2>
+            <iframe src="https://www.youtube.com/embed/WsgrYkP2PNE" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div>
+            <h2>案例 2: 场景动态调整演示</h2>
+            <iframe src="https://www.youtube.com/embed/09RVt_kBubk" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
 </body>
 </html>
