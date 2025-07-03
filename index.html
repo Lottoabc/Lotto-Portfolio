@@ -3,106 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XR 开发案例展示</title>
+    <title>Lotto's XR 开发作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color-dark: #1e1e1e; /* 主背景深色 */
+            --card-bg-dark: #2d2d2d; /* 卡片背景稍亮 */
+            --text-color-light: #e0e0e0; /* 浅色文本 */
+            --heading-color: #00bfff; /* 标题亮蓝色，科技感 */
+            --highlight-color: #00f080; /* 强调文本和链接亮绿色 */
+            --shadow-color: rgba(0, 0, 0, 0.5); /* 阴影颜色 */
+            --border-color: #4a4a4a; /* 边框颜色 */
+            --hr-color: #444; /* 分隔线颜色 */
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', 'Arial', sans-serif; /* 优先使用Roboto，否则用Arial等无衬线字体 */
             text-align: center;
-            margin: 20px;
+            margin: 0; /* 移除默认外边距 */
+            padding: 20px;
             font-size: min(16px, 4vw);
-            line-height: 1.6;
-            color: #333;
+            line-height: 1.7; /* 增加行高，提升阅读舒适度 */
+            color: var(--text-color-light);
+            background-color: var(--bg-color-dark);
+            box-sizing: border-box; /* 确保 padding 不会增加元素总宽度 */
         }
+        
+        h1 {
+            font-size: min(3em, 8vw); /* 调整大标题字号 */
+            margin-bottom: 25px;
+        }
+
         h1, h2 {
-            color: #2c3e50;
+            color: var(--heading-color);
+            text-shadow: 0 0 8px rgba(0, 191, 255, 0.3); /* 给标题添加微弱的发光效果 */
+            letter-spacing: 0.05em; /* 增加字母间距 */
         }
+
         p {
             margin-bottom: 20px;
         }
+
+        a {
+            color: var(--highlight-color);
+            text-decoration: none; /* 默认不显示下划线 */
+            transition: color 0.3s ease, text-shadow 0.3s ease; /* 添加过渡效果 */
+        }
+
+        a:hover {
+            color: #00ffaa; /* 悬停时颜色更亮 */
+            text-shadow: 0 0 5px rgba(0, 255, 170, 0.5); /* 悬停时发光 */
+            text-decoration: underline; /* 悬停时显示下划线 */
+        }
+
+        .intro-text {
+            font-family: 'Roboto Mono', monospace; /* 等宽字体，模拟代码行 */
+            color: var(--highlight-color);
+            margin-top: 30px;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            background-color: #252525;
+            padding: 15px 30px;
+            border-radius: 8px;
+            display: inline-block; /* 让背景色只包裹文字 */
+            box-shadow: inset 0 0 10px rgba(0, 255, 170, 0.1); /* 内发光效果 */
+        }
+
+
         .case-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px; /* Increased gap for better separation */
-            padding: 20px 0;
+            gap: 60px;
+            padding: 40px 0; /* 增加上下内边距 */
         }
+
         .case {
             display: flex;
             flex-direction: row;
-            align-items: center;
-            max-width: 1000px;
-            width: 100%; /* Ensure it takes full width within max-width */
-            gap: 30px; /* Adjusted gap */
+            align-items: flex-start; /* 顶部对齐 */
+            max-width: 1100px; /* 稍微增加最大宽度 */
+            width: 100%;
+            gap: 40px; /* 增加间距 */
             text-align: left;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            padding: 30px; /* Added padding */
-            box-sizing: border-box; /* Include padding in width */
+            background-color: var(--card-bg-dark);
+            border-radius: 12px; /* 稍微增大圆角 */
+            box-shadow: 0 8px 20px var(--shadow-color); /* 更明显的阴影 */
+            padding: 40px; /* 增加内边距 */
+            box-sizing: border-box;
+            border: 1px solid var(--border-color); /* 添加边框 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
         }
+
+        .case:hover {
+            transform: translateY(-8px); /* 悬停时上浮 */
+            box-shadow: 0 12px 25px rgba(0, 191, 255, 0.2), 0 0 20px rgba(0, 191, 255, 0.1); /* 悬停时更强的发光阴影 */
+        }
+
         .case:nth-child(even) {
-            flex-direction: row-reverse; /* Alternate layout for even cases */
+            flex-direction: row-reverse;
         }
+
         .case-description {
-            flex: 2; /* Takes more space */
-            padding-right: 15px; /* Added padding for spacing */
+            flex: 2;
+            padding-right: 20px; /* 增加间距 */
         }
+
         .video-frame {
-            flex: 3; /* Takes more space */
-            padding-left: 15px; /* Added padding for spacing */
+            flex: 3;
+            padding-left: 20px; /* 增加间距 */
         }
+
         iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
             height: auto;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border-radius: 8px; /* 增大圆角 */
+            box-shadow: 0 4px 15px var(--shadow-color); /* 视频框阴影 */
+            border: 1px solid var(--border-color); /* 视频框边框 */
         }
+
         ul {
-            padding-left: 25px;
-            margin-top: 15px;
-            list-style-type: disc;
+            padding-left: 28px; /* 调整列表缩进 */
+            margin-top: 20px;
+            list-style-type: '⚡ '; /* 使用闪电符号作为列表标记，更酷炫 */
         }
+
         li {
-            margin-bottom: 8px;
+            margin-bottom: 12px; /* 增加列表项间距 */
+            font-size: 0.95em;
         }
+
         strong {
-            color: #34495e;
+            color: var(--highlight-color); /* 强调文本颜色 */
+            font-weight: 500; /* 稍微降低字体粗细，更协调 */
         }
+
+        hr {
+            border: none;
+            border-top: 1px dashed var(--hr-color); /* 虚线分隔符 */
+            margin: 60px auto; /* 增加上下间距 */
+            width: 50%; /* 缩短分隔符长度 */
+        }
+
         .contact-info {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #ecf0f1;
-            border-top: 1px solid #ddd;
-            font-size: 0.9em;
-            color: #555;
-            border-radius: 8px;
+            margin-top: 60px; /* 增加顶部间距 */
+            padding: 30px; /* 增加内边距 */
+            background-color: #282828; /* 深一些的背景色 */
+            border-top: 1px solid var(--border-color);
+            font-size: 1em;
+            color: var(--text-color-light);
+            border-radius: 12px; /* 增大圆角 */
+            box-shadow: 0 -4px 10px var(--shadow-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
         }
 
         /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.5em;
+            }
             .case {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 20px;
+                padding: 25px; /* 手机端内边距 */
+                gap: 25px; /* 手机端间距 */
             }
             .case:nth-child(even) {
-                flex-direction: column; /* Keep column direction for mobile */
+                flex-direction: column; /* 手机端保持列方向 */
             }
             .case-description, .video-frame {
                 width: 100%;
-                padding: 0; /* Remove specific padding for mobile */
+                padding: 0;
             }
             ul {
                 padding-left: 0;
-                list-style-position: inside; /* Adjust list style for better alignment on mobile */
+                list-style-position: inside; /* 调整列表样式 */
+            }
+            li {
+                margin-bottom: 10px;
+            }
+            .intro-text {
+                font-size: 0.9em;
+                padding: 10px 20px;
             }
         }
     </style>
 </head>
 <body>
     <h1>XR 开发案例展示</h1>
+    <p class="intro-text">// 探索我在 XR 领域的技术实践与项目经验</p>
     <p>资源托管至 YouTube，可能需要网络代理</p>
     
     <div class="case-container">
@@ -122,9 +222,7 @@
             </div>
         </div>
 
-        ---
-
-        <div class="case">
+        <hr> <div class="case">
             <div class="case-description">
                 <h2>案例 2: 基于 SteamVR 和 XRToolkit 开发的博物馆实战项目</h2>
                 <ul>
@@ -139,9 +237,7 @@
             </div>
         </div>
 
-        ---
-
-        <div class="case">
+        <hr> <div class="case">
             <div class="case-description">
                 <h2>案例 3: 敦煌莫高窟博物馆案例</h2>
                 <ul>
@@ -158,12 +254,10 @@
         </div>
     </div>
 
-    ---
-
-    <div class="contact-info">
+    <hr> <div class="contact-info">
         <p>欢迎联系我获取更多信息！</p>
         <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
-        <p><strong>我的简历:</strong> <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf">点击下载</a></p>
+        <p><strong>我的简历:</strong> <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank">点击下载</a></p>
     </div>
 </body>
 </html>
