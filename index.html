@@ -58,12 +58,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="0.5" fill="rgba(255, 255, 255, 0.08)"/></svg>'); /* 微小的白色圆点 */
+            /* 使用微小的圆形作为背景图，模拟粒子 */
+            background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="0.5" fill="rgba(255, 255, 255, 0.08)"/></svg>');
             background-size: 80px 80px; /* 控制点的大小和密度 */
             background-repeat: repeat;
             opacity: 0.1; /* 整体透明度，使其非常微妙 */
             z-index: -1; /* 确保在内容下方 */
-            animation: moveBackground 60s linear infinite, fadeBackground 10s ease-in-out infinite alternate; /* 组合移动和渐变动画 */
+            /* 组合移动和渐变动画 */
+            animation: moveBackground 60s linear infinite, fadeBackground 10s ease-in-out infinite alternate;
         }
 
         /* 动画关键帧 */
@@ -82,37 +84,37 @@
             100% { opacity: 0.08; }
         }
 
-        /* 确保内容在动态背景之上 */
+        /* 确保内容在动态背景之上，避免被 z-index: -1 的伪元素覆盖 */
         body > *:not(::before) {
             position: relative;
             z-index: 1;
         }
 
         h1 {
-            font-size: min(4.2em, 9.5vw);
+            font-size: min(4.2em, 9.5vw); /* 稍微增大标题字号 */
             margin-bottom: 15px;
             color: var(--text-primary);
             font-weight: 700;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.04em; /* 微调字间距 */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.05em;
-            margin-bottom: 30px;
+            font-size: 1.05em; /* 稍微增大说明文字字号 */
+            margin-bottom: 30px; /* 调整与简历按钮的间距 */
             max-width: 800px;
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--bg-primary);
+            color: var(--bg-primary); /* 按钮文字颜色与背景形成对比 */
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1em;
-            margin-bottom: 60px;
+            margin-bottom: 60px; /* 调整与第一个案例的间距 */
             transition: background-color 0.2s ease, transform 0.2s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -123,27 +125,29 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
+        /* 案例容器 - 改为 flex 垂直布局 */
         .case-container {
             width: 100%;
             max-width: 1080px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 50px;
+            gap: 50px; /* 统一增加案例之间垂直间距，更符合大卡片感觉 */
             padding: 0;
         }
 
+        /* 单个案例卡片 */
         .case {
             display: flex;
             flex-direction: row;
             align-items: center;
             width: 100%;
-            gap: 45px;
+            gap: 45px; /* 增大描述和视频之间的间距 */
             text-align: left;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 6px 18px var(--shadow-color);
-            padding: 55px;
+            padding: 55px; /* 统一增加内边距，使框框更大且一致 */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -151,9 +155,10 @@
 
         .case:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color); /* 增加强调色光晕 */
         }
 
+        /* 偶数案例反向布局 */
         .case:nth-child(even) {
             flex-direction: row-reverse;
         }
@@ -176,9 +181,9 @@
         }
 
         .case h2 {
-            font-size: 2.6em;
+            font-size: 2.6em; /* 进一步增大标题字号 */
             margin-top: 0;
-            margin-bottom: 28px;
+            margin-bottom: 28px; /* 调整标题与列表间距 */
             color: var(--text-primary);
             font-weight: 600;
             text-align: left;
@@ -187,7 +192,7 @@
         }
 
         .case ul {
-            padding-left: 30px;
+            padding-left: 30px; /* 稍微增大列表左内边距 */
             margin-top: 0;
             list-style-type: disc;
             color: var(--text-primary);
@@ -195,20 +200,20 @@
         }
 
         .case li {
-            margin-bottom: 12px;
-            font-size: 1.08em;
+            margin-bottom: 12px; /* 稍微增大列表项之间间距 */
+            font-size: 1.08em; /* 稍微增大列表项字体 */
             line-height: 1.6;
         }
 
         .case strong {
-            color: var(--accent-color);
+            color: var(--accent-color); /* 保持强调色 */
             font-weight: 600;
         }
 
         hr {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 60px auto;
+            margin: 60px auto; /* 统一分隔线上下间距 */
             width: 60%;
             opacity: 0.5;
         }
