@@ -64,7 +64,7 @@
         .case {
             display: flex;
             flex-direction: row; /* 默认左右布局 */
-            align-items: flex-start; /* 顶部对齐 */
+            align-items: center; /* 垂直居中对齐，解决空白问题 */
             width: 100%;
             gap: 50px; /* 描述和视频之间更大的间距 */
             text-align: left;
@@ -89,12 +89,12 @@
 
         .case-description {
             flex: 2; /* 描述部分占两份 */
-            padding-right: 20px;
+            /* 移除 padding-right: 20px; 依靠 gap 属性 */
         }
 
         .video-frame {
             flex: 3; /* 视频部分占三份 */
-            padding-left: 20px;
+            /* 移除 padding-left: 20px; 依靠 gap 属性 */
         }
 
         .video-frame iframe {
