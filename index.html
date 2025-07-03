@@ -10,44 +10,93 @@
             text-align: center;
             margin: 20px;
             font-size: min(16px, 4vw);
+            line-height: 1.6;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        p {
+            margin-bottom: 20px;
         }
         .case-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 60px; /* Increased gap for better separation */
+            padding: 20px 0;
         }
         .case {
             display: flex;
             flex-direction: row;
             align-items: center;
             max-width: 1000px;
-            gap: 20px;
+            width: 100%; /* Ensure it takes full width within max-width */
+            gap: 30px; /* Adjusted gap */
             text-align: left;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px; /* Added padding */
+            box-sizing: border-box; /* Include padding in width */
+        }
+        .case:nth-child(even) {
+            flex-direction: row-reverse; /* Alternate layout for even cases */
         }
         .case-description {
-            width: 40%;
+            flex: 2; /* Takes more space */
+            padding-right: 15px; /* Added padding for spacing */
         }
         .video-frame {
-            width: 60%;
+            flex: 3; /* Takes more space */
+            padding-left: 15px; /* Added padding for spacing */
         }
         iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
             height: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
         ul {
-            padding-left: 20px;
+            padding-left: 25px;
+            margin-top: 15px;
+            list-style-type: disc;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #34495e;
+        }
+        .contact-info {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #ecf0f1;
+            border-top: 1px solid #ddd;
+            font-size: 0.9em;
+            color: #555;
+            border-radius: 8px;
         }
 
-        /* 适配手机端 */
+        /* Responsive adjustments for mobile */
         @media (max-width: 768px) {
             .case {
                 flex-direction: column;
                 align-items: center;
+                text-align: center;
+                padding: 20px;
+            }
+            .case:nth-child(even) {
+                flex-direction: column; /* Keep column direction for mobile */
             }
             .case-description, .video-frame {
                 width: 100%;
+                padding: 0; /* Remove specific padding for mobile */
+            }
+            ul {
+                padding-left: 0;
+                list-style-position: inside; /* Adjust list style for better alignment on mobile */
             }
         }
     </style>
@@ -73,6 +122,8 @@
             </div>
         </div>
 
+        ---
+
         <div class="case">
             <div class="case-description">
                 <h2>案例 2: 基于 SteamVR 和 XRToolkit 开发的博物馆实战项目</h2>
@@ -87,6 +138,8 @@
                 <iframe src="https://www.youtube.com/embed/VGgtfCvVX90" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+
+        ---
 
         <div class="case">
             <div class="case-description">
@@ -103,6 +156,13 @@
                 <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
+    </div>
+
+    ---
+
+    <div class="contact-info">
+        <p>欢迎联系我获取更多信息！</p>
+        <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
     </div>
 </body>
 </html>
