@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto's XR 开发作品集 | 本科三年级</title>
+    <title>Lotto's XR 作品集 - 本科三年级</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* CSS 变量，便于管理颜色和风格 */
         :root {
-            --bg-primary: #1a1a1a; /* 主背景：深黑 */
-            --bg-secondary: #282828; /* 卡片/次级背景：略浅的深灰 */
-            --text-primary: #f0f0f0; /* 主文本颜色：接近白色 */
-            --text-secondary: #c0c0c0; /* 副文本颜色：中等灰色 */
-            --accent-color: #007bff; /* 强调色：专业蓝色 */
-            --accent-hover: #3399ff; /* 强调色悬停：更亮的蓝色 */
-            --border-color: #444; /* 边框颜色 */
-            --shadow-color: rgba(0, 0, 0, 0.4); /* 阴影颜色 */
+            --bg-primary: #0a0a0a; /* 更深邃的黑色背景 */
+            --bg-secondary: #1c1c1c; /* 卡片/次级背景：非常深的灰色 */
+            --text-primary: #f8f8f8; /* 主文本颜色：纯白色 */
+            --text-secondary: #aaaaaa; /* 副文本颜色：中等灰色，更柔和 */
+            --accent-color: #4CAF50; /* 强调色：专业、稳重的绿色，代表成长、技术 */
+            --accent-hover: #66BB6A; /* 强调色悬停：更亮的绿色 */
+            --border-color: #333333; /* 边框颜色 */
+            --shadow-color: rgba(0, 0, 0, 0.6); /* 柔和但可见的阴影 */
         }
 
         body {
-            font-family: 'Inter', 'Roboto', sans-serif; /* 使用 Inter 或 Roboto 字体 */
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            padding: 40px 20px; /* 整体内边距 */
-            font-size: min(17px, 4.2vw); /* 基础字体大小，适配移动端 */
-            line-height: 1.6; /* 舒适的行高 */
+            padding: 60px 30px; /* 增加整体内边距，提供更多呼吸空间 */
+            font-size: min(18px, 4.5vw); /* 稍大基础字体，提升可读性 */
+            line-height: 1.7; /* 舒适的行高 */
             color: var(--text-primary);
             background-color: var(--bg-primary);
             box-sizing: border-box;
@@ -36,25 +36,27 @@
 
         /* 标题样式 */
         h1 {
-            font-size: min(3.5em, 8vw);
-            margin-bottom: 10px;
+            font-size: min(4em, 9vw); /* 更大的主标题 */
+            margin-bottom: 8px; /* 靠近副标题 */
             color: var(--text-primary);
-            font-weight: 700; /* 加粗 */
-            letter-spacing: -0.02em; /* 稍微收紧字间距 */
+            font-weight: 700;
+            letter-spacing: -0.03em; /* 紧凑的字间距，更现代 */
         }
 
         h2 {
-            font-size: min(2.2em, 5.5vw);
-            margin-top: 40px;
-            margin-bottom: 20px;
+            font-size: min(2.5em, 6.5vw); /* 更大的案例标题 */
+            margin-top: 50px; /* 案例标题顶部间距 */
+            margin-bottom: 25px; /* 案例标题底部间距 */
             color: var(--text-primary);
             font-weight: 600;
-            text-align: left; /* 案例标题左对齐 */
+            text-align: left;
+            border-bottom: 1px solid var(--border-color); /* 底部细线强调 */
+            padding-bottom: 10px;
         }
 
         p {
-            margin-bottom: 15px;
-            color: var(--text-secondary); /* 副文本颜色 */
+            margin-bottom: 20px;
+            color: var(--text-secondary);
         }
 
         /* 链接样式 */
@@ -71,49 +73,49 @@
 
         /* 简介/元信息 */
         .intro-meta {
-            font-size: 1.1em;
+            font-size: 1.2em; /* 增大简介字体 */
             color: var(--text-secondary);
-            margin-bottom: 30px;
-            opacity: 0.9; /* 略微透明，增加层次感 */
+            margin-bottom: 40px; /* 增加与内容的间距 */
+            font-weight: 400; /* 正常字重 */
         }
         
         .note-text {
             color: var(--text-secondary);
-            font-size: 0.95em;
-            margin-bottom: 40px;
+            font-size: 1em;
+            margin-bottom: 60px; /* 增加与案例容器的间距 */
         }
 
         /* 案例容器 */
         .case-container {
             width: 100%;
-            max-width: 1000px; /* 控制内容最大宽度 */
+            max-width: 1080px; /* 宽屏下内容更宽敞 */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 60px; /* 案例之间的垂直间距 */
-            padding: 40px 0;
+            gap: 80px; /* 案例之间更大的垂直间距 */
+            padding: 0; /* 移除容器内部的额外padding */
         }
 
         /* 单个案例卡片 */
         .case {
             display: flex;
             flex-direction: row;
-            align-items: flex-start; /* 顶部对齐 */
+            align-items: flex-start;
             width: 100%;
-            gap: 40px; /* 描述和视频之间的间距 */
+            gap: 50px; /* 描述和视频之间更大的间距 */
             text-align: left;
             background-color: var(--bg-secondary);
-            border-radius: 8px; /* 适度圆角 */
-            box-shadow: 0 4px 12px var(--shadow-color); /* 柔和阴影 */
-            padding: 30px; /* 内部填充 */
+            border-radius: 12px; /* 适度圆角 */
+            box-shadow: 0 6px 18px var(--shadow-color); /* 柔和但可见的阴影 */
+            padding: 40px; /* 内部填充 */
             box-sizing: border-box;
             border: 1px solid var(--border-color); /* 细边框 */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* 悬停过渡效果 */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
         .case:hover {
-            transform: translateY(-5px); /* 悬停时轻微上浮 */
-            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2); /* 悬停时强调色阴影 */
+            transform: translateY(-8px); /* 悬停时轻微上浮 */
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3); /* 强调色阴影，无发光 */
         }
 
         /* 偶数案例反向布局 */
@@ -122,94 +124,92 @@
         }
 
         .case-description {
-            flex: 2; /* 描述文字占 2/5 空间 */
+            flex: 2;
             padding-right: 20px;
         }
 
         .video-frame {
-            flex: 3; /* 视频占 3/5 空间 */
+            flex: 3;
             padding-left: 20px;
         }
 
         iframe {
             width: 100%;
-            aspect-ratio: 16 / 9; /* 保持 16:9 比例 */
+            aspect-ratio: 16 / 9;
             height: auto;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px var(--shadow-color);
+            border-radius: 8px;
+            box-shadow: 0 3px 10px var(--shadow-color);
             border: 1px solid var(--border-color);
         }
 
         /* 列表样式 */
         ul {
-            padding-left: 25px;
-            margin-top: 15px;
-            list-style-type: disc; /* 标准圆点列表 */
+            padding-left: 25px; /* 标准缩进 */
+            margin-top: 20px;
+            list-style-type: disc; /* 标准圆点列表，不使用自定义图标 */
             color: var(--text-primary);
         }
 
         li {
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            line-height: 1.5; /* 列表项行高 */
+            margin-bottom: 10px;
+            font-size: 1em; /* 列表项字体大小与主体保持一致 */
+            line-height: 1.6;
         }
 
         /* 强调文字 */
         strong {
             color: var(--accent-color); /* 强调色突出关键字 */
-            font-weight: 600; /* 略粗 */
+            font-weight: 600;
         }
 
         /* 分隔线 */
         hr {
             border: none;
-            border-top: 1px solid var(--border-color);
-            margin: 50px auto;
-            width: 70%;
-            opacity: 0.7; /* 略微透明 */
+            border-top: 1px solid var(--border-color); /* 简单实线分隔 */
+            margin: 80px auto; /* 增加分隔线上下间距 */
+            width: 60%; /* 缩短长度 */
+            opacity: 0.5; /* 略微透明 */
         }
 
         /* 联系信息 */
         .contact-info {
             width: 100%;
-            max-width: 800px;
-            margin-top: 50px;
-            padding: 30px;
+            max-width: 900px;
+            margin-top: 80px; /* 增加顶部间距 */
+            padding: 40px; /* 增加内边距 */
             background-color: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            font-size: 1.05em;
-            color: var(--text-primary);
-            border-radius: 8px;
-            box-shadow: 0 -4px 12px var(--shadow-color);
+            border-radius: 12px;
+            box-shadow: 0 -4px 15px var(--shadow-color);
+            border: 1px solid var(--border-color);
         }
         
         .contact-info p {
-            margin-bottom: 12px;
-            color: var(--text-primary); /* 确保联系信息文本颜色一致 */
+            margin-bottom: 15px;
+            color: var(--text-primary);
         }
 
         /* 移动端适配 */
         @media (max-width: 768px) {
             body {
-                padding: 20px 15px;
-                font-size: min(16px, 4vw);
+                padding: 30px 15px;
+                font-size: min(17px, 4.2vw);
             }
             h1 {
-                font-size: 2.5em;
+                font-size: 3em;
             }
             h2 {
                 font-size: 1.8em;
                 text-align: center; /* 手机端标题居中 */
             }
             .case {
-                flex-direction: column; /* 手机端一律垂直堆叠 */
+                flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 20px;
-                gap: 25px;
+                padding: 30px;
+                gap: 30px;
             }
             .case:nth-child(even) {
-                flex-direction: column; /* 手机端保持垂直堆叠 */
+                flex-direction: column;
             }
             .case-description, .video-frame {
                 width: 100%;
@@ -217,38 +217,41 @@
             }
             ul {
                 padding-left: 20px;
-                list-style-position: inside; /* 手机端列表项目在圆点后换行 */
+                list-style-position: outside; /* 手机端列表圆点在外 */
             }
             li {
-                margin-bottom: 10px;
+                margin-bottom: 8px;
             }
             .intro-meta {
-                font-size: 1em;
+                font-size: 1.1em;
             }
             .note-text {
                 font-size: 0.9em;
             }
             .contact-info {
-                padding: 20px;
+                padding: 25px;
+            }
+            hr {
+                margin: 50px auto;
             }
         }
     </style>
 </head>
 <body>
-    <h1>Lotto's XR 开发作品集</h1>
-    <p class="intro-meta">本科三年级学生 | 专注于 XR 技术开发与实践</p>
+    <h1>Lotto's XR 作品集</h1>
+    <p class="intro-meta">本科三年级学生 | XR 开发与实践</p>
     <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
 
     <div class="case-container">
         <div class="case">
             <div class="case-description">
-                <h2>案例 1: 基于 PicoSDK 和 XRToolkit 开发的交互案例</h2>
+                <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                 <ul>
-                    <li><strong>凝视交互</strong> —— 通过视线追踪实现直观交互。</li>
-                    <li><strong>手势识别与追踪</strong> —— 允许用户使用手部动作操控虚拟环境。</li>
-                    <li><strong>角色攀爬</strong> —— 使用户能模拟攀爬体验，增强沉浸感。</li>
-                    <li><strong>Socket 交互</strong> —— 提供更灵活的组件交互方式。</li>
-                    <li><strong>PXR_Manager 应用</strong> —— 探索 <strong>无手柄交互</strong>，开发 <strong>钢琴演奏、手势交互、射击体验</strong>，增强自然性。</li>
+                    <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                    <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                    <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                    <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                    <li><strong>PXR_Manager 应用</strong>：探索**无手柄交互**，实践**钢琴演奏、手势交互、射击体验**。</li>
                 </ul>
             </div>
             <div class="video-frame">
@@ -260,12 +263,12 @@
 
         <div class="case">
             <div class="case-description">
-                <h2>案例 2: 基于 SteamVR 和 XRToolkit 开发的博物馆实战项目</h2>
+                <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                 <ul>
-                    <li><strong>URP（通用渲染管线）</strong> —— 提供高质量的渲染，增强视觉表现。</li>
-                    <li><strong>光照探针与烘焙</strong> —— 改进展馆环境的真实感与光影效果。</li>
-                    <li><strong>DoTween 插件</strong> —— 丰富 UI 动画，使交互更直观生动。</li>
-                    <li><strong>SteamVR 交互</strong> —— <strong>抓取手势自定义、手柄射线检测交互</strong>，提升沉浸体验。</li>
+                    <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                    <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                    <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                    <li><strong>SteamVR 交互</strong>：自定义**抓取手势**，实现**手柄射线检测交互**。</li>
                 </ul>
             </div>
             <div class="video-frame">
@@ -277,13 +280,13 @@
 
         <div class="case">
             <div class="case-description">
-                <h2>案例 3: 敦煌莫高窟博物馆案例</h2>
+                <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                 <ul>
-                    <li><strong>协程函数</strong> —— 控制 <strong>打字机效果、淡入淡出</strong>，优化视觉体验。</li>
-                    <li><strong>XRTK 深度交互</strong> —— 进一步强化展馆的互动机制。</li>
-                    <li><strong>PXR 换场特效</strong> —— 增强场景切换的流畅度与表现力。</li>
-                    <li><strong>拼接游戏</strong> —— 结合 <strong>碰撞检测、材质切换、拼接顺序逻辑判断</strong>，确保互动精准自然。</li>
-                    <li><strong>竞赛样题</strong> —— <strong>2025 年福建省职业院校技能大赛样题</strong>，<strong>因赛中时长原因</strong>，部分细节待优化。</li>
+                    <li><strong>协程函数应用</strong>：控制**打字机效果、淡入淡出**等动画。</li>
+                    <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                    <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                    <li><strong>拼接游戏模块</strong>：结合**碰撞检测、材质切换、顺序逻辑**，确保游戏互动准确性。</li>
+                    <li>**竞赛样题背景**：此项目为**2025 年福建省职业院校技能大赛样题**实践，部分细节待优化。</li>
                 </ul>
             </div>
             <div class="video-frame">
@@ -295,7 +298,7 @@
     <hr>
 
     <div class="contact-info">
-        <p>感谢您的浏览！如有任何疑问或合作意向，请随时联系。</p>
+        <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
         <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
         <p><strong>我的简历:</strong> <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank">点击下载</a></p>
     </div>
