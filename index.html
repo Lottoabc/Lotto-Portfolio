@@ -3,188 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto's XR 作品集 - 本科三年级</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS 变量，便于管理颜色和风格 */
+        /* CSS 变量 */
         :root {
-            --bg-primary: #0a0a0a; /* 更深邃的黑色背景 */
-            --bg-secondary: #1c1c1c; /* 卡片/次级背景：非常深的灰色 */
-            --text-primary: #f8f8f8; /* 主文本颜色：纯白色 */
-            --text-secondary: #aaaaaa; /* 副文本颜色：中等灰色，更柔和 */
-            --accent-color: #4CAF50; /* 强调色：专业、稳重的绿色，代表成长、技术 */
-            --accent-hover: #66BB6A; /* 强调色悬停：更亮的绿色 */
-            --border-color: #333333; /* 边框颜色 */
-            --shadow-color: rgba(0, 0, 0, 0.6); /* 柔和但可见的阴影 */
+            --bg-primary: #121212; /* 柔和的深灰色背景 */
+            --bg-secondary: #1e1e1e; /* 卡片背景 */
+            --text-primary: #f0f0f0;
+            --text-secondary: #aaa;
+            --accent-color: #4CAF50;
+            --accent-hover: #66BB6A;
+            --border-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.5);
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            padding: 60px 30px; /* 增加整体内边距，提供更多呼吸空间 */
-            font-size: min(18px, 4.5vw); /* 稍大基础字体，提升可读性 */
-            line-height: 1.7; /* 舒适的行高 */
+            padding: 60px 30px;
+            font-size: min(18px, 4.5vw);
+            line-height: 1.7;
             color: var(--text-primary);
             background-color: var(--bg-primary);
             box-sizing: border-box;
-            min-height: 100vh; /* 确保背景覆盖整个视口 */
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        /* 标题样式 */
         h1 {
-            font-size: min(4em, 9vw); /* 更大的主标题 */
-            margin-bottom: 8px; /* 靠近副标题 */
+            font-size: min(4em, 9vw);
+            margin-bottom: 8px;
             color: var(--text-primary);
             font-weight: 700;
-            letter-spacing: -0.03em; /* 紧凑的字间距，更现代 */
+            letter-spacing: -0.03em;
         }
 
-        h2 {
-            font-size: min(2.5em, 6.5vw); /* 更大的案例标题 */
-            margin-top: 50px; /* 案例标题顶部间距 */
-            margin-bottom: 25px; /* 案例标题底部间距 */
-            color: var(--text-primary);
-            font-weight: 600;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color); /* 底部细线强调 */
-            padding-bottom: 10px;
-        }
-
-        p {
-            margin-bottom: 20px;
-            color: var(--text-secondary);
-        }
-
-        /* 链接样式 */
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        a:hover {
-            color: var(--accent-hover);
-            text-decoration: underline;
-        }
-
-        /* 简介/元信息 */
         .intro-meta {
-            font-size: 1.2em; /* 增大简介字体 */
+            font-size: 1.2em;
             color: var(--text-secondary);
-            margin-bottom: 40px; /* 增加与内容的间距 */
-            font-weight: 400; /* 正常字重 */
+            margin-bottom: 40px;
+            font-weight: 400;
         }
-        
+
         .note-text {
             color: var(--text-secondary);
             font-size: 1em;
-            margin-bottom: 60px; /* 增加与案例容器的间距 */
+            margin-bottom: 60px;
         }
 
-        /* 案例容器 */
         .case-container {
             width: 100%;
-            max-width: 1080px; /* 宽屏下内容更宽敞 */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 80px; /* 案例之间更大的垂直间距 */
-            padding: 0; /* 移除容器内部的额外padding */
+            max-width: 1200px; /* 增加最大宽度 */
+            display: grid; /* 使用网格布局 */
+            grid-template-columns: 1fr 1fr; /* 两列，各占一半 */
+            gap: 40px; /* 调整网格间距 */
+            padding: 0 20px; /* 左右内边距 */
+            box-sizing: border-box;
         }
 
-        /* 单个案例卡片 */
         .case {
             display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            width: 100%;
-            gap: 50px; /* 描述和视频之间更大的间距 */
-            text-align: left;
+            flex-direction: column;
             background-color: var(--bg-secondary);
-            border-radius: 12px; /* 适度圆角 */
-            box-shadow: 0 6px 18px var(--shadow-color); /* 柔和但可见的阴影 */
-            padding: 40px; /* 内部填充 */
+            border-radius: 12px;
+            box-shadow: 0 6px 18px var(--shadow-color);
+            padding: 30px;
             box-sizing: border-box;
-            border: 1px solid var(--border-color); /* 细边框 */
+            border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
         .case:hover {
-            transform: translateY(-8px); /* 悬停时轻微上浮 */
-            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3); /* 强调色阴影，无发光 */
-        }
-
-        /* 偶数案例反向布局 */
-        .case:nth-child(even) {
-            flex-direction: row-reverse;
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3);
         }
 
         .case-description {
-            flex: 2;
-            padding-right: 20px;
+            text-align: left;
+            margin-bottom: 20px;
         }
 
         .video-frame {
-            flex: 3;
-            padding-left: 20px;
-        }
-
-        iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
-            height: auto;
+        }
+
+        .video-frame iframe {
+            width: 100%;
+            height: 100%;
             border-radius: 8px;
             box-shadow: 0 3px 10px var(--shadow-color);
             border: 1px solid var(--border-color);
         }
 
-        /* 列表样式 */
-        ul {
-            padding-left: 25px; /* 标准缩进 */
-            margin-top: 20px;
-            list-style-type: disc; /* 标准圆点列表，不使用自定义图标 */
+        .case h2 {
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
             color: var(--text-primary);
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
         }
 
-        li {
-            margin-bottom: 10px;
-            font-size: 1em; /* 列表项字体大小与主体保持一致 */
+        .case ul {
+            padding-left: 20px;
+            margin-top: 15px;
+            list-style-type: disc;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
+        .case li {
+            margin-bottom: 8px;
+            font-size: 1em;
             line-height: 1.6;
         }
 
-        /* 强调文字 */
-        strong {
-            color: var(--accent-color); /* 强调色突出关键字 */
+        .case strong {
+            color: var(--accent-color);
             font-weight: 600;
         }
 
-        /* 分隔线 */
         hr {
             border: none;
-            border-top: 1px solid var(--border-color); /* 简单实线分隔 */
-            margin: 80px auto; /* 增加分隔线上下间距 */
-            width: 60%; /* 缩短长度 */
-            opacity: 0.5; /* 略微透明 */
+            border-top: 1px solid var(--border-color);
+            margin: 80px auto;
+            width: 60%;
+            opacity: 0.5;
         }
 
-        /* 联系信息 */
         .contact-info {
             width: 100%;
             max-width: 900px;
-            margin-top: 80px; /* 增加顶部间距 */
-            padding: 40px; /* 增加内边距 */
+            margin-top: 80px;
+            padding: 40px;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 -4px 15px var(--shadow-color);
             border: 1px solid var(--border-color);
         }
-        
+
         .contact-info p {
             margin-bottom: 15px;
             color: var(--text-primary);
+        }
+
+        .contact-info strong {
+            font-weight: 700;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
         }
 
         /* 移动端适配 */
@@ -196,48 +177,43 @@
             h1 {
                 font-size: 3em;
             }
-            h2 {
-                font-size: 1.8em;
-                text-align: center; /* 手机端标题居中 */
+            .case-container {
+                grid-template-columns: 1fr; /* 手机端单列 */
+                padding: 0 10px;
+                gap: 60px;
             }
             .case {
-                flex-direction: column;
-                align-items: center;
+                padding: 25px;
+            }
+            .case h2 {
+                font-size: 1.6em;
                 text-align: center;
-                padding: 30px;
-                gap: 30px;
             }
-            .case:nth-child(even) {
-                flex-direction: column;
-            }
-            .case-description, .video-frame {
-                width: 100%;
-                padding: 0;
-            }
-            ul {
+            .case ul {
                 padding-left: 20px;
-                list-style-position: outside; /* 手机端列表圆点在外 */
-            }
-            li {
-                margin-bottom: 8px;
+                text-align: left;
             }
             .intro-meta {
                 font-size: 1.1em;
+                margin-bottom: 30px;
             }
             .note-text {
                 font-size: 0.9em;
-            }
-            .contact-info {
-                padding: 25px;
+                margin-bottom: 40px;
             }
             hr {
                 margin: 50px auto;
+                width: 80%;
+            }
+            .contact-info {
+                padding: 25px;
             }
         }
     </style>
 </head>
 <body>
     <h1>XR交互开发案例集</h1>
+    <p class="intro-meta">本科三年级学生 | XR 开发与实践</p>
     <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
 
     <div class="case-container">
@@ -249,15 +225,13 @@
                     <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
                     <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
                     <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                    <li><strong>PXR_Manager 应用</strong>：探索**无手柄交互**，实践**钢琴演奏、手势交互、射击体验**。</li>
+                    <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
                 </ul>
             </div>
             <div class="video-frame">
                 <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-
-        <hr>
 
         <div class="case">
             <div class="case-description">
@@ -266,7 +240,7 @@
                     <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
                     <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
                     <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                    <li><strong>SteamVR 交互</strong>：自定义**抓取手势**，实现**手柄射线检测交互**。</li>
+                    <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
                 </ul>
             </div>
             <div class="video-frame">
@@ -274,17 +248,15 @@
             </div>
         </div>
 
-        <hr>
-
         <div class="case">
             <div class="case-description">
                 <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                 <ul>
-                    <li><strong>协程函数应用</strong>：控制**打字机效果、淡入淡出**等动画。</li>
+                    <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
                     <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
                     <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                    <li><strong>拼接游戏模块</strong>：结合**碰撞检测、材质切换、顺序逻辑**，确保游戏互动准确性。</li>
-                    <li>**竞赛样题背景**：此项目为**2025 年福建省职业院校技能大赛样题**实践，部分细节待优化。</li>
+                    <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                    <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，部分细节待优化。</li>
                 </ul>
             </div>
             <div class="video-frame">
