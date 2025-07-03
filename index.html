@@ -6,14 +6,14 @@
     <title>Lotto's XR 开发作品集</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS 变量 */
+        /* CSS 变量 - 更新强调色为橙色调 */
         :root {
             --bg-primary: #121212; /* 柔和的深灰色背景 */
             --bg-secondary: #1e1e1e; /* 卡片背景 */
             --text-primary: #f0f0f0; /* 主文本颜色 */
             --text-secondary: #aaa; /* 副文本颜色 */
-            --accent-color: #4CAF50; /* 强调色：专业、稳重的绿色 */
-            --accent-hover: #66BB6A; /* 强调色悬停 */
+            --accent-color: #F9AD6D; /* 新强调色：温暖的橙色 */
+            --accent-hover: #FFC080; /* 强调色悬停效果 */
             --border-color: #333; /* 边框颜色 */
             --shadow-color: rgba(0, 0, 0, 0.5); /* 柔和阴影 */
         }
@@ -22,7 +22,7 @@
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            padding: 40px 30px;
+            padding: 50px 30px; /* 稍微增加整体顶部内边距，给头部更多空间 */
             font-size: min(18px, 4.5vw);
             line-height: 1.7;
             color: var(--text-primary);
@@ -35,18 +35,38 @@
         }
 
         h1 {
-            font-size: min(4em, 9vw);
-            margin-bottom: 20px;
+            font-size: min(4.2em, 9.5vw); /* 稍微增大标题字号 */
+            margin-bottom: 15px;
             color: var(--text-primary);
             font-weight: 700;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em; /* 微调字间距 */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1em;
-            margin-bottom: 40px;
+            font-size: 1.05em; /* 稍微增大说明文字字号 */
+            margin-bottom: 30px; /* 调整与简历按钮的间距 */
             max-width: 800px;
+        }
+
+        .resume-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-primary); /* 按钮文字颜色与背景形成对比 */
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 60px; /* 调整与第一个案例的间距 */
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .resume-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
         /* 案例容器 - 改为 flex 垂直布局 */
@@ -56,7 +76,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 50px; /* 统一增加案例之间垂直间距，更符合大卡片感觉 */
             padding: 0;
         }
 
@@ -66,12 +86,12 @@
             flex-direction: row;
             align-items: center;
             width: 100%;
-            gap: 30px;
+            gap: 45px; /* 增大描述和视频之间的间距 */
             text-align: left;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 6px 18px var(--shadow-color);
-            padding: 40px;
+            padding: 55px; /* 统一增加内边距，使框框更大且一致 */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -79,7 +99,7 @@
 
         .case:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color); /* 增加强调色光晕 */
         }
 
         /* 偶数案例反向布局 */
@@ -105,18 +125,18 @@
         }
 
         .case h2 {
-            font-size: 2.2em;
+            font-size: 2.6em; /* 进一步增大标题字号 */
             margin-top: 0;
-            margin-bottom: 20px;
+            margin-bottom: 28px; /* 调整标题与列表间距 */
             color: var(--text-primary);
             font-weight: 600;
             text-align: left;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .case ul {
-            padding-left: 25px;
+            padding-left: 30px; /* 稍微增大列表左内边距 */
             margin-top: 0;
             list-style-type: disc;
             color: var(--text-primary);
@@ -124,37 +144,38 @@
         }
 
         .case li {
-            margin-bottom: 8px;
-            font-size: 1em;
+            margin-bottom: 12px; /* 稍微增大列表项之间间距 */
+            font-size: 1.08em; /* 稍微增大列表项字体 */
             line-height: 1.6;
         }
 
         .case strong {
-            color: var(--accent-color);
+            color: var(--accent-color); /* 保持强调色 */
             font-weight: 600;
         }
 
         hr {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 40px auto;
+            margin: 60px auto; /* 统一分隔线上下间距 */
             width: 60%;
             opacity: 0.5;
         }
 
         .contact-info {
             width: 100%;
-            max-width: 900px;
-            margin-top: 60px;
-            padding: 40px;
+            max-width: 600px; /* 调整最大宽度，使其更窄更集中 */
+            margin-top: 80px; /* 增加与上方内容的间距 */
+            padding: 35px; /* 调整内边距，使其更紧凑舒适 */
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 -4px 15px var(--shadow-color);
             border: 1px solid var(--border-color);
+            text-align: center;
         }
 
         .contact-info p {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: var(--text-primary);
         }
 
@@ -173,64 +194,32 @@
             color: var(--accent-hover);
         }
 
-        /* 针对案例二的特殊样式 */
-        .case-two {
-            padding: 60px !important; /* 使用 !important 确保覆盖原有的 padding */
-            gap: 50px !important; /* 相应增加内部元素间距 */
-        }
-
-        .case-two .case-description h2 {
-            font-size: 2.6em !important; /* 可以进一步放大标题 */
-            margin-bottom: 30px !important;
-        }
-
-        .case-two .case-description ul {
-            padding-left: 30px !important;
-        }
-
-        .case-two .case-description li {
-            font-size: 1.1em !important;
-            margin-bottom: 12px !important;
-        }
-
-        /* 移动端案例二的特殊样式 */
-        @media (max-width: 768px) {
-            .case-two {
-                padding: 40px !important;
-                gap: 35px !important;
-            }
-            .case-two .case-description h2 {
-                font-size: 2.2em !important;
-                margin-bottom: 25px !important;
-            }
-            .case-two .case-description li {
-                font-size: 1.05em !important;
-                margin-bottom: 10px !important;
-            }
-        }
-
         /* 移动端适配 */
         @media (max-width: 768px) {
             body {
-                padding: 20px 15px;
+                padding: 30px 15px;
                 font-size: min(17px, 4.2vw);
             }
             h1 {
-                font-size: 3em;
+                font-size: 3.5em;
             }
             .note-text {
-                margin-bottom: 30px;
+                margin-bottom: 25px;
+            }
+            .resume-button {
+                padding: 10px 20px;
+                font-size: 1em;
+                margin-bottom: 40px;
             }
             .case-container {
-                gap: 30px;
+                gap: 40px; /* 手机端案例间距 */
                 padding: 0;
             }
             .case {
-                display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 35px;
+                padding: 40px; /* 手机端案例卡片内边距 */
                 gap: 30px;
             }
             .case:nth-child(even) {
@@ -241,7 +230,7 @@
                 padding: 0;
             }
             .case h2 {
-                font-size: 2em;
+                font-size: 2.2em; /* 手机端标题字号 */
                 text-align: center;
                 margin-bottom: 20px;
             }
@@ -250,16 +239,20 @@
                 text-align: left;
             }
             .case li {
-                margin-bottom: 8px;
+                margin-bottom: 10px;
                 font-size: 1em;
             }
             hr {
-                margin: 30px auto;
+                margin: 40px auto;
                 width: 80%;
             }
             .contact-info {
-                padding: 20px;
-                margin-top: 40px;
+                padding: 25px;
+                margin-top: 50px;
+                max-width: 95%;
+            }
+            .contact-info p {
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -267,6 +260,10 @@
 <body>
     <h1>Lotto's XR 开发作品集</h1>
     <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
+
+    <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank" class="resume-button">
+        下载我的简历
+    </a>
 
     <div class="case-container">
         <div class="case">
@@ -287,7 +284,7 @@
 
         <hr>
 
-        <div class="case case-two">
+        <div class="case">
             <div class="case-description">
                 <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                 <ul>
@@ -326,7 +323,6 @@
     <div class="contact-info">
         <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
         <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
-        <p><strong>我的简历:</strong> <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank">点击下载</a></p>
     </div>
 </body>
 </html>
