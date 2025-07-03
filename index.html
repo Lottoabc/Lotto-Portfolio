@@ -22,26 +22,27 @@
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            padding: 50px 30px; /* 稍微增加整体顶部内边距，给头部更多空间 */
+            padding: 50px 30px;
             font-size: min(18px, 4.5vw);
             line-height: 1.7;
             color: var(--text-primary);
-            /* ---------------------- 背景修改开始 ---------------------- */
-            background-color: #121212; /* Fallback for browsers that don't support gradients */
+            /* ---------------------- 基础背景和动态背景容器设置 ---------------------- */
+            background-color: #121212; /* Fallback */
             background-image:
-                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%), /* 顶部中心发出微弱光芒 */
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%), /* 左下角微弱光芒 */
-                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%), /* 右下角微弱光芒 */
-                linear-gradient(to bottom, #121212, #0a0a0a); /* 深色渐变作为基础 */
-            /* 添加一个模拟颗粒感的背景图，非常小，重复铺满 */
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+                linear-gradient(to bottom, #121212, #0a0a0a);
+            /* 模拟颗粒感的背景图，保持不动 */
             background-image: url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231a1a1a" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231a1a1a" opacity="0.1"/></svg>'),
                               radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
                               radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
                               radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
                               linear-gradient(to bottom, #121212, #0a0a0a);
-            background-repeat: repeat; /* 颗粒感背景重复 */
-            background-blend-mode: overlay, normal, normal, normal, normal; /* 混合模式 */
-            /* ---------------------- 背景修改结束 ---------------------- */
+            background-repeat: repeat;
+            background-blend-mode: overlay, normal, normal, normal, normal;
+            position: relative; /* 为伪元素提供定位上下文 */
+            overflow-x: hidden; /* 防止动态元素溢出导致横向滚动条 */
             box-sizing: border-box;
             min-height: 100vh;
             display: flex;
@@ -49,31 +50,69 @@
             align-items: center;
         }
 
+        /* 动态背景层 */
+        body::before {
+            content: '';
+            position: fixed; /* 固定在视口 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="0.5" fill="rgba(255, 255, 255, 0.08)"/></svg>'); /* 微小的白色圆点 */
+            background-size: 80px 80px; /* 控制点的大小和密度 */
+            background-repeat: repeat;
+            opacity: 0.1; /* 整体透明度，使其非常微妙 */
+            z-index: -1; /* 确保在内容下方 */
+            animation: moveBackground 60s linear infinite, fadeBackground 10s ease-in-out infinite alternate; /* 组合移动和渐变动画 */
+        }
+
+        /* 动画关键帧 */
+        @keyframes moveBackground {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 100% 100%; /* 让背景图缓慢对角线移动 */
+            }
+        }
+
+        @keyframes fadeBackground {
+            0% { opacity: 0.08; }
+            50% { opacity: 0.12; }
+            100% { opacity: 0.08; }
+        }
+
+        /* 确保内容在动态背景之上 */
+        body > *:not(::before) {
+            position: relative;
+            z-index: 1;
+        }
+
         h1 {
-            font-size: min(4.2em, 9.5vw); /* 稍微增大标题字号 */
+            font-size: min(4.2em, 9.5vw);
             margin-bottom: 15px;
             color: var(--text-primary);
             font-weight: 700;
-            letter-spacing: -0.04em; /* 微调字间距 */
+            letter-spacing: -0.04em;
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.05em; /* 稍微增大说明文字字号 */
-            margin-bottom: 30px; /* 调整与简历按钮的间距 */
+            font-size: 1.05em;
+            margin-bottom: 30px;
             max-width: 800px;
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--bg-primary); /* 按钮文字颜色与背景形成对比 */
+            color: var(--bg-primary);
             padding: 12px 25px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1em;
-            margin-bottom: 60px; /* 调整与第一个案例的间距 */
+            margin-bottom: 60px;
             transition: background-color 0.2s ease, transform 0.2s ease;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -84,29 +123,27 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
         }
 
-        /* 案例容器 - 改为 flex 垂直布局 */
         .case-container {
             width: 100%;
             max-width: 1080px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 50px; /* 统一增加案例之间垂直间距，更符合大卡片感觉 */
+            gap: 50px;
             padding: 0;
         }
 
-        /* 单个案例卡片 */
         .case {
             display: flex;
             flex-direction: row;
             align-items: center;
             width: 100%;
-            gap: 45px; /* 增大描述和视频之间的间距 */
+            gap: 45px;
             text-align: left;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 6px 18px var(--shadow-color);
-            padding: 55px; /* 统一增加内边距，使框框更大且一致 */
+            padding: 55px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -114,10 +151,9 @@
 
         .case:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color); /* 增加强调色光晕 */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color);
         }
 
-        /* 偶数案例反向布局 */
         .case:nth-child(even) {
             flex-direction: row-reverse;
         }
@@ -140,9 +176,9 @@
         }
 
         .case h2 {
-            font-size: 2.6em; /* 进一步增大标题字号 */
+            font-size: 2.6em;
             margin-top: 0;
-            margin-bottom: 28px; /* 调整标题与列表间距 */
+            margin-bottom: 28px;
             color: var(--text-primary);
             font-weight: 600;
             text-align: left;
@@ -151,7 +187,7 @@
         }
 
         .case ul {
-            padding-left: 30px; /* 稍微增大列表左内边距 */
+            padding-left: 30px;
             margin-top: 0;
             list-style-type: disc;
             color: var(--text-primary);
@@ -159,29 +195,29 @@
         }
 
         .case li {
-            margin-bottom: 12px; /* 稍微增大列表项之间间距 */
-            font-size: 1.08em; /* 稍微增大列表项字体 */
+            margin-bottom: 12px;
+            font-size: 1.08em;
             line-height: 1.6;
         }
 
         .case strong {
-            color: var(--accent-color); /* 保持强调色 */
+            color: var(--accent-color);
             font-weight: 600;
         }
 
         hr {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 60px auto; /* 统一分隔线上下间距 */
+            margin: 60px auto;
             width: 60%;
             opacity: 0.5;
         }
 
         .contact-info {
             width: 100%;
-            max-width: 600px; /* 调整最大宽度，使其更窄更集中 */
-            margin-top: 80px; /* 增加与上方内容的间距 */
-            padding: 35px; /* 调整内边距，使其更紧凑舒适 */
+            max-width: 600px;
+            margin-top: 80px;
+            padding: 35px;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 -4px 15px var(--shadow-color);
@@ -227,14 +263,14 @@
                 margin-bottom: 40px;
             }
             .case-container {
-                gap: 40px; /* 手机端案例间距 */
+                gap: 40px;
                 padding: 0;
             }
             .case {
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 40px; /* 手机端案例卡片内边距 */
+                padding: 40px;
                 gap: 30px;
             }
             .case:nth-child(even) {
@@ -245,7 +281,7 @@
                 padding: 0;
             }
             .case h2 {
-                font-size: 2.2em; /* 手机端标题字号 */
+                font-size: 2.2em;
                 text-align: center;
                 margin-bottom: 20px;
             }
