@@ -26,7 +26,22 @@
             font-size: min(18px, 4.5vw);
             line-height: 1.7;
             color: var(--text-primary);
-            background-color: var(--bg-primary);
+            /* ---------------------- 背景修改开始 ---------------------- */
+            background-color: #121212; /* Fallback for browsers that don't support gradients */
+            background-image:
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%), /* 顶部中心发出微弱光芒 */
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%), /* 左下角微弱光芒 */
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%), /* 右下角微弱光芒 */
+                linear-gradient(to bottom, #121212, #0a0a0a); /* 深色渐变作为基础 */
+            /* 添加一个模拟颗粒感的背景图，非常小，重复铺满 */
+            background-image: url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231a1a1a" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231a1a1a" opacity="0.1"/></svg>'),
+                              radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+                              radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+                              radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+                              linear-gradient(to bottom, #121212, #0a0a0a);
+            background-repeat: repeat; /* 颗粒感背景重复 */
+            background-blend-mode: overlay, normal, normal, normal, normal; /* 混合模式 */
+            /* ---------------------- 背景修改结束 ---------------------- */
             box-sizing: border-box;
             min-height: 100vh;
             display: flex;
