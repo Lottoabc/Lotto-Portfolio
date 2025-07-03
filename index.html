@@ -66,12 +66,12 @@
             flex-direction: row;
             align-items: center;
             width: 100%;
-            gap: 40px; /* 增大描述和视频之间的间距 */
+            gap: 30px;
             text-align: left;
             background-color: var(--bg-secondary);
             border-radius: 12px;
             box-shadow: 0 6px 18px var(--shadow-color);
-            padding: 50px; /* 增加内边距，使框框更大 */
+            padding: 40px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -105,9 +105,9 @@
         }
 
         .case h2 {
-            font-size: 2.4em; /* 稍微增大标题字号 */
+            font-size: 2.2em;
             margin-top: 0;
-            margin-bottom: 25px; /* 调整标题与列表间距 */
+            margin-bottom: 20px;
             color: var(--text-primary);
             font-weight: 600;
             text-align: left;
@@ -116,7 +116,7 @@
         }
 
         .case ul {
-            padding-left: 28px; /* 稍微增大列表左内边距 */
+            padding-left: 25px;
             margin-top: 0;
             list-style-type: disc;
             color: var(--text-primary);
@@ -124,8 +124,8 @@
         }
 
         .case li {
-            margin-bottom: 10px; /* 稍微增大列表项之间间距 */
-            font-size: 1.05em; /* 稍微增大列表项字体 */
+            margin-bottom: 8px;
+            font-size: 1em;
             line-height: 1.6;
         }
 
@@ -173,6 +173,42 @@
             color: var(--accent-hover);
         }
 
+        /* 针对案例二的特殊样式 */
+        .case-two {
+            padding: 60px !important; /* 使用 !important 确保覆盖原有的 padding */
+            gap: 50px !important; /* 相应增加内部元素间距 */
+        }
+
+        .case-two .case-description h2 {
+            font-size: 2.6em !important; /* 可以进一步放大标题 */
+            margin-bottom: 30px !important;
+        }
+
+        .case-two .case-description ul {
+            padding-left: 30px !important;
+        }
+
+        .case-two .case-description li {
+            font-size: 1.1em !important;
+            margin-bottom: 12px !important;
+        }
+
+        /* 移动端案例二的特殊样式 */
+        @media (max-width: 768px) {
+            .case-two {
+                padding: 40px !important;
+                gap: 35px !important;
+            }
+            .case-two .case-description h2 {
+                font-size: 2.2em !important;
+                margin-bottom: 25px !important;
+            }
+            .case-two .case-description li {
+                font-size: 1.05em !important;
+                margin-bottom: 10px !important;
+            }
+        }
+
         /* 移动端适配 */
         @media (max-width: 768px) {
             body {
@@ -190,11 +226,12 @@
                 padding: 0;
             }
             .case {
+                display: flex;
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 35px; /* 手机端案例卡片内边距也相应增大 */
-                gap: 30px; /* 手机端内部间距 */
+                padding: 35px;
+                gap: 30px;
             }
             .case:nth-child(even) {
                 flex-direction: column;
@@ -204,7 +241,7 @@
                 padding: 0;
             }
             .case h2 {
-                font-size: 2em; /* 手机端标题字号 */
+                font-size: 2em;
                 text-align: center;
                 margin-bottom: 20px;
             }
@@ -213,8 +250,8 @@
                 text-align: left;
             }
             .case li {
-                margin-bottom: 8px; /* 手机端列表项间距 */
-                font-size: 1em; /* 手机端列表项字体 */
+                margin-bottom: 8px;
+                font-size: 1em;
             }
             hr {
                 margin: 30px auto;
@@ -250,7 +287,7 @@
 
         <hr>
 
-        <div class="case">
+        <div class="case case-two">
             <div class="case-description">
                 <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                 <ul>
