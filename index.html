@@ -459,7 +459,7 @@
         .contact-info p {
             margin-bottom: 0; /* Removed bottom margin as only one item */
             color: var(--text-primary);
-            联系我: 1.15em;
+            font-size: 1.15em; /* Adjusted for consistency, original was '联系我: 1.15em;' */
             line-height: 1.7;
             font-weight: 300;
             /* This p will follow the text-align: center of its parent .contact-info */
@@ -496,7 +496,7 @@
             cursor: pointer; /* Add a mouse pointer on hover */
             padding: 15px 20px; /* Some padding */
             border-radius: 10px;
-            联系我: 1.1em; /* Increase font size */
+            font-size: 1.1em; /* Increase font size, original was '联系我: 1.1em;' */
             font-weight: 600;
             box-shadow: 0 5px 10px var(--shadow-dark);
             transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
@@ -513,7 +513,7 @@
             body {
                 flex-direction: column;
                 padding: 0;
-                联系我: min(17px, 4.2vw);
+                font-size: min(17px, 4.2vw); /* Adjusted for consistency, original was '联系我: min(17px, 4.2vw);' */
             }
 
             .sidebar-nav {
@@ -528,7 +528,7 @@
             }
 
             .sidebar-nav h3 {
-                联系我: 1.5em;
+                font-size: 1.5em; /* Adjusted for consistency, original was '联系我: 1.5em;' */
                 margin-bottom: 30px;
                 text-align: center;
             }
@@ -546,7 +546,7 @@
 
             .sidebar-nav a {
                 padding: 10px 18px;
-                联系我: 1em;
+                font-size: 1em; /* Adjusted for consistency, original was '联系我: 1em;' */
                 transform: none !important; /* Override hover transform for better mobile tap experience */
                 box-shadow: none !important; /* Override hover shadow for mobile */
                 border-bottom: 2px solid transparent; /* Simple underline for mobile */
@@ -574,7 +574,7 @@
             }
 
             h1 {
-                联系我: min(4.5em, 11vw);
+                font-size: min(4.5em, 11vw); /* Adjusted for consistency, original was '联系我: min(4.5em, 11vw);' */
                 margin-bottom: 25px;
                 text-align: left; /* Changed to left-align */
                 margin-left: 0;
@@ -811,6 +811,8 @@
         <h1>Lotto's XR 开发作品集</h1>
         <p class="note-text">视频资源托管至 YouTube，可能需要网络代理。</p>
 
+        <a href="https://github.com/Lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" target="_blank" class="resume-button">查看我的简历</a>
+
         <div class="case-container">
             <div class="case" id="case1">
                 <div class="case-header">
@@ -858,62 +860,66 @@
 
             <div class="case" id="case3">
                 <div class="case-header">
-                    <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
+                    <h2>案例 3: 敦煌莫高窟数字孪生项目</h2>
                 </div>
                 <div class="case-content">
                     <div class="case-description">
                         <ul>
-                            <li><strong>高精度模型导入</strong>：将敦煌莫高窟的详细模型导入XR环境。</li>
-                            <li><strong>历史文化还原</strong>：重现壁画、雕塑等艺术细节。</li>
-                            <li><strong>虚拟导览系统</strong>：提供沉浸式导览体验和语音讲解。</li>
-                            <li><strong>多媒体互动</strong>：集成图片、文字、视频等丰富内容。</li>
-                            <li><strong>用户路径规划</strong>：优化参观路线，提升探索体验。</li>
+                            <li><strong>大场景优化</strong>：使用<strong>Occlusion Culling</strong>和<strong>LOD</strong>技术优化场景性能。</li>
+                            <li><strong>场景漫游与交互</strong>：实现用户在虚拟莫高窟中的自由行走和多点位交互。</li>
+                            <li><strong>动态光照系统</strong>：模拟真实石窟内的光线变化效果。</li>
+                            <li><strong>VR UI 系统</strong>：设计并实现了符合VR体验的<strong>凝视UI</strong>和<strong>世界空间UI</strong>。</li>
+                            <li><strong>多平台兼容</strong>：支持<strong>PCVR（SteamVR）</strong>和<strong>一体机（Pico）</strong>。</li>
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_20`，一个Shorts视频的链接会是`或者`[https://www.youtube.com/embed/YOUR\_VIDEO\_ID\_21](https://www.google.com/search?q=https://www.youtube.com/embed/YOUR_VIDEO_ID_21)\`（如果是Shorts）。" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
-        </div> <hr>
+        </div>
 
-        <section id="contact-section" class="contact-info">
-            <p>如果您对我的作品感兴趣或有合作意向，欢迎通过以下方式联系我：</p>
-            <p>
-                <strong>邮箱：</strong>
-                <a href="lotto125zero@gmail.com">lotto125zero@gmail.com</a> </p>
-            </section>
+        <hr>
 
+        <div class="contact-info" id="contact">
+            <p><strong>联系方式</strong></p>
+            <p><strong>邮箱:</strong> <a href="mailto:wangzhonghao123@gmail.com">wangzhonghao123@gmail.com</a></p>
+            <p><strong>手机:</strong> +86 18600000000</p>
+        </div>
     </main>
 
-    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
+    <button id="scrollToTopBtn" title="回到顶部">回到顶部</button>
 
     <script>
         // Smooth scrolling for sidebar navigation
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-                // Remove 'active' from all links and add to the clicked one
+
+                // Remove 'active' class from all links
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
+                // Add 'active' class to the clicked link
                 this.classList.add('active');
             });
         });
 
-        // Highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('main .case, #contact-section');
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
-
+        // Highlight active sidebar link based on scroll position (optional, but good UX)
         window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('main > div[id], main > h1'); // Include h1 for the top section
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100; // Offset for header/padding
+                const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                // Adjust this value based on your header/fixed elements
+                if (pageYOffset >= sectionTop - 100) { 
                     current = section.getAttribute('id');
                 }
             });
@@ -924,20 +930,47 @@
                     link.classList.add('active');
                 }
             });
+        });
 
-            // Show/hide scroll to top button
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                document.getElementById("scrollToTopBtn").style.display = "block";
+        // Scroll to Top Button functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 200px from the top of the document, show the button
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
             } else {
-                document.getElementById("scrollToTopBtn").style.display = "none";
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Set initial active state for sidebar links based on URL hash
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const targetId = window.location.hash;
+                const targetLink = document.querySelector(`.sidebar-nav a[href="${targetId}"]`);
+                if (targetLink) {
+                    targetLink.classList.add('active');
+                }
+            } else {
+                // If no hash, activate the first link or default section
+                const firstLink = document.querySelector('.sidebar-nav ul li:first-child a');
+                if (firstLink) {
+                    firstLink.classList.add('active');
+                }
             }
         });
 
-        // Scroll to top button functionality
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
     </script>
 </body>
 </html>
