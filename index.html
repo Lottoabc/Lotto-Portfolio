@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto's XR 开发作品集</title>
+    <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS 变量 - 更新强调色为橙色调 */
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> <style>
+        /* CSS 变量 - 更新强调色为橙色调，增加更多细节颜色 */
         :root {
-            --bg-primary: #121212; /* 柔和的深灰色背景 */
-            --bg-secondary: #1e1e1e; /* 卡片背景 */
-            --text-primary: #f0f0f0; /* 主文本颜色 */
-            --text-secondary: #aaa; /* 副文本颜色 */
-            --accent-color: #F9AD6D; /* 新强调色：温暖的橙色 */
-            --accent-hover: #FFC080; /* 强调色悬停效果 */
-            --border-color: #333; /* 边框颜色 */
-            --shadow-color: rgba(0, 0, 0, 0.5); /* 柔和阴影 */
-            --nav-width: 220px; /* 调整导航栏宽度 */
+            --bg-primary: #0A0A0A; /* 更深的背景，增加对比度 */
+            --bg-secondary: #1C1C1C; /* 卡片背景，与主背景有区分 */
+            --text-primary: #E0E0E0; /* 主文本颜色，更柔和 */
+            --text-secondary: #A0A0A0; /* 副文本颜色，更细腻 */
+            --accent-color: #FF8C00; /* 更有活力的亮橙色 */
+            --accent-hover: #FFA500; /* 强调色悬停效果，更亮 */
+            --border-color: #333333; /* 边框颜色，略深 */
+            --shadow-color-dark: rgba(0, 0, 0, 0.7); /* 更深的阴影 */
+            --shadow-color-light: rgba(255, 140, 0, 0.15); /* 强调色浅阴影 */
+            --nav-width: 260px; /* 调整导航栏宽度，增加空间感 */
         }
 
         body {
@@ -24,97 +25,92 @@
             text-align: center;
             margin: 0;
             padding: 0;
-            font-size: min(18px, 4.5vw);
-            line-height: 1.7;
+            font-size: min(17px, 4.2vw); /* 调整基础字体大小 */
+            line-height: 1.8; /* 增加行高，提升可读性 */
             color: var(--text-primary);
-            background-color: #121212; /* Fallback */
+            background-color: var(--bg-primary); /* Fallback */
             background-image:
-                /* 模拟颗粒感的背景图，保持不动 */
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231a1a1a" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231a1a1a" opacity="0.1"/></svg>'),
-                /* 柔和的径向渐变 */
-                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
-                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 60%),
+                /* 更精细的颗粒感背景图 */
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.15"/></svg>'),
+                /* 柔和的径向渐变，调整位置和颜色 */
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 70%),
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
                 /* 底部较深的线性渐变 */
-                linear-gradient(to bottom, #121212, #0a0a0a);
-            background-repeat: repeat; /* 颗粒感背景重复 */
+                linear-gradient(to bottom, var(--bg-primary), #050505);
+            background-repeat: repeat;
             background-blend-mode: overlay, normal, normal, normal, normal;
-            position: relative; /* 为伪元素提供定位上下文 */
-            overflow-x: hidden; /* 防止动态元素溢出导致横向滚动条 */
+            position: relative;
+            overflow-x: hidden;
             box-sizing: border-box;
             min-height: 100vh;
-            display: flex; /* 使用 flexbox 布局 */
-            flex-direction: row; /* 导航栏和内容并排 */
-            align-items: flex-start; /* 内容顶部对齐 */
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
             justify-content: flex-start;
+            overflow-y: scroll; /* 允许主体滚动 */
+            scroll-behavior: smooth; /* 平滑滚动 */
         }
 
-        /* 动态背景层 */
+        /* 动态背景层 - 增强粒子效果 */
         body::before {
             content: '';
-            position: fixed; /* 固定在视口 */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            /* 使用微小的圆形作为背景图，模拟粒子 */
-            background-image: url('data:image/svg+xml;utf8,<svg width="4" height="4" viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="0.5" fill="rgba(255, 255, 255, 0.08)"/></svg>');
-            background-size: 80px 80px; /* 控制点的大小和密度 */
+            background-image: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="0.7" fill="rgba(255, 255, 255, 0.1)"/></svg>');
+            background-size: 100px 100px; /* 控制点的大小和密度 */
             background-repeat: repeat;
-            opacity: 0.1; /* 整体透明度，使其非常微妙 */
-            z-index: -1; /* 确保在内容下方 */
-            /* 组合移动和渐变动画 */
-            animation: moveBackground 60s linear infinite, fadeBackground 10s ease-in-out infinite alternate;
+            opacity: 0.1;
+            z-index: -1;
+            animation: moveBackground 80s linear infinite, fadeBackground 12s ease-in-out infinite alternate; /* 调整动画速度和周期 */
         }
 
-        /* 动画关键帧 */
         @keyframes moveBackground {
             from {
                 background-position: 0 0;
             }
             to {
-                background-position: 100% 100%; /* 让背景图缓慢对角线移动 */
+                background-position: 200% 200%; /* 更长的对角线移动 */
             }
         }
 
         @keyframes fadeBackground {
             0% { opacity: 0.08; }
-            50% { opacity: 0.12; }
+            50% { opacity: 0.15; } /* 更多透明度变化 */
             100% { opacity: 0.08; }
-        }
-
-        /* 确保内容在动态背景之上，避免被 z-index: -1 的伪元素覆盖 */
-        body > *:not(::before) {
-            position: relative;
-            z-index: 1;
         }
 
         /* 导航栏样式 */
         .sidebar-nav {
-            position: sticky; /* 粘性定位，随滚动 */
-            top: 0; /* 顶部对齐 */
+            position: sticky;
+            top: 0;
             left: 0;
             width: var(--nav-width);
-            min-width: var(--nav-width); /* 确保宽度不变 */
-            height: 100vh; /* 占满视口高度 */
-            background-color: #0d0d0d; /* 导航栏背景色，比主背景更深 */
-            padding: 30px 20px; /* 调整内边距，增加左右空间 */
+            min-width: var(--nav-width);
+            height: 100vh;
+            background-color: #080808; /* 导航栏背景色更深 */
+            padding: 40px 25px; /* 调整内边距 */
             box-sizing: border-box;
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            overflow-y: auto; /* 如果内容过多可滚动 */
-            z-index: 100; /* 确保在最上层 */
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4); /* 导航栏阴影 */
         }
 
         .sidebar-nav h3 {
             color: var(--accent-color);
-            font-size: 1.5em; /* 稍微大一点的标题字体 */
+            font-size: 1.6em; /* 标题字体 */
             margin-top: 0;
-            margin-bottom: 35px; /* 增加底部间距 */
+            margin-bottom: 40px;
             text-align: left;
             width: 100%;
+            font-weight: 700;
         }
 
         .sidebar-nav ul {
@@ -125,7 +121,7 @@
         }
 
         .sidebar-nav li {
-            margin-bottom: 18px; /* 增加导航项之间的间距 */
+            margin-bottom: 20px; /* 导航项间距 */
             width: 100%;
         }
 
@@ -133,104 +129,160 @@
             display: block;
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 10px 18px; /* 调整内边距 */
-            border-radius: 8px; /* 更圆润的边角 */
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            padding: 12px 20px; /* 调整内边距 */
+            border-radius: 10px; /* 更圆润的边角 */
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
             text-align: left;
-            font-size: 1.1em; /* 稍微大一点的链接字体 */
-            white-space: nowrap; /* 防止标题过长换行 */
+            font-size: 1.15em; /* 链接字体 */
+            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* 超出部分显示省略号 */
+            text-overflow: ellipsis;
+            font-weight: 500;
+            position: relative; /* 用于伪元素下划线 */
+        }
+
+        .sidebar-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 8px; /* 调整下划线位置 */
+            left: 20px;
+            width: 0%;
+            height: 2px;
+            background-color: var(--accent-hover);
+            transition: width 0.3s ease-out;
         }
 
         .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: rgba(249, 173, 109, 0.15); /* 强调色半透明背景，稍微深一点 */
+            background-color: rgba(255, 140, 0, 0.18); /* 更明显的强调色半透明背景 */
             color: var(--accent-hover);
-            transform: translateX(8px); /* 更明显的悬停效果 */
+            transform: translateX(10px); /* 更明显的悬停效果 */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 导航项悬停阴影 */
         }
+
+        .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
+            width: calc(100% - 40px); /* 悬停时下划线宽度 */
+        }
+
 
         /* 主内容区域 */
         main {
-            flex-grow: 1; /* 占据剩余空间 */
-            padding: 50px 40px; /* 调整内边距 */
+            flex-grow: 1;
+            padding: 60px 50px; /* 调整内边距 */
             box-sizing: border-box;
-            min-width: 0; /* 允许内容缩小 */
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 居中内容 */
+            max-width: calc(100% - var(--nav-width)); /* 限制最大宽度，防止内容过宽 */
+            margin: 0 auto; /* 确保 main 在父容器中居中 */
         }
 
         h1 {
-            font-size: min(4.2em, 9.5vw);
-            margin-bottom: 20px; /* 增加底部间距 */
+            font-size: min(4.8em, 10vw); /* 更大的标题 */
+            margin-bottom: 25px;
             color: var(--text-primary);
-            font-weight: 700;
-            letter-spacing: -0.04em;
-            text-align: left; /* 主标题左对齐 */
+            font-weight: 800; /* 更粗的字体 */
+            letter-spacing: -0.05em;
+            text-align: left;
+            width: 100%; /* 确保标题占据可用宽度 */
+            max-width: 1100px; /* 与案例容器对齐 */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.1em; /* 稍微大一点的说明文字 */
-            margin-bottom: 40px; /* 增加底部间距 */
-            max-width: 900px; /* 扩大文本宽度 */
-            margin-left: 0; /* 左对齐 */
+            font-size: 1.15em; /* 稍大字体 */
+            margin-bottom: 50px;
+            max-width: 1100px; /* 与案例容器对齐 */
+            text-align: left;
+            line-height: 1.8;
+            margin-left: 0;
             margin-right: auto;
-            text-align: left; /* 左对齐 */
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--bg-primary);
-            padding: 14px 30px; /* 调整按钮大小 */
-            border-radius: 10px; /* 更圆润的边角 */
+            color: var(--bg-primary); /* 按钮文字颜色 */
+            padding: 16px 35px; /* 调整按钮大小 */
+            border-radius: 12px; /* 更圆润的边角 */
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2em; /* 调整按钮字体大小 */
-            margin-bottom: 70px; /* 增加底部间距 */
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3); /* 调整阴影 */
+            font-weight: 700;
+            font-size: 1.25em; /* 调整按钮字体大小 */
+            margin-bottom: 80px;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 6px 15px var(--shadow-color-dark);
+            border: 1px solid var(--accent-color); /* 按钮边框 */
         }
 
         .resume-button:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-4px); /* 更明显的悬停效果 */
-            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light); /* 更强的悬停阴影和强调色光晕 */
         }
 
         .case-container {
             width: 100%;
-            max-width: 1100px; /* 稍微扩大容器宽度 */
+            max-width: 1100px; /* 案例容器宽度 */
             display: flex;
             flex-direction: column;
-            align-items: center; /* 居中案例卡片 */
-            gap: 60px; /* 增加案例之间的间距 */
+            align-items: center;
+            gap: 70px; /* 案例之间间距 */
             padding: 0;
         }
 
         .case {
             display: flex;
-            flex-direction: row; /* 始终保持描述在左，视频在右的布局 */
-            align-items: center;
+            flex-direction: row;
+            align-items: stretch; /* 确保内容区高度一致 */
             width: 100%;
-            max-width: 900px; /* 控制单个案例卡片的最大宽度 */
-            gap: 50px; /* 增加描述和视频之间的间距 */
+            max-width: 100%; /* 案例卡片宽度 */
+            gap: 60px; /* 描述和视频间距 */
             text-align: left;
             background-color: var(--bg-secondary);
-            border-radius: 12px;
-            box-shadow: 0 7px 20px var(--shadow-color); /* 调整阴影 */
-            padding: 60px; /* 增加内边距 */
+            border-radius: 15px; /* 更圆润的边角 */
+            box-shadow: 0 8px 25px var(--shadow-color-dark); /* 调整阴影 */
+            padding: 60px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            position: relative; /* For the subtle glow */
+            overflow: hidden; /* Ensure glow stays within bounds */
+        }
+
+        .case::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, var(--accent-hover) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 0;
         }
 
         .case:hover {
-            transform: translateY(-10px); /* 更明显的悬停效果 */
-            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 25px var(--accent-color); /* 更强的悬停阴影和强调色光晕 */
+            transform: translateY(-12px); /* 更明显的悬停效果 */
+            box-shadow: 0 18px 35px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light); /* 更强的悬停阴影和强调色光晕 */
+        }
+
+        .case:hover::before {
+            opacity: 0.1; /* 悬停时显示光晕 */
+            transform: scale(1.1);
+        }
+
+        .case-content {
+            position: relative; /* Ensure content is above ::before */
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: inherit; /* Inherit gap from parent */
         }
 
         .case-description {
             flex: 3;
-            /* 确保描述内容在 flex 布局下也能居中对齐，如果需要 */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -239,7 +291,7 @@
         .video-frame {
             flex: 2;
             display: flex;
-            justify-content: center; /* 视频在自己的 flex 容器内居中 */
+            justify-content: center;
             align-items: center;
         }
 
@@ -247,67 +299,70 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             height: auto;
-            border-radius: 10px; /* 更圆润的视频边框 */
-            box-shadow: 0 4px 12px var(--shadow-color); /* 调整视频阴影 */
+            border-radius: 12px; /* 更圆润的视频边框 */
+            box-shadow: 0 6px 15px var(--shadow-color-dark);
             border: 1px solid var(--border-color);
         }
 
         .case h2 {
-            font-size: 3em; /* 调整案例标题字体大小 */
+            font-size: 3.2em; /* 调整案例标题字体大小 */
             margin-top: 0;
-            margin-bottom: 30px; /* 增加底部间距 */
+            margin-bottom: 35px;
             color: var(--text-primary);
-            font-weight: 600;
+            font-weight: 700;
             text-align: left;
-            border-bottom: 2px solid var(--border-color); /* 更粗的底部边框 */
-            padding-bottom: 15px; /* 增加底部填充 */
+            border-bottom: 3px solid var(--accent-color); /* 强调色底部边框 */
+            padding-bottom: 20px;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
         }
 
         .case ul {
-            padding-left: 35px; /* 增加列表左侧填充 */
+            padding-left: 40px; /* 增加列表左侧填充 */
             margin-top: 0;
-            list-style-type: disc;
+            list-style-type: '👉 '; /* 自定义列表图标 */
             color: var(--text-primary);
             text-align: left;
         }
 
         .case li {
-            margin-bottom: 15px; /* 增加列表项底部间距 */
-            font-size: 1.15em; /* 稍微大一点的列表项字体 */
-            line-height: 1.7;
+            margin-bottom: 18px;
+            font-size: 1.18em; /* 稍大列表项字体 */
+            line-height: 1.8;
         }
 
         .case strong {
-            color: var(--accent-color);
+            color: var(--accent-hover); /* 强调色高亮 */
             font-weight: 700;
         }
 
         hr {
             border: none;
-            border-top: 1px solid var(--border-color);
-            margin: 70px auto; /* 增加上下间距 */
-            width: 70%; /* 调整宽度 */
-            opacity: 0.6; /* 稍微不透明一点 */
+            border-top: 2px dashed var(--border-color); /* 虚线分隔线 */
+            margin: 90px auto; /* 增加上下间距 */
+            width: 80%; /* 调整宽度 */
+            opacity: 0.5;
         }
 
         .contact-info {
             width: 100%;
-            max-width: 650px; /* 稍微扩大联系信息区域宽度 */
-            margin-top: 90px; /* 增加顶部间距 */
-            padding: 40px; /* 增加填充 */
+            max-width: 700px; /* 扩大联系信息区域宽度 */
+            margin-top: 100px;
+            padding: 50px;
             background-color: var(--bg-secondary);
-            border-radius: 12px;
-            box-shadow: 0 -5px 18px var(--shadow-color); /* 调整阴影 */
+            border-radius: 15px;
+            box-shadow: 0 -6px 20px var(--shadow-color-dark);
             border: 1px solid var(--border-color);
             text-align: center;
-            margin-left: auto; /* 居中 */
-            margin-right: auto; /* 居中 */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-info p {
-            margin-bottom: 15px; /* 增加底部间距 */
+            margin-bottom: 20px;
             color: var(--text-primary);
-            font-size: 1.1em; /* 稍微大一点的字体 */
+            font-size: 1.15em;
+            line-height: 1.7;
         }
 
         .contact-info strong {
@@ -317,7 +372,7 @@
         .contact-info a {
             color: var(--accent-color);
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, text-decoration 0.2s ease;
         }
 
         .contact-info a:hover {
@@ -326,179 +381,258 @@
         }
 
         /* 移动端适配 */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) { /* Adjust breakpoint for better tablet support */
+            :root {
+                --nav-width: 100%; /* Full width for smaller screens */
+            }
+
             body {
-                flex-direction: column; /* 导航栏和内容垂直堆叠 */
-                padding: 0; /* 主体不再有左右padding */
+                flex-direction: column;
+                padding: 0;
             }
             .sidebar-nav {
-                position: relative; /* 取消固定定位 */
-                width: 100%; /* 导航栏占满宽度 */
-                height: auto; /* 高度自适应内容 */
-                padding: 20px 15px;
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 25px 20px;
                 border-right: none;
-                border-bottom: 1px solid var(--border-color); /* 底部边框 */
-                display: flex;
-                flex-direction: row; /* 导航项水平排列 */
-                align-items: center;
-                justify-content: center; /* 居中显示导航项 */
-                overflow-y: visible; /* 在小屏幕上不限制高度滚动 */
-                flex-wrap: wrap; /* 允许换行 */
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                overflow-y: visible;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
             }
             .sidebar-nav h3 {
                 width: 100%;
-                margin-bottom: 15px;
+                margin-bottom: 20px;
                 text-align: center;
             }
             .sidebar-nav ul {
-                display: flex; /* 导航项水平排列 */
-                flex-wrap: wrap; /* 允许换行 */
-                justify-content: center; /* 居中显示导航项 */
-                gap: 10px; /* 导航项间距 */
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px; /* Adjust gap for better spacing */
                 width: 100%;
-                padding: 0 10px; /* 增加一些水平填充，使链接不贴边 */
+                padding: 0 15px;
             }
             .sidebar-nav li {
-                margin-bottom: 0; /* 取消垂直间距 */
-                width: auto; /* 宽度自适应内容 */
+                margin-bottom: 0;
+                width: auto;
             }
             .sidebar-nav a {
-                padding: 8px 15px;
-                font-size: 1em;
+                padding: 10px 18px;
+                font-size: 1.05em;
                 text-align: center;
-                white-space: normal; /* 允许换行 */
+                white-space: normal;
                 overflow: visible;
                 text-overflow: clip;
-                border-radius: 6px; /* 调整圆角 */
+                border-radius: 8px;
             }
             .sidebar-nav a:hover, .sidebar-nav a.active {
-                transform: none; /* 在小屏幕上移除水平位移，防止触摸误操作 */
+                transform: none;
+            }
+            .sidebar-nav a::after {
+                content: none; /* Remove underline on mobile */
             }
 
             main {
-                padding: 30px 20px; /* 主内容区域的内边距 */
-                width: 100%; /* 确保主内容区域占满宽度 */
+                padding: 40px 25px;
+                width: 100%;
+                max-width: 100%; /* Reset max-width for mobile */
             }
 
             h1 {
-                font-size: 3em;
-                text-align: center; /* 在小屏幕上主标题居中 */
+                font-size: 3.5em;
+                text-align: center;
             }
             .note-text {
-                margin-bottom: 30px;
-                text-align: center; /* 在小屏幕上说明文字居中 */
+                margin-bottom: 40px;
+                text-align: center;
+                max-width: 100%;
             }
             .resume-button {
-                padding: 10px 20px;
-                font-size: 1em;
-                margin-bottom: 50px;
+                padding: 12px 25px;
+                font-size: 1.1em;
+                margin-bottom: 60px;
             }
             .case-container {
-                gap: 40px;
-                padding: 0;
+                gap: 50px;
             }
             .case {
-                flex-direction: column; /* 案例内容垂直堆叠 */
+                flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 40px;
-                gap: 40px;
-                max-width: 95%; /* 确保在小屏幕上也能有适当宽度 */
+                padding: 45px;
+                gap: 45px;
+                max-width: 98%; /* More margin for smaller screens */
+            }
+            .case-content {
+                flex-direction: column;
+                gap: 45px;
             }
             .case-description, .video-frame {
                 width: 100%;
                 padding: 0;
             }
             .case h2 {
-                font-size: 2.4em;
+                font-size: 2.8em;
                 text-align: center;
-                margin-bottom: 25px;
+                margin-bottom: 30px;
             }
             .case ul {
-                padding-left: 25px;
-                text-align: left;
+                padding-left: 20px; /* Adjust padding for mobile */
+                text-align: left; /* Keep list left-aligned for readability */
             }
             .case li {
-                margin-bottom: 12px;
-                font-size: 1.05em;
+                margin-bottom: 15px;
+                font-size: 1.1em;
             }
             hr {
-                margin: 50px auto;
+                margin: 60px auto;
                 width: 90%;
             }
             .contact-info {
+                padding: 35px;
+                margin-top: 70px;
+                max-width: 98%;
+            }
+            .contact-info p {
+                font-size: 1.05em;
+            }
+        }
+
+        @media (max-width: 576px) { /* Even smaller screens */
+            body {
+                font-size: min(16px, 4.5vw);
+            }
+            .sidebar-nav {
+                padding: 20px 10px;
+            }
+            .sidebar-nav h3 {
+                font-size: 1.4em;
+            }
+            .sidebar-nav ul {
+                gap: 10px;
+                padding: 0 5px;
+            }
+            .sidebar-nav a {
+                padding: 8px 12px;
+                font-size: 0.95em;
+            }
+            main {
+                padding: 30px 15px;
+            }
+            h1 {
+                font-size: 2.8em;
+                margin-bottom: 20px;
+            }
+            .note-text {
+                margin-bottom: 30px;
+                font-size: 1em;
+            }
+            .resume-button {
+                padding: 10px 20px;
+                font-size: 0.95em;
+                margin-bottom: 40px;
+            }
+            .case-container {
+                gap: 35px;
+            }
+            .case {
                 padding: 30px;
-                margin-top: 60px;
-                max-width: 95%;
-                text-align: center;
+                gap: 30px;
+            }
+            .case h2 {
+                font-size: 2.2em;
+                margin-bottom: 20px;
+            }
+            .case ul {
+                padding-left: 15px;
+            }
+            .case li {
+                font-size: 1em;
+            }
+            hr {
+                margin: 40px auto;
+            }
+            .contact-info {
+                padding: 25px;
+                margin-top: 50px;
+            }
+            .contact-info p {
+                font-size: 1em;
             }
         }
     </style>
 </head>
 <body>
     <nav class="sidebar-nav">
-        <h3>项目导航</h3>
-        <ul>
-            <li><a href="#case1">案例 1: 交互开发</a></li>
-            <li><a href="#case2">案例 2: 博物馆项目</a></li>
-            <li><a href="#case3">案例 3: 莫高窟项目</a></li>
+        <h3>Lotto's 作品集</h3> <ul>
+            <li><a href="#case1">XR 交互开发</a></li> <li><a href="#case2">SteamVR 博物馆</a></li>
+            <li><a href="#case3">敦煌莫高窟项目</a></li>
             <li><a href="#contact">联系我</a></li>
         </ul>
     </nav>
 
     <main>
         <h1>Lotto's XR 开发作品集</h1>
-        <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
+        <p class="note-text">欢迎来到我的 XR 开发世界！这里展示了我近期在虚拟现实 (VR) 和增强现实 (AR) 领域的一些实践项目，旨在探索沉浸式体验的无限可能。由于视频资源托管于 YouTube，部分地区可能需要网络代理才能流畅观看。</p>
 
         <div class="case-container">
             <div class="case" id="case1">
-                <div class="case-description">
-                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                    <ul>
-                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
-                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
-                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
-                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
-                    </ul>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
+                <div class="case-content"> <div class="case-description">
+                        <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                        <ul>
+                            <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
+                            <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
+                            <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
+                            <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
+                            <li><strong>PXR_Manager 应用</strong>：深入探索<strong>无手柄交互</strong>的潜力，实践了包括<strong>虚拟钢琴演奏、多样手势指令识别和沉浸式射击体验</strong>在内的多项创新应用。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/6" title="XR Interactive Development" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case2">
-                <div class="case-description">
-                    <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
-                    <ul>
-                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
-                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
-                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
-                    </ul>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/VGgtfCvVX90" frameborder="0" allowfullscreen></iframe>
+                <div class="case-content">
+                    <div class="case-description">
+                        <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
+                        <ul>
+                            <li><strong>URP（通用渲染管线）</strong>：采用 URP 优化项目渲染性能，同时实现高质量的视觉呈现效果。</li>
+                            <li><strong>光照探针与烘焙</strong>：通过精细的光照探针和光照烘焙技术，营造真实且富有层次感的展馆光影环境。</li>
+                            <li><strong>DoTween 插件</strong>：巧妙运用 DoTween 插件，为 UI 元素和场景动画增添流畅自然的过渡效果，提升用户体验。</li>
+                            <li><strong>SteamVR 交互</strong>：针对 SteamVR 平台深度定制交互系统，实现包括<strong>自定义抓取手势</strong>和高效的<strong>手柄射线检测交互</strong>在内的多种互动方式。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/7" title="SteamVR Museum Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case3">
-                <div class="case-description">
-                    <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
-                    <ul>
-                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
-                    </ul>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
+                <div class="case-content">
+                    <div class="case-description">
+                        <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
+                        <ul>
+                            <li><strong>协程函数应用</strong>：灵活运用协程函数，实现<strong>打字机效果、场景淡入淡出、平滑移动</strong>等复杂动画和状态控制。</li>
+                            <li><strong>XRTK 深度交互集成</strong>：将 XRTK（XR Interaction Toolkit）与项目核心功能深度融合，构建稳定且富有沉浸感的交互体系。</li>
+                            <li><strong>PXR 场景切换特效</strong>：开发了多样的 PXR 场景切换特效，确保用户在不同场景间切换时拥有流畅且富有艺术感的视觉体验。</li>
+                            <li><strong>拼接游戏模块</strong>：设计并实现了互动拼接游戏，精确运用<strong>碰撞检测、材质动态切换、严谨的顺序逻辑判断</strong>，确保游戏互动的准确性和趣味性。</li>
+                            <li><strong>竞赛样题背景</strong>：此项目是为<strong>2025 年福建省职业院校技能大赛样题</strong>进行的实战演练，旨在模拟比赛环境，在<strong>4 小时限时内</strong>完成核心功能开发。部分细节尚待进一步优化。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/8" title="Mogao Grottoes Museum Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -506,8 +640,10 @@
         <hr>
 
         <div class="contact-info" id="contact">
-            <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
+            <p>感谢您耐心浏览我的 XR 开发作品集！</p>
+            <p>如果您对我的项目感兴趣，或有任何合作意向，期待与您交流。</p>
             <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
+            <p><strong>期待您的来信！</strong></p>
         </div>
     </main>
 </body>
