@@ -322,17 +322,14 @@
         }
 
         .case-description {
-            /* 移除 flex: 1; 让其宽度由内容决定 */
-            /* flex: 1; */
+            flex: 1; /* Allow it to take available space */
             display: flex;
             flex-direction: column;
             justify-content: flex-start; /* Align text to the top */
-            text-align: left; /* Align text description to the left */
-            /* 新增：让介绍内容居中 */
-            align-items: center;
-            /* 设置一个最大宽度，防止内容过宽 */
-            max-width: 50%; /* 可以根据需要调整，例如设置为 600px */
-            margin: 0 auto; /* 居中整个文本块 */
+            align-items: flex-start; /* Align content of .case-description to the left */
+            max-width: 50%; /* Can adjust as needed, e.g., 600px */
+            box-sizing: border-box; /* Include padding in width calculation */
+            padding-right: 20px; /* Add some space between description and video */
         }
 
         .video-frame {
@@ -367,8 +364,7 @@
             text-align: left; /* Align list items to the left */
             display: flex;
             flex-direction: column;
-            /* 修改：让 ul 自身内容居中，通过 align-items 控制 */
-            align-items: center; /* 这里的 align-items: center 会让 ul 在其父容器中居中 */
+            align-items: flex-start; /* Align list items to the left within the ul */
             max-width: 100%; /* Adjust max-width for list items */
         }
 
@@ -379,8 +375,7 @@
             position: relative; /* For custom bullet */
             padding-left: 35px; /* Space for custom bullet */
             text-align: left; /* Keep text within list item aligned left */
-            /* 修正：让 li 宽度适配内容，并允许 ul 居中 */
-            width: fit-content;
+            width: 100%; /* Make li take full width to align content left */
         }
         
         .case li::before {
@@ -606,10 +601,11 @@
             }
 
             .case-description {
-                text-align: center; /* Center text description for column layout */
-                align-items: center; /* 确保移动端描述内容居中 */
-                max-width: 100%; /* 移动端占据全宽 */
-                margin: 0 auto;
+                text-align: left; /* Keep text description aligned left */
+                align-items: flex-start; /* Ensure description content is aligned left */
+                max-width: 100%; /* Mobile takes full width */
+                margin: 0; /* Remove auto margins */
+                padding-right: 0; /* Remove right padding */
             }
 
             .video-frame {
@@ -619,7 +615,7 @@
 
             .case ul {
                 max-width: 95%;
-                align-items: center; /* Center list for column layout */
+                align-items: flex-start; /* Align list items to the left */
                 text-align: left; /* Keep list item text aligned left */
             }
 
@@ -627,7 +623,7 @@
                 font-size: 1.1em;
                 margin-bottom: 15px;
                 padding-left: 30px;
-                width: fit-content; /* 调整移动端 li 宽度 */
+                width: 100%; /* Ensure li takes full width */
             }
 
             .case li::before {
@@ -889,6 +885,7 @@
         // Scroll to Top Button functionality
         const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
+        // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function() {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                 scrollToTopBtn.style.display = "block";
@@ -897,9 +894,12 @@
             }
         };
 
-        scrollToTopBtn.addEventListener("click", function() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        // When the user clicks on the button, scroll to the top of the document
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     </script>
 </body>
