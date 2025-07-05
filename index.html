@@ -343,18 +343,15 @@
         .case-description {
     flex: 1;
     display: flex;
-    flex-direction: column; /* 重点修改：让内部内容沿垂直方向排列 */
-    justify-content: center; /* 重点修改：让内部内容在垂直方向上居中 */
-    align-items: flex-start; /* 重点修改：让内部内容在水平方向上靠左对齐 */
+    flex-direction: column; /* 使得 ul 可以在此容器内垂直排列和居中 */
+    justify-content: center; /* 将 ul 在垂直方向（主轴）上居中 */
+    align-items: flex-start; /* 将 ul 在水平方向（交叉轴）上靠左对齐 */
     max-width: 50%;
     box-sizing: border-box;
     padding-right: 20px;
-    /* 确保 case-description 占据其父容器的高度，以便居中对齐生效 */
-    /* 如果 case-content 设置了 align-items: flex-start; 且高度不固定，
-       这里可能需要设置 min-height 或 height: 100% */
-    height: 100%; /* 添加这一行，确保描述框占据所有可用垂直空间 */
+    /* 关键：确保 case-description 撑满其父容器的可用高度 */
+    height: 100%; 
 }
-
         .video-frame {
             flex-shrink: 0; /* Prevent shrinking */
             width: 50%; /* Adjust video width relative to description */
@@ -380,26 +377,29 @@
         }
 
         .case ul {
-            padding-left: 0;
-            margin-top: 0;
-            list-style: none; /* Remove default list style */
-            color: var(--text-primary);
-            /* text-align: center; */ /* REMOVED: This was centering list items */
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start; /* Align list items to the left within the ul */
-            max-width: 100%; /* Adjust max-width for list items */
-        }
+    padding-left: 0;
+    margin-top: 0;
+    list-style: none;
+    color: var(--text-primary);
+    /* 确保 ul 占据 case-description 的全部宽度，以便内部的 li 能正确左对齐 */
+    width: 100%; /* 添加这一行 */
+    /* display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; */ /* 这些 ul 自身的 flex 属性可以根据需要保留或移除，
+                                  但通常 ul 内部的 li 默认就是块级元素，会左对齐。
+                                  如果 ul 的父级已经设置了 align-items: flex-start; 
+                                  则 ul 会靠左对齐。 */
+}
 
         .case li {
-            margin-bottom: 15px;
-            font-size: 1.15em;
-            line-height: 1.7;
-            position: relative; /* For custom bullet */
-            padding-left: 35px; /* Space for custom bullet */
-            text-align: left; /* Keep text within list item aligned left */
-            width: 100%; /* Make li take full width to align content left */
-        }
+    margin-bottom: 15px;
+    font-size: 1.15em;
+    line-height: 1.7;
+    position: relative;
+    padding-left: 35px;
+    text-align: left; /* 确保文本内容在 li 内部是左对齐的 */
+    width: 100%; /* 确保 li 占据 ul 的全部宽度 */
+}
         
         .case li::before {
             content: '✨ '; /* Different emoji */
