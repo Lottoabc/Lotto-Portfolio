@@ -201,7 +201,7 @@
             max-width: 1100px; /* 稍微扩大容器宽度 */
             display: flex;
             flex-direction: column;
-            align-items: stretch; /* 让案例占据容器宽度 */
+            align-items: center; /* 居中案例卡片 */
             gap: 60px; /* 增加案例之间的间距 */
             padding: 0;
         }
@@ -211,6 +211,7 @@
             flex-direction: row; /* 始终保持描述在左，视频在右的布局 */
             align-items: center;
             width: 100%;
+            max-width: 900px; /* 控制单个案例卡片的最大宽度 */
             gap: 50px; /* 增加描述和视频之间的间距 */
             text-align: left;
             background-color: var(--bg-secondary);
@@ -227,17 +228,19 @@
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 25px var(--accent-color); /* 更强的悬停阴影和强调色光晕 */
         }
 
-        /* 移除奇偶行反向布局，保持统一 */
-        /* .case:nth-child(even) {
-            flex-direction: row-reverse;
-        } */
-
         .case-description {
             flex: 3;
+            /* 确保描述内容在 flex 布局下也能居中对齐，如果需要 */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .video-frame {
             flex: 2;
+            display: flex;
+            justify-content: center; /* 视频在自己的 flex 容器内居中 */
+            align-items: center;
         }
 
         .video-frame iframe {
@@ -400,11 +403,8 @@
                 text-align: center;
                 padding: 40px;
                 gap: 40px;
+                max-width: 95%; /* 确保在小屏幕上也能有适当宽度 */
             }
-            /* 移除奇偶行反向布局 */
-            /* .case:nth-child(even) {
-                flex-direction: column;
-            } */
             .case-description, .video-frame {
                 width: 100%;
                 padding: 0;
