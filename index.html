@@ -236,13 +236,13 @@
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
             width: 100%;
-            max-width: 1000px; /* Adjusted max-width for cases to make them less high and improve readability */
-            gap: 40px; /* Adjusted gap for column layout */
+            max-width: 900px; /* Adjusted max-width for cases to make them less high and improve readability */
+            gap: 30px; /* Adjusted gap for column layout, reduced for compactness */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
             border-radius: 20px; /* Even rounder corners */
             box-shadow: 0 12px 30px var(--shadow-dark);
-            padding: 70px; /* Increased padding */
+            padding: 50px; /* Reduced padding for less height */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
@@ -312,8 +312,8 @@
             text-align: center; /* Center list items */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            max-width: 700px; /* Limit list width for better readability */
+            align-items: center; /* Ensures the ul itself is centered */
+            max-width: 600px; /* Limit list width for better readability and symmetry */
             margin-left: auto;
             margin-right: auto;
         }
@@ -325,6 +325,7 @@
             position: relative; /* For custom bullet */
             padding-left: 35px; /* Space for custom bullet */
             text-align: left; /* Align text within list item */
+            width: 100%; /* Ensure list item takes full width of its container */
         }
         
         .case li::before {
@@ -771,7 +772,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/6" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -788,7 +789,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/7" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -806,7 +807,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/8" frameborder="0" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
