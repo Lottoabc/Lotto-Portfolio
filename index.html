@@ -236,7 +236,7 @@
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
             width: 100%;
-            max-width: 900px; /* Adjusted max-width for cases to make them less wide and improve readability */
+            max-width: 1000px; /* Adjusted max-width for cases to make them less high and improve readability */
             gap: 40px; /* Adjusted gap for column layout */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
@@ -270,8 +270,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* min-width: 0; */ /* Allow iframe to shrink - already good */
-            max-width: 800px; /* Limit video frame width for better visual balance */
+            max-width: 900px; /* Increased max-width for video frame for "longer" appearance */
             margin: 0 auto; /* Center the video frame */
         }
 
@@ -629,7 +628,7 @@
             .case {
                 padding: 50px;
                 gap: 30px; /* Adjusted for column layout */
-                max-width: 800px; /* Adjusted max-width for cases */
+                max-width: 900px; /* Adjusted max-width for cases */
             }
             .case h2 {
                 font-size: 3em;
@@ -907,49 +906,49 @@
         <div class="case-container">
             <div class="case" id="case1">
                 <div class="case-description">
-                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                    <h2>XR 交互开发</h2>
                     <ul>
-                        <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
-                        <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
-                        <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
-                        <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
-                        <li><strong>UI 交互</strong>：设计并实现了沉浸式用户界面交互，提升用户体验。</li>
+                        <li>🚀 <strong>凝视交互:</strong> 通过精确的凝视检测实现高效的交互逻辑。</li>
+                        <li>🚀 <strong>手势识别与追踪:</strong> 结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
+                        <li>🚀 <strong>角色攀爬系统:</strong> 设计并实现了高度仿真的攀爬机制，极大地增强沉浸感与物理反馈。</li>
+                        <li>🚀 <strong>Socket 组件交互:</strong> 构建模块化的 Socket 交互，提升系统模块化和扩展性。</li>
+                        <li>🚀 <strong>UI 交互:</strong> 设计并实施了沉浸式用户界面交互，提升用户体验。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/38" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
             <div class="case" id="case2">
                 <div class="case-description">
-                    <h2>案例 2: SteamVR 博物馆项目</h2>
+                    <h2>SteamVR 博物馆</h2>
                     <ul>
-                        <li><strong>跨平台兼容性</strong>：项目支持 SteamVR 平台，兼容多种主流 VR 头显。</li>
-                        <li><strong>沉浸式场景设计</strong>：精心打造的虚拟博物馆环境，提供丰富的视觉细节和空间感。</li>
-                        <li><strong>互动展品系统</strong>：用户可与虚拟展品进行多种形式的互动，如拿起、旋转、查看详情。</li>
-                        <li><strong>空间音频集成</strong>：利用空间音频技术增强沉浸感，声音随用户位置和方向变化。</li>
-                        <li><strong>性能优化</strong>：针对 VR 设备的性能特点进行优化，确保流畅运行和舒适体验。</li>
+                        <li>🚀 <strong>多展厅设计:</strong> 包含多个主题展厅，每个展厅展示不同的艺术品或历史文物。</li>
+                        <li>🚀 <strong>沉浸式导航:</strong> 利用 SteamVR 的空间定位和追踪技术，提供流畅自然的移动体验。</li>
+                        <li>🚀 <strong>展品互动:</strong> 用户可以近距离观察展品，并通过交互操作获取详细信息。</li>
+                        <li>🚀 <strong>环境音效:</strong> 根据展厅主题和展品内容，融入匹配的环境音效，增强沉浸感。</li>
+                        <li>🚀 <strong>性能优化:</strong> 针对 SteamVR 平台进行优化，确保在高分辨率下依然流畅运行。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/39" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
             <div class="case" id="case3">
                 <div class="case-description">
-                    <h2>案例 3: 敦煌莫高窟文化遗产项目</h2>
+                    <h2>敦煌莫高窟项目</h2>
                     <ul>
-                        <li><strong>高精度模型复原</strong>：对敦煌莫高窟进行数字扫描和建模，实现高保真度虚拟复原。</li>
-                        <li><strong>历史文化导览</strong>：集成详细的文字、图片和语音导览，帮助用户深入了解莫高窟的历史和艺术。</li>
-                        <li><strong>多视角探索</strong>：用户可以在虚拟空间中自由漫游，从不同角度欣赏壁画和雕塑细节。</li>
-                        <li><strong>教育互动模块</strong>：设计了问答、拼图等互动环节，提升学习的趣味性和参与度。</li>
-                        <li><strong>云端数据同步</strong>：支持云端数据存储和同步，方便用户在不同设备上继续体验。</li>
+                        <li>🚀 <strong>高精度模型:</strong> 采用激光扫描和摄影测量技术，还原莫高窟洞窟的真实细节。</li>
+                        <li>🚀 <strong>历史文化导览:</strong> 集成丰富的历史资料和文化解读，为用户提供深入的导览体验。</li>
+                        <li>🚀 <strong>多语言支持:</strong> 提供中文、英文等多语言选项，满足不同用户的需求。</li>
+                        <li>🚀 <strong>实时光照:</strong> 模拟不同时间段的光照效果，展现洞窟在不同光线下的美感。</li>
+                        <li>🚀 <strong>教育互动:</strong> 结合问答、探索等互动元素，提升用户对敦煌文化的学习兴趣。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/40" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -957,26 +956,16 @@
         <hr>
 
         <section id="contact" class="contact-info">
-            <p>感谢您浏览我的作品集！如果您对我的项目感兴趣，或者有任何合作意向，欢迎随时与我联系。</p>
-            <p>邮箱：<strong>your.email@example.com</strong></p>
-            <p>LinkedIn：<a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-            <p>GitHub：<a href="https://github.com/Lottoabc" target="_blank">github.com/Lottoabc</a></p>
+            <p>感谢您浏览我的作品集！如果您对 XR 开发有任何疑问或合作意向，欢迎随时与我联系。期待与您共同探索 XR 的未来！</p>
+            <p>我的邮箱：<strong>lotto125zero@gmail.com</strong></p>
+            <p>您也可以通过 <a href="https://github.com/Lottoabc" target="_blank">GitHub</a> 找到我。</p>
         </section>
     </main>
 
     <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
 
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <div id="modalContent">
-                </div>
-        </div>
-    </div>
-
     <script>
-        // Smooth scrolling for sidebar navigation
+        // Smooth scrolling for navigation links
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -992,16 +981,16 @@
             });
         });
 
-        // Set active class on load and scroll
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
-
+        // Set active class on scroll
         window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('main section, .case');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
             let current = '';
+
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150; // Adjust offset for header height
+                const sectionTop = section.offsetTop;
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjusted offset for better activation
                     current = section.getAttribute('id');
                 }
             });
@@ -1013,11 +1002,12 @@
                 }
             });
 
-            // Scroll to top button visibility
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                document.getElementById("scrollToTopBtn").style.display = "block";
+            // Show/Hide scroll to top button
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
             } else {
-                document.getElementById("scrollToTopBtn").style.display = "none";
+                scrollToTopBtn.style.display = "none";
             }
 
             // Scroll indicator bar
@@ -1027,50 +1017,22 @@
             document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
         });
 
-        // Initialize active link on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            const firstSectionId = sections[0] ? sections[0].getAttribute('id') : null;
-            if (firstSectionId) {
-                document.querySelector(`.sidebar-nav a[href="#${firstSectionId}"]`).classList.add('active');
-            }
-        });
-
-        // Scroll to top function
+        // Function to scroll to the top of the document
         function topFunction() {
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        // Modal functionality (assuming you want to keep the modal for future project details)
-        const modal = document.getElementById("projectModal");
-        const span = document.getElementsByClassName("modal-close")[0];
-
-        // Function to open modal (you'd call this from project cards)
-        function openModal(title, contentHtml) {
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalContent").innerHTML = contentHtml;
-            modal.style.display = "flex"; // Use flex to center
-            document.body.style.overflow = "hidden"; // Prevent scrolling body when modal is open
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-            document.body.style.overflow = ""; // Restore body scrolling
-        }
-
-        // When the user clicks anywhere outside of the modal content, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                document.body.style.overflow = ""; // Restore body scrolling
+        // Initial active link setting on load
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstSection = document.querySelector('main section');
+            if (firstSection) {
+                const firstNavLink = document.querySelector(`.sidebar-nav a[href="#${firstSection.id}"]`);
+                if (firstNavLink) {
+                    firstNavLink.classList.add('active');
+                }
             }
-        }
-
-        // Example of how to trigger modal (you'd add this to your project cards)
-        // For instance, if you had a button inside a .case:
-        // <button onclick="openModal('项目标题', '<p>这里是项目的详细内容...</p><div class=\'modal-images\'><img src=\'img1.jpg\'><img src=\'img2.jpg\'></div>')">查看详情</button>
-        // Note: The original code didn't have buttons to open the modal, so this is an example.
+        });
     </script>
 </body>
 </html>
