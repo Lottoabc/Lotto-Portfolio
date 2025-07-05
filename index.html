@@ -343,12 +343,16 @@
         .case-description {
     flex: 1;
     display: flex;
-    flex-direction: row;
-    justify-content: flex-start; /* **核心：让内部内容在垂直方向上居中** */
-    align-items: center; /* **核心：让内部内容在水平方向上靠左对齐** */
+    flex-direction: column; /* 重点修改：让内部内容沿垂直方向排列 */
+    justify-content: center; /* 重点修改：让内部内容在垂直方向上居中 */
+    align-items: flex-start; /* 重点修改：让内部内容在水平方向上靠左对齐 */
     max-width: 50%;
     box-sizing: border-box;
     padding-right: 20px;
+    /* 确保 case-description 占据其父容器的高度，以便居中对齐生效 */
+    /* 如果 case-content 设置了 align-items: flex-start; 且高度不固定，
+       这里可能需要设置 min-height 或 height: 100% */
+    height: 100%; /* 添加这一行，确保描述框占据所有可用垂直空间 */
 }
 
         .video-frame {
