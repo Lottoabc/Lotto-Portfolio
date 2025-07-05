@@ -489,14 +489,15 @@
             animation: fadeIn 0.4s ease-out forwards;
             padding: 20px;
             box-sizing: border-box;
-            display: flex; /* Changed to flex to center content, controlled by JS display none/flex */
+            /* Flex properties for centering content */
+            display: flex; 
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
             background-color: var(--bg-secondary);
-            margin: auto;
+            margin: auto; /* This works with flex for centering */
             padding: 40px 60px;
             border: 1px solid var(--border-color);
             border-radius: 15px;
@@ -572,14 +573,14 @@
         }
 
         /* Ensure video in modal is responsive and not too wide */
-        #modalVideo {
+        .modal-video-wrapper { /* New wrapper for modal video */
             width: 100%;
             display: flex;
             justify-content: center;
             margin-top: 30px; /* Spacing below content */
         }
 
-        #modalVideo iframe {
+        .modal-video-wrapper iframe {
             width: 100%;
             max-width: 800px; /* Adjust as needed for modal video width */
             aspect-ratio: 16 / 9; /* Standard video aspect ratio */
@@ -872,7 +873,7 @@
         </a>
 
         <div class="case-container">
-            <div class="case" id="case1">
+            <div class="case" id="case1" data-title="案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1">
                 <div class="case-description">
                     <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                     <ul>
@@ -890,7 +891,7 @@
 
             <hr>
 
-            <div class="case" id="case2">
+            <div class="case" id="case2" data-title="案例 2: SteamVR 和 XRToolkit 博物馆项目实践" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2">
                 <div class="case-description">
                     <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                     <ul>
@@ -907,7 +908,7 @@
 
             <hr>
 
-            <div class="case" id="case3">
+            <div class="case" id="case3" data-title="案例 3: 敦煌莫高窟博物馆项目" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3">
                 <div class="case-description">
                     <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                     <ul>
@@ -926,134 +927,137 @@
 
         <hr>
 
-        <div class="contact-info" id="contact">
+        <section id="contact" class="contact-info">
             <h2>联系我</h2>
-            <p>如果您对我的作品感兴趣，或者有任何合作意向，欢迎通过以下方式联系我：</p>
-            <p>邮箱: <strong><a href="mailto:your.email@example.com">your.email@example.com</a></strong></p>
-            <p>电话: <strong>+86 123 4567 8901</strong></p>
-            <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></strong></p>
-        </div>
+            <p>如果您对我的作品感兴趣，或有任何合作意向，欢迎随时与我联系！</p>
+            <p>电子邮件: <strong><a href="mailto:lotto.contact@example.com">lotto.contact@example.com</a></strong></p>
+            <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/lotto-xr-dev" target="_blank">linkedin.com/in/lotto-xr-dev</a></strong></p>
+            <p>GitHub: <strong><a href="https://github.com/lottoabc" target="_blank">github.com/lottoabc</a></strong></p>
+            <p>期待与您共同探索 XR 的无限可能！</p>
+        </section>
     </main>
+
+    <button id="scrollToTopBtn" title="回到顶部">顶部</button>
 
     <div id="projectModal" class="modal">
         <div class="modal-content">
-            <span class="modal-close">×</span>
+            <span class="modal-close">&times;</span>
             <h2 id="modalTitle"></h2>
-            <div id="modalContent">
-                </div>
-            <div id="modalVideo" class="video-frame" style="margin-top: 30px;">
-                <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div id="modalDescription"></div>
+            <div class="modal-video-wrapper">
+                <iframe id="modalVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 
-    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
-
     <script>
-        // Get the button
-        let mybutton = document.getElementById("scrollToTopBtn");
+        // Smooth scrolling for sidebar navigation
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        // --- Project Modal JavaScript ---
-        const projectModal = document.getElementById('projectModal');
-        const modalCloseBtn = document.querySelector('.modal-close');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-        const modalVideoFrame = document.querySelector('#modalVideo iframe');
-        const modalVideoContainer = document.getElementById('modalVideo');
-
-        // Project data (you can add more details for each project here)
-        const projects = {
-            case1: {
-                title: "案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发",
-                description: `
-                    <ul>
-                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
-                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
-                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
-                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
-                    </ul>
-                `,
-                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1" // **请替换为你的YouTube视频ID**
-            },
-            case2: {
-                title: "案例 2: SteamVR 和 XRToolkit 博物馆项目实践",
-                description: `
-                    <ul>
-                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
-                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
-                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
-                    </ul>
-                `,
-                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2" // **请替换为你的YouTube视频ID**
-            },
-            case3: {
-                title: "案例 3: 敦煌莫高窟博物馆项目",
-                description: `
-                    <ul>
-                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
-                    </ul>
-                `,
-                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3" // **请替换为你的YouTube视频ID**
-            }
-        };
-
-        // Open the modal
-        function openProjectModal(projectId) {
-            const project = projects[projectId];
-            if (project) {
-                modalTitle.innerHTML = project.title;
-                modalContent.innerHTML = project.description;
-                modalVideoFrame.src = project.videoSrc; // Set video source
-                projectModal.style.display = 'flex'; // Show the modal
-                document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
-            }
-        }
-
-        // Close the modal
-        function closeProjectModal() {
-            projectModal.style.display = 'none'; // Hide the modal
-            modalVideoFrame.src = ""; // Stop video playback by clearing src
-            document.body.style.overflow = ''; // Restore scrolling on the body
-        }
-
-        // Event listeners for opening modal from project cards
-        document.querySelectorAll('.case').forEach(caseElement => {
-            caseElement.addEventListener('click', function() {
-                const projectId = this.id;
-                openProjectModal(projectId);
+                // Remove active class from all and add to clicked
+                document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
 
-        // Event listener for closing modal
-        modalCloseBtn.addEventListener('click', closeProjectModal);
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main section, .case-container .case, h1'); // Include cases and h1 for section detection
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-        // Close the modal if user clicks outside of modal-content
-        window.addEventListener('click', (event) => {
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Adjust offset for better timing
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                    if (!current && section.classList.contains('case')) {
+                        // For case elements, use their ID
+                        current = section.id;
+                    }
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll to Top Button functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener('click', function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+
+        // --- Modal Functionality ---
+        const projectModal = document.getElementById("projectModal");
+        const modalCloseBtn = document.querySelector(".modal-close");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalDescription = document.getElementById("modalDescription");
+        const modalVideo = document.getElementById("modalVideo");
+        const cases = document.querySelectorAll(".case"); // Get all case elements
+
+        // Add click event listener to each case
+        cases.forEach(caseElement => {
+            caseElement.addEventListener('click', function() {
+                const title = this.getAttribute('data-title');
+                const videoSrc = this.getAttribute('data-video-src');
+                const descriptionHtml = this.querySelector('.case-description').innerHTML; // Get inner HTML of description
+
+                modalTitle.textContent = title;
+                modalDescription.innerHTML = descriptionHtml; // Set innerHTML to retain formatting
+                modalVideo.src = videoSrc + "?autoplay=1&rel=0"; // Autoplay and hide related videos
+
+                projectModal.style.display = "flex"; // Show the modal using flex for centering
+                document.body.style.overflow = "hidden"; // Prevent scrolling on body when modal is open
+            });
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        modalCloseBtn.addEventListener('click', function() {
+            projectModal.style.display = "none"; // Hide the modal
+            modalVideo.src = ""; // Stop video playback
+            document.body.style.overflow = "auto"; // Re-enable body scrolling
+        });
+
+        // When the user clicks anywhere outside of the modal content, close it
+        window.addEventListener('click', function(event) {
             if (event.target == projectModal) {
-                closeProjectModal();
+                projectModal.style.display = "none"; // Hide the modal
+                modalVideo.src = ""; // Stop video playback
+                document.body.style.overflow = "auto"; // Re-enable body scrolling
+            }
+        });
+
+        // Optional: Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                if (projectModal.style.display === "flex") { // Check if modal is currently open
+                    projectModal.style.display = "none";
+                    modalVideo.src = ""; // Stop video playback
+                    document.body.style.overflow = "auto"; // Re-enable body scrolling
+                }
             }
         });
     </script>
