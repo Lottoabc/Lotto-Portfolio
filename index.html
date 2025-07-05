@@ -268,6 +268,7 @@
             overflow: hidden;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
+            cursor: pointer; /* Make it clickable */
         }
         /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
@@ -308,12 +309,13 @@
 
         .video-frame iframe {
             width: 100%;
-            aspect-ratio: 5 / 3; /* Changed aspect ratio to 5:3 */
+            aspect-ratio: 16 / 9; /* Changed aspect ratio to 16:9 */
             height: auto;
             border-radius: 12px;
             box-shadow: 0 8px 20px var(--shadow-dark);
             border: 2px solid var(--border-color);
             transition: border-color var(--transition-speed) ease-in-out;
+            max-width: 800px; /* Add a max-width for the iframe itself */
         }
 
         /* Orange border on hover for video frames */
@@ -487,7 +489,7 @@
             animation: fadeIn 0.4s ease-out forwards;
             padding: 20px;
             box-sizing: border-box;
-            display: flex; /* Changed to flex to center content */
+            display: flex; /* Changed to flex to center content, controlled by JS display none/flex */
             justify-content: center;
             align-items: center;
         }
@@ -556,6 +558,7 @@
             color: var(--text-primary);
             font-size: 1em;
             line-height: 1.6;
+            text-align: left; /* Ensure text aligns left within modal list items */
         }
         .modal li::before {
             content: '✅ '; /* Checkmark for modal list items */
@@ -566,6 +569,25 @@
         .modal strong {
             color: var(--accent-hover);
             font-weight: 600;
+        }
+
+        /* Ensure video in modal is responsive and not too wide */
+        #modalVideo {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-top: 30px; /* Spacing below content */
+        }
+
+        #modalVideo iframe {
+            width: 100%;
+            max-width: 800px; /* Adjust as needed for modal video width */
+            aspect-ratio: 16 / 9; /* Standard video aspect ratio */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--border-color);
+            transition: border-color var(--transition-speed) ease-in-out;
         }
 
 
@@ -862,7 +884,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -879,7 +901,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -897,7 +919,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embe" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -912,6 +934,18 @@
             <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></strong></p>
         </div>
     </main>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">×</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent">
+                </div>
+            <div id="modalVideo" class="video-frame" style="margin-top: 30px;">
+                <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
 
@@ -936,69 +970,92 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        // Add active class to current nav item
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll("main > div[id], main > h1"); // Select sections and h1
-            const navLinks = document.querySelectorAll(".sidebar-nav ul li a");
+        // --- Project Modal JavaScript ---
+        const projectModal = document.getElementById('projectModal');
+        const modalCloseBtn = document.querySelector('.modal-close');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const modalVideoFrame = document.querySelector('#modalVideo iframe');
+        const modalVideoContainer = document.getElementById('modalVideo');
 
-            function setActiveLink() {
-                let currentActive = "";
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150; // Offset for better scrolling experience
-                    const sectionBottom = sectionTop + section.offsetHeight;
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                        currentActive = section.getAttribute("id") || "top"; // Use "top" for h1 area
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href").includes(currentActive)) {
-                        link.classList.add("active");
-                    } else if (currentActive === "top" && link.getAttribute("href") === "#case1") {
-                         // If at the very top (h1), make the first nav item active
-                        link.classList.add("active");
-                    }
-                });
+        // Project data (you can add more details for each project here)
+        const projects = {
+            case1: {
+                title: "案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发",
+                description: `
+                    <ul>
+                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
+                    </ul>
+                `,
+                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1" // **请替换为你的YouTube视频ID**
+            },
+            case2: {
+                title: "案例 2: SteamVR 和 XRToolkit 博物馆项目实践",
+                description: `
+                    <ul>
+                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
+                    </ul>
+                `,
+                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2" // **请替换为你的YouTube视频ID**
+            },
+            case3: {
+                title: "案例 3: 敦煌莫高窟博物馆项目",
+                description: `
+                    <ul>
+                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
+                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
+                    </ul>
+                `,
+                videoSrc: "https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3" // **请替换为你的YouTube视频ID**
             }
+        };
 
-            window.addEventListener("scroll", setActiveLink);
-            setActiveLink(); // Set active link on load
+        // Open the modal
+        function openProjectModal(projectId) {
+            const project = projects[projectId];
+            if (project) {
+                modalTitle.innerHTML = project.title;
+                modalContent.innerHTML = project.description;
+                modalVideoFrame.src = project.videoSrc; // Set video source
+                projectModal.style.display = 'flex'; // Show the modal
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on the body
+            }
+        }
 
-            // Smooth scroll for internal links
-            navLinks.forEach(link => {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute("href").substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80, // Adjust scroll position
-                            behavior: "smooth"
-                        });
-                    }
-                });
+        // Close the modal
+        function closeProjectModal() {
+            projectModal.style.display = 'none'; // Hide the modal
+            modalVideoFrame.src = ""; // Stop video playback by clearing src
+            document.body.style.overflow = ''; // Restore scrolling on the body
+        }
+
+        // Event listeners for opening modal from project cards
+        document.querySelectorAll('.case').forEach(caseElement => {
+            caseElement.addEventListener('click', function() {
+                const projectId = this.id;
+                openProjectModal(projectId);
             });
         });
 
-        // Ensure video iframes are responsive
-        // You already have aspect-ratio which is the modern way.
-        // The following JS is more for older browser compatibility or complex scenarios,
-        // but not strictly necessary with aspect-ratio. Keeping it commented out.
-        /*
-        window.addEventListener('resize', resizeVideoIframes);
-        function resizeVideoIframes() {
-            const iframes = document.querySelectorAll('.video-frame iframe');
-            iframes.forEach(iframe => {
-                // The aspect-ratio CSS property makes this largely unnecessary,
-                // but if you had a different requirement, you could calculate here.
-                // For example, if aspect-ratio wasn't supported:
-                // const width = iframe.offsetWidth;
-                // iframe.style.height = (width / (5/3)) + 'px';
-            });
-        }
-        resizeVideoIframes(); // Call on load
-        */
+        // Event listener for closing modal
+        modalCloseBtn.addEventListener('click', closeProjectModal);
+
+        // Close the modal if user clicks outside of modal-content
+        window.addEventListener('click', (event) => {
+            if (event.target == projectModal) {
+                closeProjectModal();
+            }
+        });
     </script>
 </body>
 </html>
