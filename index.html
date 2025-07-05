@@ -16,14 +16,13 @@
             --accent-hover: #FFC080; /* 强调色悬停效果 */
             --border-color: #333; /* 边框颜色 */
             --shadow-color: rgba(0, 0, 0, 0.5); /* 柔和阴影 */
-            --nav-width: 200px; /* 导航栏宽度 */
+            --nav-width: 220px; /* 调整导航栏宽度 */
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            /* 调整 padding 来适应导航栏 */
             padding: 0;
             font-size: min(18px, 4.5vw);
             line-height: 1.7;
@@ -99,7 +98,7 @@
             min-width: var(--nav-width); /* 确保宽度不变 */
             height: 100vh; /* 占满视口高度 */
             background-color: #0d0d0d; /* 导航栏背景色，比主背景更深 */
-            padding: 30px 15px;
+            padding: 30px 20px; /* 调整内边距，增加左右空间 */
             box-sizing: border-box;
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -111,9 +110,9 @@
 
         .sidebar-nav h3 {
             color: var(--accent-color);
-            font-size: 1.4em;
+            font-size: 1.5em; /* 稍微大一点的标题字体 */
             margin-top: 0;
-            margin-bottom: 30px;
+            margin-bottom: 35px; /* 增加底部间距 */
             text-align: left;
             width: 100%;
         }
@@ -126,7 +125,7 @@
         }
 
         .sidebar-nav li {
-            margin-bottom: 15px;
+            margin-bottom: 18px; /* 增加导航项之间的间距 */
             width: 100%;
         }
 
@@ -134,101 +133,104 @@
             display: block;
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 6px;
+            padding: 10px 18px; /* 调整内边距 */
+            border-radius: 8px; /* 更圆润的边角 */
             transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
             text-align: left;
-            font-size: 1.05em;
+            font-size: 1.1em; /* 稍微大一点的链接字体 */
             white-space: nowrap; /* 防止标题过长换行 */
             overflow: hidden;
             text-overflow: ellipsis; /* 超出部分显示省略号 */
         }
 
         .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: rgba(249, 173, 109, 0.1); /* 强调色半透明背景 */
+            background-color: rgba(249, 173, 109, 0.15); /* 强调色半透明背景，稍微深一点 */
             color: var(--accent-hover);
-            transform: translateX(5px);
+            transform: translateX(8px); /* 更明显的悬停效果 */
         }
 
         /* 主内容区域 */
         main {
             flex-grow: 1; /* 占据剩余空间 */
-            padding: 50px 30px; /* 调整内边距 */
+            padding: 50px 40px; /* 调整内边距 */
             box-sizing: border-box;
             min-width: 0; /* 允许内容缩小 */
         }
 
         h1 {
             font-size: min(4.2em, 9.5vw);
-            margin-bottom: 15px;
+            margin-bottom: 20px; /* 增加底部间距 */
             color: var(--text-primary);
             font-weight: 700;
             letter-spacing: -0.04em;
+            text-align: left; /* 主标题左对齐 */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.05em;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto; /* 居中 */
-            margin-right: auto; /* 居中 */
+            font-size: 1.1em; /* 稍微大一点的说明文字 */
+            margin-bottom: 40px; /* 增加底部间距 */
+            max-width: 900px; /* 扩大文本宽度 */
+            margin-left: 0; /* 左对齐 */
+            margin-right: auto;
+            text-align: left; /* 左对齐 */
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--bg-primary);
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 14px 30px; /* 调整按钮大小 */
+            border-radius: 10px; /* 更圆润的边角 */
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1em;
-            margin-bottom: 60px;
+            font-size: 1.2em; /* 调整按钮字体大小 */
+            margin-bottom: 70px; /* 增加底部间距 */
             transition: background-color 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3); /* 调整阴影 */
         }
 
         .resume-button:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px); /* 更明显的悬停效果 */
+            box-shadow: 0 7px 18px rgba(0, 0, 0, 0.4);
         }
 
         .case-container {
             width: 100%;
-            max-width: 1080px;
+            max-width: 1100px; /* 稍微扩大容器宽度 */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 50px;
+            align-items: stretch; /* 让案例占据容器宽度 */
+            gap: 60px; /* 增加案例之间的间距 */
             padding: 0;
         }
 
         .case {
             display: flex;
-            flex-direction: row;
+            flex-direction: row; /* 始终保持描述在左，视频在右的布局 */
             align-items: center;
             width: 100%;
-            gap: 45px;
+            gap: 50px; /* 增加描述和视频之间的间距 */
             text-align: left;
             background-color: var(--bg-secondary);
             border-radius: 12px;
-            box-shadow: 0 6px 18px var(--shadow-color);
-            padding: 55px;
+            box-shadow: 0 7px 20px var(--shadow-color); /* 调整阴影 */
+            padding: 60px; /* 增加内边距 */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
         }
 
         .case:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-color);
+            transform: translateY(-10px); /* 更明显的悬停效果 */
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35), 0 0 25px var(--accent-color); /* 更强的悬停阴影和强调色光晕 */
         }
 
-        .case:nth-child(even) {
+        /* 移除奇偶行反向布局，保持统一 */
+        /* .case:nth-child(even) {
             flex-direction: row-reverse;
-        }
+        } */
 
         .case-description {
             flex: 3;
@@ -242,24 +244,24 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px var(--shadow-color);
+            border-radius: 10px; /* 更圆润的视频边框 */
+            box-shadow: 0 4px 12px var(--shadow-color); /* 调整视频阴影 */
             border: 1px solid var(--border-color);
         }
 
         .case h2 {
-            font-size: 2.6em;
+            font-size: 3em; /* 调整案例标题字体大小 */
             margin-top: 0;
-            margin-bottom: 28px;
+            margin-bottom: 30px; /* 增加底部间距 */
             color: var(--text-primary);
             font-weight: 600;
             text-align: left;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 12px;
+            border-bottom: 2px solid var(--border-color); /* 更粗的底部边框 */
+            padding-bottom: 15px; /* 增加底部填充 */
         }
 
         .case ul {
-            padding-left: 30px;
+            padding-left: 35px; /* 增加列表左侧填充 */
             margin-top: 0;
             list-style-type: disc;
             color: var(--text-primary);
@@ -267,32 +269,32 @@
         }
 
         .case li {
-            margin-bottom: 12px;
-            font-size: 1.08em;
-            line-height: 1.6;
+            margin-bottom: 15px; /* 增加列表项底部间距 */
+            font-size: 1.15em; /* 稍微大一点的列表项字体 */
+            line-height: 1.7;
         }
 
         .case strong {
             color: var(--accent-color);
-            font-weight: 600;
+            font-weight: 700;
         }
 
         hr {
             border: none;
             border-top: 1px solid var(--border-color);
-            margin: 60px auto;
-            width: 60%;
-            opacity: 0.5;
+            margin: 70px auto; /* 增加上下间距 */
+            width: 70%; /* 调整宽度 */
+            opacity: 0.6; /* 稍微不透明一点 */
         }
 
         .contact-info {
             width: 100%;
-            max-width: 600px;
-            margin-top: 80px;
-            padding: 35px;
+            max-width: 650px; /* 稍微扩大联系信息区域宽度 */
+            margin-top: 90px; /* 增加顶部间距 */
+            padding: 40px; /* 增加填充 */
             background-color: var(--bg-secondary);
             border-radius: 12px;
-            box-shadow: 0 -4px 15px var(--shadow-color);
+            box-shadow: 0 -5px 18px var(--shadow-color); /* 调整阴影 */
             border: 1px solid var(--border-color);
             text-align: center;
             margin-left: auto; /* 居中 */
@@ -300,8 +302,9 @@
         }
 
         .contact-info p {
-            margin-bottom: 12px;
+            margin-bottom: 15px; /* 增加底部间距 */
             color: var(--text-primary);
+            font-size: 1.1em; /* 稍微大一点的字体 */
         }
 
         .contact-info strong {
@@ -333,11 +336,14 @@
                 border-right: none;
                 border-bottom: 1px solid var(--border-color); /* 底部边框 */
                 display: flex;
-                flex-direction: column;
+                flex-direction: row; /* 导航项水平排列 */
                 align-items: center;
+                justify-content: center; /* 居中显示导航项 */
                 overflow-y: visible; /* 在小屏幕上不限制高度滚动 */
+                flex-wrap: wrap; /* 允许换行 */
             }
             .sidebar-nav h3 {
+                width: 100%;
                 margin-bottom: 15px;
                 text-align: center;
             }
@@ -346,78 +352,85 @@
                 flex-wrap: wrap; /* 允许换行 */
                 justify-content: center; /* 居中显示导航项 */
                 gap: 10px; /* 导航项间距 */
+                width: 100%;
+                padding: 0 10px; /* 增加一些水平填充，使链接不贴边 */
             }
             .sidebar-nav li {
                 margin-bottom: 0; /* 取消垂直间距 */
                 width: auto; /* 宽度自适应内容 */
             }
             .sidebar-nav a {
-                padding: 8px 12px;
-                font-size: 0.95em;
+                padding: 8px 15px;
+                font-size: 1em;
                 text-align: center;
                 white-space: normal; /* 允许换行 */
                 overflow: visible;
                 text-overflow: clip;
+                border-radius: 6px; /* 调整圆角 */
+            }
+            .sidebar-nav a:hover, .sidebar-nav a.active {
+                transform: none; /* 在小屏幕上移除水平位移，防止触摸误操作 */
             }
 
             main {
-                padding: 30px 15px; /* 主内容区域的内边距 */
+                padding: 30px 20px; /* 主内容区域的内边距 */
                 width: 100%; /* 确保主内容区域占满宽度 */
             }
 
             h1 {
-                font-size: 3.5em;
+                font-size: 3em;
+                text-align: center; /* 在小屏幕上主标题居中 */
             }
             .note-text {
-                margin-bottom: 25px;
+                margin-bottom: 30px;
+                text-align: center; /* 在小屏幕上说明文字居中 */
             }
             .resume-button {
                 padding: 10px 20px;
                 font-size: 1em;
-                margin-bottom: 40px;
+                margin-bottom: 50px;
             }
             .case-container {
                 gap: 40px;
                 padding: 0;
             }
             .case {
-                flex-direction: column;
+                flex-direction: column; /* 案例内容垂直堆叠 */
                 align-items: center;
                 text-align: center;
                 padding: 40px;
-                gap: 30px;
+                gap: 40px;
             }
-            .case:nth-child(even) {
+            /* 移除奇偶行反向布局 */
+            /* .case:nth-child(even) {
                 flex-direction: column;
-            }
+            } */
             .case-description, .video-frame {
                 width: 100%;
                 padding: 0;
             }
             .case h2 {
-                font-size: 2.2em;
+                font-size: 2.4em;
                 text-align: center;
-                margin-bottom: 20px;
+                margin-bottom: 25px;
             }
             .case ul {
-                padding-left: 20px;
+                padding-left: 25px;
                 text-align: left;
             }
             .case li {
-                margin-bottom: 10px;
-                font-size: 1em;
+                margin-bottom: 12px;
+                font-size: 1.05em;
             }
             hr {
-                margin: 40px auto;
-                width: 80%;
+                margin: 50px auto;
+                width: 90%;
             }
             .contact-info {
-                padding: 25px;
-                margin-top: 50px;
+                padding: 30px;
+                margin-top: 60px;
                 max-width: 95%;
-            }
-            .contact-info p {
-                margin-bottom: 10px;
+                text-align: center;
             }
         }
     </style>
