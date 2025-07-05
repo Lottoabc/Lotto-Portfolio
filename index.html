@@ -252,11 +252,11 @@
 
         .case {
             display: flex;
-            flex-direction: row; /* Changed to row for left/right layout */
-            align-items: flex-start; /* Align items to the top in row layout */
+            flex-direction: column; /* Default to column for consistency, will change with media query */
+            align-items: flex-start;
             width: 100%;
-            max-width: 1300px; /* Adjust max-width for row layout */
-            gap: 40px; /* Increased gap between description and video */
+            max-width: 1300px;
+            gap: 40px;
             background-color: var(--bg-secondary);
             border-radius: 15px;
             box-shadow: 0 10px 25px var(--shadow-dark);
@@ -269,6 +269,36 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
         }
+
+        /* New layout for the case: Title on top, description on left, video on right */
+        .case-header {
+            width: 100%;
+            text-align: left; /* Align the case title to the left */
+            margin-bottom: 30px; /* Space between title and content */
+        }
+
+        .case-header h2 {
+            font-size: 3.5em;
+            margin-top: 0;
+            margin-bottom: 0;
+            color: var(--text-primary);
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            width: fit-content;
+        }
+
+        .case-content {
+            display: flex;
+            flex-direction: row; /* Main content layout */
+            align-items: flex-start;
+            width: 100%;
+            gap: 40px;
+        }
+
         /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
             .case {
@@ -319,22 +349,6 @@
         /* Orange border on hover for video frames */
         .video-frame iframe:hover {
             border: 3px solid var(--accent-hover);
-        }
-
-        .case h2 {
-            font-size: 3.5em;
-            margin-top: 0;
-            margin-bottom: 30px;
-            color: var(--text-primary);
-            font-weight: 700;
-            text-align: left; /* Align title to the left */
-            border-bottom: 4px solid var(--accent-color);
-            padding-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            width: fit-content; /* Make border fit content */
-            margin-left: 0; /* Remove auto margin */
-            margin-right: auto; /* Push to left */
         }
 
         .case ul {
@@ -559,23 +573,32 @@
                 max-width: 100%; /* Occupy full width on small screens */
             }
 
+            .case-header {
+                margin-bottom: 20px;
+            }
+
+            .case-header h2 {
+                font-size: 2.8em;
+                margin-bottom: 0;
+                padding-bottom: 18px;
+                border-bottom: 3px solid var(--accent-color);
+                text-align: center; /* Center title for column layout */
+                margin-left: auto; /* Center title */
+                margin-right: auto; /* Center title */
+            }
+
+            .case-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
             .case-description {
                 text-align: center; /* Center text description for column layout */
             }
 
             .video-frame {
                 width: 100%; /* Full width for video in column layout */
-                margin-top: 20px; /* Add some spacing above the video */
-            }
-
-            .case h2 {
-                font-size: 2.8em;
-                margin-bottom: 25px;
-                padding-bottom: 18px;
-                border-bottom: 3px solid var(--accent-color);
-                text-align: center; /* Center title for column layout */
-                margin-left: auto; /* Center title */
-                margin-right: auto; /* Center title */
+                margin-top: 0; /* Remove extra top margin */
             }
 
             .case ul {
@@ -676,9 +699,9 @@
                 max-width: 100%; /* Ensure full width on smaller screens */
             }
 
-            .case h2 {
+            .case-header h2 {
                 font-size: 2.5em;
-                margin-bottom: 20px;
+                margin-bottom: 0;
                 padding-bottom: 15px;
             }
 
@@ -733,53 +756,65 @@
 
         <div class="case-container">
             <div class="case" id="case1">
-                <div class="case-description">
+                <div class="case-header">
                     <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                    <ul>
-                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
-                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
-                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
-                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
-                    </ul>
                 </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                            <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                            <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                            <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                            <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case2">
-                <div class="case-description">
+                <div class="case-header">
                     <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
-                    <ul>
-                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
-                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
-                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
-                    </ul>
                 </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/v2FhJq4kEJU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                            <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                            <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                            <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/v2FhJq4kEJU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case3">
-                <div class="case-description">
+                <div class="case-header">
                     <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
-                    <ul>
-                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
-                    </ul>
                 </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
+                            <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                            <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                            <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                            <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
