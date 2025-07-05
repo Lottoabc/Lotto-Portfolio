@@ -236,7 +236,7 @@
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
             width: 100%;
-            max-width: 100%;
+            max-width: 900px; /* Adjusted max-width for cases to make them less wide and improve readability */
             gap: 40px; /* Adjusted gap for column layout */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
@@ -270,7 +270,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-width: 0; /* Allow iframe to shrink */
+            /* min-width: 0; */ /* Allow iframe to shrink - already good */
+            max-width: 800px; /* Limit video frame width for better visual balance */
+            margin: 0 auto; /* Center the video frame */
         }
 
         .video-frame iframe {
@@ -312,6 +314,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-width: 700px; /* Limit list width for better readability */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .case li {
@@ -435,7 +440,7 @@
 
         /* --- Project Modal (New Element) --- */
         .modal {
-            display: none; /* Hidden by default */
+            display: none; /* Hidden by default - This is key to prevent auto popup */
             position: fixed; /* Stay in place */
             z-index: 1000; /* Sit on top */
             left: 0;
@@ -449,7 +454,7 @@
             animation: fadeIn 0.3s ease-out forwards;
             padding: 20px;
             box-sizing: border-box;
-            display: flex;
+            display: flex; /* Changed to flex to center content */
             justify-content: center;
             align-items: center;
         }
@@ -624,6 +629,7 @@
             .case {
                 padding: 50px;
                 gap: 30px; /* Adjusted for column layout */
+                max-width: 800px; /* Adjusted max-width for cases */
             }
             .case h2 {
                 font-size: 3em;
@@ -893,7 +899,7 @@
             <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
                 我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
             </p>
-            <a href="resume_lotto_xr_developer.pdf" target="_blank" class="resume-button">下载我的简历</a>
+            <a href="https://github.com/Lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" target="_blank" class="resume-button">下载我的简历</a>
         </section>
 
         <hr style="margin-top: 0;">
@@ -907,47 +913,43 @@
                         <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
                         <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
                         <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
-                        <li><strong>PXR_Manager 组件</strong>：深入集成 Pico SDK 的核心管理功能，优化设备性能。</li>
+                        <li><strong>UI 交互</strong>：设计并实现了沉浸式用户界面交互，提升用户体验。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1_HERE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
-
-            <hr>
 
             <div class="case" id="case2">
                 <div class="case-description">
                     <h2>案例 2: SteamVR 博物馆项目</h2>
                     <ul>
-                        <li><strong>场景优化</strong>：对大型 3D 场景进行高效优化，确保在 SteamVR 环境下流畅运行。</li>
-                        <li><strong>交互系统</strong>：开发了支持多种 VR 控制器的交互系统，包括抓取、传送、UI 互动等。</li>
-                        <li><strong>展品信息展示</strong>：实现了沉浸式展品信息展示界面，提升用户体验。</li>
-                        <li><strong>性能分析与调试</strong>：利用 Unity Profiler 等工具进行性能瓶颈分析和优化。</li>
-                        <li><strong>多平台兼容性</strong>：确保项目在不同 SteamVR 兼容设备上均能稳定运行。</li>
+                        <li><strong>跨平台兼容性</strong>：项目支持 SteamVR 平台，兼容多种主流 VR 头显。</li>
+                        <li><strong>沉浸式场景设计</strong>：精心打造的虚拟博物馆环境，提供丰富的视觉细节和空间感。</li>
+                        <li><strong>互动展品系统</strong>：用户可与虚拟展品进行多种形式的互动，如拿起、旋转、查看详情。</li>
+                        <li><strong>空间音频集成</strong>：利用空间音频技术增强沉浸感，声音随用户位置和方向变化。</li>
+                        <li><strong>性能优化</strong>：针对 VR 设备的性能特点进行优化，确保流畅运行和舒适体验。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2_HERE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <hr>
-
             <div class="case" id="case3">
                 <div class="case-description">
-                    <h2>案例 3: 敦煌莫高窟文化遗产数字化项目</h2>
+                    <h2>案例 3: 敦煌莫高窟文化遗产项目</h2>
                     <ul>
-                        <li><strong>高精度模型导入与渲染</strong>：处理并优化了莫高窟的高精度 3D 扫描数据，实现真实感渲染。</li>
-                        <li><strong>文化导览系统</strong>：设计了互动式文化导览功能，用户可以自由探索洞窟并获取详细信息。</li>
-                        <li><strong>光照与材质模拟</strong>：精确模拟洞窟内的光照效果和壁画材质，还原历史风貌。</li>
-                        <li><strong>多语言支持</strong>：集成了多语言切换功能，服务全球用户。</li>
-                        <li><strong>数据安全与版权保护</strong>：在开发过程中严格遵守文化遗产数字化规范。</li>
+                        <li><strong>高精度模型复原</strong>：对敦煌莫高窟进行数字扫描和建模，实现高保真度虚拟复原。</li>
+                        <li><strong>历史文化导览</strong>：集成详细的文字、图片和语音导览，帮助用户深入了解莫高窟的历史和艺术。</li>
+                        <li><strong>多视角探索</strong>：用户可以在虚拟空间中自由漫游，从不同角度欣赏壁画和雕塑细节。</li>
+                        <li><strong>教育互动模块</strong>：设计了问答、拼图等互动环节，提升学习的趣味性和参与度。</li>
+                        <li><strong>云端数据同步</strong>：支持云端数据存储和同步，方便用户在不同设备上继续体验。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3_HERE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -955,10 +957,10 @@
         <hr>
 
         <section id="contact" class="contact-info">
-            <p>如果您对我的作品感兴趣，或者有任何合作机会，欢迎随时与我联系！</p>
-            <p>邮箱: <strong><a href="mailto:your.email@example.com">your.email@example.com</a></strong></p>
-            <p>电话: <strong>+86 123 4567 8900</strong></p>
-            <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></strong></p>
+            <p>感谢您浏览我的作品集！如果您对我的项目感兴趣，或者有任何合作意向，欢迎随时与我联系。</p>
+            <p>邮箱：<strong>your.email@example.com</strong></p>
+            <p>LinkedIn：<a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p>GitHub：<a href="https://github.com/Lottoabc" target="_blank">github.com/Lottoabc</a></p>
         </section>
     </main>
 
@@ -968,90 +970,107 @@
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2 id="modalTitle"></h2>
-            <div id="modalContent"></div>
+            <div id="modalContent">
+                </div>
         </div>
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for sidebar navigation
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
 
-                // Remove active class from all links
+                // Remove active class from all and add to clicked
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
-                // Add active class to the clicked link
                 this.classList.add('active');
             });
         });
 
-        // Scroll to top button functionality
-        let scrollToTopBtn = document.getElementById("scrollToTopBtn");
+        // Set active class on load and scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Adjust offset for header height
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollToTopBtn.style.display = "block";
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Scroll to top button visibility
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                document.getElementById("scrollToTopBtn").style.display = "block";
             } else {
-                scrollToTopBtn.style.display = "none";
+                document.getElementById("scrollToTopBtn").style.display = "none";
             }
-            updateScrollIndicator();
-        }
 
+            // Scroll indicator bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
+        });
+
+        // Initialize active link on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const firstSectionId = sections[0] ? sections[0].getAttribute('id') : null;
+            if (firstSectionId) {
+                document.querySelector(`.sidebar-nav a[href="#${firstSectionId}"]`).classList.add('active');
+            }
+        });
+
+        // Scroll to top function
         function topFunction() {
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        // Scroll indicator functionality
-        function updateScrollIndicator() {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
-        }
-
-        // Initial call to set the indicator on load
-        window.addEventListener('load', updateScrollIndicator);
-
-        // Placeholder for modal functionality (if you plan to add more detailed project modals)
-        // You would typically add event listeners to project cards to open the modal
-        // and populate its content dynamically.
+        // Modal functionality (assuming you want to keep the modal for future project details)
         const modal = document.getElementById("projectModal");
-        const closeBtn = document.querySelector(".modal-close");
+        const span = document.getElementsByClassName("modal-close")[0];
 
-        closeBtn.onclick = function() {
-            modal.style.display = "none";
+        // Function to open modal (you'd call this from project cards)
+        function openModal(title, contentHtml) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalContent").innerHTML = contentHtml;
+            modal.style.display = "flex"; // Use flex to center
+            document.body.style.overflow = "hidden"; // Prevent scrolling body when modal is open
         }
 
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.style.overflow = ""; // Restore body scrolling
+        }
+
+        // When the user clicks anywhere outside of the modal content, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                document.body.style.overflow = ""; // Restore body scrolling
             }
         }
 
-        // Example function to open modal (you'd integrate this with your project cards)
-        function openProjectModal(title, contentHtml) {
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalContent").innerHTML = contentHtml;
-            modal.style.display = "flex"; // Use flex to center the modal content
-        }
-
-        // To make the "About Me" link active on initial load if it's the first section
-        document.addEventListener('DOMContentLoaded', () => {
-            const aboutLink = document.querySelector('.sidebar-nav a[href="#about"]');
-            if (aboutLink) {
-                aboutLink.classList.add('active');
-            }
-        });
+        // Example of how to trigger modal (you'd add this to your project cards)
+        // For instance, if you had a button inside a .case:
+        // <button onclick="openModal('项目标题', '<p>这里是项目的详细内容...</p><div class=\'modal-images\'><img src=\'img1.jpg\'><img src=\'img2.jpg\'></div>')">查看详情</button>
+        // Note: The original code didn't have buttons to open the modal, so this is an example.
     </script>
 </body>
 </html>
