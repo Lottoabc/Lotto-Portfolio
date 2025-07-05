@@ -1,997 +1,949 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        /* CSS Variables - Changed to an orange color palette */
-        :root {
-            --bg-primary: #0A0A0A; /* Dark almost black */
-            --bg-secondary: #1E1E1E; /* Slightly lighter for cards/sections */
-            --bg-tertiary: #333333; /* For subtle internal elements */
-            --text-primary: #E0E0E0; /* Light gray for main text */
-            --text-secondary: #A0A0A0; /* Muted gray for secondary text */
-            --accent-color: #FFA500; /* Vibrant Orange */
-            --accent-hover: #CC8400; /* Darker Orange for hover states */
-            --accent-light: rgba(255, 165, 0, 0.15); /* Light orange for subtle backgrounds/glows */
-            --border-color: #444444; /* Dark gray for borders */
-            --shadow-dark: rgba(0, 0, 0, 0.7); /* Darker, more pronounced shadow */
-            --shadow-light-accent: rgba(255, 165, 0, 0.25); /* More pronounced accent-colored light shadow/glow */
-            --nav-width: 300px; /* Wider navigation */
-            --transition-speed: 0.4s; /* Global transition speed */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* CSS Variables - Changed to an orange color palette */
+        :root {
+            --bg-primary: #0A0A0A; /* Dark almost black */
+            --bg-secondary: #1E1E1E; /* Slightly lighter for cards/sections */
+            --bg-tertiary: #333333; /* For subtle internal elements */
+            --text-primary: #E0E0E0; /* Light gray for main text */
+            --text-secondary: #A0A0A0; /* Muted gray for secondary text */
+            --accent-color: #FFA500; /* Vibrant Orange */
+            --accent-hover: #CC8400; /* Darker Orange for hover states */
+            --accent-light: rgba(255, 165, 0, 0.15); /* Light orange for subtle backgrounds/glows */
+            --border-color: #444444; /* Dark gray for borders */
+            --shadow-dark: rgba(0, 0, 0, 0.7); /* Darker, more pronounced shadow */
+            --shadow-light-accent: rgba(255, 165, 0, 0.25); /* More pronounced accent-colored light shadow/glow */
+            --nav-width: 300px; /* Wider navigation */
+            --transition-speed: 0.4s; /* Global transition speed */
+        }
 
-        /* Base styles */
-        body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: 19px; /* Slightly larger base font for readability */
-            line-height: 1.8; /* Improved line height */
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            background-image:
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.15"/></svg>'),
-                radial-gradient(at 50% 0%, rgba(255, 165, 0, 0.05) 0%, transparent 75%), /* Changed to orange */
-                radial-gradient(at 0% 100%, rgba(255, 165, 0, 0.04) 0%, transparent 65%), /* Changed to orange */
-                radial-gradient(at 100% 100%, rgba(255, 165, 0, 0.04) 0%, transparent 65%), /* Changed to orange */
-                linear-gradient(to bottom, var(--bg-primary), #000000);
-            background-repeat: repeat;
-            background-blend-mode: overlay, normal, normal, normal, normal;
-            position: relative;
-            overflow-x: hidden;
-            box-sizing: border-box;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: flex-start;
-            scroll-behavior: smooth;
-        }
-
-        /* Dynamic background particle layer */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="1" fill="rgba(255, 255, 255, 0.15)"/></svg>');
-            background-size: 200px 200px; /* Larger and denser particles */
-            background-repeat: repeat;
-            opacity: 0.1;
-            z-index: -1;
-            animation: moveBackground 120s linear infinite, fadeBackground 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes moveBackground {
-            from { background-position: 0 0; }
-            to { background-position: 400% 400%; }
-        }
-
-        @keyframes fadeBackground {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
-        }
-
-        /* Sidebar Navigation */
-        .sidebar-nav {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: var(--nav-width);
-            min-width: var(--nav-width);
-            height: 100vh;
-            background-color: #080808; /* Darker nav background */
-            padding: 50px 30px;
-            box-sizing: border-box;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            overflow-y: auto;
-            z-index: 100;
-            box-shadow: 3px 0 15px var(--shadow-dark);
-        }
-
-        .sidebar-nav h3 {
-            color: var(--accent-color);
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 50px;
-            text-align: left;
-            width: 100%;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .sidebar-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
-
-        .sidebar-nav li {
-            margin-bottom: 25px;
-            width: 100%;
-        }
-
-        .sidebar-nav a {
-            display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 15px 20px;
-            border-radius: 10px;
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            text-align: left;
-            font-size: 1.2em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: 600;
-            position: relative;
-        }
-
-        .sidebar-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 8px;
-            left: 20px;
-            width: 0%;
-            height: 3px;
-            background-color: var(--accent-hover);
-            transition: width var(--transition-speed) ease-out;
-        }
-
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: var(--accent-light);
-            color: var(--accent-hover);
-            transform: translateX(15px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 8px var(--accent-light); /* Changed shadow to orange */
-        }
-
-        .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
-            width: calc(100% - 40px);
-        }
-
-        /* Main Content Area */
-        main {
-            flex-grow: 1;
-            padding: 60px 40px;
-            box-sizing: border-box;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            /* align-items: center; */ /* REMOVED: This was centering all main children */
-            align-items: flex-start; /* ADDED: Align main's children to the start (left) */
-            max-width: 1500px; /* Increased from 1500px */
-            width: 100%;
-            padding-left: 60px;
-            padding-right: 60px;
-            margin: 0 auto; /* NEW: Center the main content block itself horizontally */
-            position: relative;
-            z-index: 1; /* Ensure content is above background */
-            padding-bottom: 60px; /* 减少主内容区底部留白 */
-        }
-        /* For large screens, main area should be wider but not fully stretched */
-        @media (min-width: 1600px) {
-            main {
-                max-width: 1800px; /* Maintain max-width to prevent overstretching */
-                padding-left: 80px; /* Slightly increased left/right padding */
-                padding-right: 80px;
-            }
-        }
-        @media (min-width: 1920px) { /* For even larger screens */
-            main {
-                max-width: 2000px; /* Further increase max-width */
-                padding-left: 100px; /* Further increase left/right padding */
-                padding-right: 100px;
-            }
-        }
-
-        h1 {
-            font-size: 5em;
-            margin-bottom: 30px;
-            color: var(--text-primary);
-            font-weight: 800;
-            letter-spacing: -0.06em;
-            text-align: left; /* Changed to left-align */
-            width: 100%;
-            max-width: 1000px; /* Max-width for consistency */
-            line-height: 1.1;
-            text-shadow: 0 0 15px rgba(255, 165, 0, 0.2); /* Changed to orange */
-            margin-left: 0; /* Ensure it's not auto-centering */
-            margin-right: auto; /* Push it to the left within its max-width */
-            /* To make it "visually" centered as a block within main's full width,
-               but still left-aligned, you'd apply margin: 0 auto to h1 if it also had a max-width
-               and main had a full width. Since main now aligns children to flex-start,
-               these margin properties on h1 make it flush left within main's padding.
-               If you want h1 to be centered like a block within main, then remove margin-left/right
-               and let main's align-items: center handle it, but that would affect all main children. */
-        }
-
-        .note-text {
-            color: var(--text-secondary);
-            font-size: 1.2em;
-            margin-bottom: 50px;
-            max-width: 800px; /* Max-width for consistency */
-            text-align: left; /* Changed to left-align */
-            line-height: 1.8;
-            font-weight: 300;
-            margin-left: 0; /* Ensure it's not auto-centering */
-            margin-right: auto; /* Push it to the left within its max-width */
-        }
-
-        .resume-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--bg-primary);
-            padding: 15px 35px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.3em;
-            margin-bottom: 80px;
-            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            /* NEW: Add margin-right: auto to push it left, if main is align-items: flex-start */
-            margin-right: auto;
-        }
-
-        .resume-button:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px var(--shadow-dark), 0 0 20px var(--shadow-light-accent);
-        }
-
-        /* Project Cards (Cases) */
-        .case-container {
-            width: 100%;
-            max-width: 100%;
-            display: flex;
-            flex-direction: column;
-            /* align-items: center; */ /* REMOVED: This was centering the case cards within the container */
-            align-items: flex-start; /* ADDED: Align case cards to the start (left) */
-            gap: 70px;
-            padding: 0;
-            padding-bottom: 30px; /* 减少案例容器底部留白 */
-            margin: 0 auto; /* NEW: Center the case-container block horizontally within main */
-        }
-
-        .case {
-            display: flex;
-            flex-direction: column; /* Default to column for consistency, will change with media query */
-            align-items: flex-start; /* Ensure the content within the case starts from the left */
-            width: 100%;
-            max-width: 1300px;
-            gap: 40px;
-            background-color: var(--bg-secondary);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px var(--shadow-dark);
-            padding: 40px;
-            box-sizing: border-box;
-            border: 1px solid var(--border-color);
-            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            /* To make each case block itself appear "left-centered" within case-container,
-               if case-container had a smaller max-width, you'd put margin: 0 auto here.
-               But since case-container is 100% width and aligning its children to flex-start,
-               this aligns cases to the left within the container. */
-        }
-
-        /* New layout for the case: Title on top, description on left, video on right */
-        .case-header {
-            width: 100%;
-            text-align: left; /* Align the case title to the left */
-            margin-bottom: 30px; /* Space between title and content */
-        }
-
-        .case-header h2 {
-            font-size: 3.5em;
-            margin-top: 0;
-            margin-bottom: 0;
-            color: var(--text-primary);
-            font-weight: 700;
-            text-align: left;
-            border-bottom: 4px solid var(--accent-color);
-            padding-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            width: fit-content;
-        }
-
-        .case-content {
-            display: flex;
-            flex-direction: row;
-            align-items: stretch; /* 确保 case-description 和 video-frame 高度一致 */
-            width: 100%;
-            gap: 40px;
-        }
-
-        /* For large screens, case cards should be wider */
-        @media (min-width: 1200px) {
-            .case {
-                max-width: 1600px; /* Wider case cards, increased from 1500px */
-                padding: 50px 60px; /* Adjusted padding */
-            }
-        }
-        @media (min-width: 1600px) {
-            .case {
-                max-width: 1900px; /* Further wider, increased from 1800px */
-            }
-        }
-
-        /* Orange border on hover for cases */
-        .case:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px var(--shadow-dark), 0 0 30px var(--shadow-light-accent);
-            border-color: var(--accent-hover); /* Orange border on hover */
-        }
-
-        .case-description {
-            flex: 1; /* 让描述框占据可用空间 */
-            display: flex;
-            flex-direction: column; /* 变为垂直方向的flex容器 */
-            justify-content: center; /* 垂直方向居中其内容（即ul） */
-            align-items: flex-start; /* 水平方向左对齐其内容（即ul） */
-            max-width: 50%;
-            box-sizing: border-box;
-            padding-right: 20px;
-            position: relative; /* 新增：为绝对定位的子元素提供定位上下文 */
-            /* 移除 height: 100%; 因为 align-items: stretch 会处理高度 */
-            /* border: 1px solid red; */
-        }
-
-        /* 新增：案例底部信息样式 */
-        .case-footer {
-            position: absolute;
-            bottom: 20px; /* 距离底部 20px */
-            left: 40px; /* 与 .case 的 padding-left 保持一致 */
-            width: calc(100% - 80px); /* 减去左右 padding */
+        /* Base styles */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 19px; /* Slightly larger base font for readability */
+            line-height: 1.8; /* Improved line height */
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            background-image:
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.15"/></svg>'),
+                radial-gradient(at 50% 0%, rgba(255, 165, 0, 0.05) 0%, transparent 75%), /* Changed to orange */
+                radial-gradient(at 0% 100%, rgba(255, 165, 0, 0.04) 0%, transparent 65%), /* Changed to orange */
+                radial-gradient(at 100% 100%, rgba(255, 165, 0, 0.04) 0%, transparent 65%), /* Changed to orange */
+                linear-gradient(to bottom, var(--bg-primary), #000000);
+            background-repeat: repeat;
+            background-blend-mode: overlay, normal, normal, normal, normal;
+            position: relative;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            min-height: 100vh;
             display: flex;
             flex-direction: row;
-            justify-content: space-between; /* 内容左右分散 */
-            align-items: flex-end; /* 内容在底部对齐 */
-            font-size: 0.9em;
-            color: var(--text-secondary);
-            opacity: 0.8;
-            z-index: 1;
-            /* border: 1px solid green; */ /* 调试时可以保留，完成后移除 */
+            align-items: flex-start;
+            justify-content: flex-start;
+            scroll-behavior: smooth;
         }
 
-        .case-footer .tech-stack {
-            font-weight: 600;
+        /* Dynamic background particle layer */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="1" fill="rgba(255, 255, 255, 0.15)"/></svg>');
+            background-size: 200px 200px; /* Larger and denser particles */
+            background-repeat: repeat;
+            opacity: 0.1;
+            z-index: -1;
+            animation: moveBackground 120s linear infinite, fadeBackground 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveBackground {
+            from { background-position: 0 0; }
+            to { background-position: 400% 400%; }
+        }
+
+        @keyframes fadeBackground {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.1; }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: var(--nav-width);
+            min-width: var(--nav-width);
+            height: 100vh;
+            background-color: #080808; /* Darker nav background */
+            padding: 50px 30px;
+            box-sizing: border-box;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 3px 0 15px var(--shadow-dark);
+        }
+
+        .sidebar-nav h3 {
             color: var(--accent-color);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 50px;
+            text-align: left;
+            width: 100%;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
-        .case-footer .project-date {
-            font-style: italic;
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .sidebar-nav a {
+            display: block;
             color: var(--text-secondary);
-            padding-right: 20px; /* 补充右侧留白 */
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 10px;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            text-align: left;
+            font-size: 1.2em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+            position: relative;
         }
 
-        .video-frame {
-            flex-shrink: 0; /* Prevent shrinking */
-            width: 50%; /* Adjust video width relative to description */
-            max-width: 800px; /* Max width for video, increased from 700px */
-            display: flex;
-            justify-content: center;
-            align-items: flex-start; /* Align video to the top */
-        }
+        .sidebar-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 20px;
+            width: 0%;
+            height: 3px;
+            background-color: var(--accent-hover);
+            transition: width var(--transition-speed) ease-out;
+        }
 
-        .video-frame iframe {
-            width: 100%;
-            aspect-ratio: 12 / 7; /* Ensure 16:9 aspect ratio */
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--border-color);
-            transition: border-color var(--transition-speed) ease-in-out;
-        }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+            transform: translateX(15px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 8px var(--accent-light); /* Changed shadow to orange */
+        }
 
-        /* Orange border on hover for video frames */
-        .video-frame iframe:hover {
-            border: 3px solid var(--accent-hover);
-        }
+        .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
+            width: calc(100% - 40px);
+        }
 
-        .case ul {
-            padding-left: 0; /* 移除默认的左内边距 */
-            margin-top: 0;
-            margin-bottom: 0; /* 移除可能的默认下外边距 */
-            list-style: none;
-            color: var(--text-primary);
-            width: 100%; /* 确保 ul 占据 case-description 的全部宽度 */
-            text-align: left; /* 确保 ul 内部的文本（如果直接有）是左对齐的 */
-            
-            /* 如果 li 仍然没有完全靠左，可以考虑让 ul 也成为 flex 容器来控制 li */
-            /* display: flex; */
-            /* flex-direction: column; */
-            /* align-items: flex-start; */ /* 这样 li 就会在其父 ul 中靠左对齐 */
-            
-            /* border: 1px solid blue; */
-        }
+        /* Main Content Area */
+        main {
+            flex-grow: 1;
+            padding: 60px 40px;
+            box-sizing: border-box;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */ /* REMOVED: This was centering all main children */
+            align-items: flex-start; /* ADDED: Align main's children to the start (left) */
+            max-width: 1500px; /* Increased from 1500px */
+            width: 100%;
+            padding-left: 60px;
+            padding-right: 60px;
+            margin: 0 auto; /* NEW: Center the main content block itself horizontally */
+            position: relative;
+            z-index: 1; /* Ensure content is above background */
+            padding-bottom: 60px; /* 减少主内容区底部留白 */
+        }
+        /* For large screens, main area should be wider but not fully stretched */
+        @media (min-width: 1600px) {
+            main {
+                max-width: 1800px; /* Maintain max-width to prevent overstretching */
+                padding-left: 80px; /* Slightly increased left/right padding */
+                padding-right: 80px;
+            }
+        }
+        @media (min-width: 1920px) { /* For even larger screens */
+            main {
+                max-width: 2000px; /* Further increase max-width */
+                padding-left: 100px; /* Further increase left/right padding */
+                padding-right: 100px;
+            }
+        }
 
-        .case li {
-            margin-bottom: 15px;
-            font-size: 1.15em;
-            line-height: 1.7;
-            position: relative;
-            padding-left: 35px; /* 为自定义子弹头留出空间 */
-            text-align: left; /* 强制 li 内部文本靠左对齐 */
-            width: 100%; /* 确保 li 占据 ul 的全部宽度 */
-        }
+        h1 {
+            font-size: 5em;
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -0.06em;
+            text-align: left; /* Changed to left-align */
+            width: 100%;
+            max-width: 1000px; /* Max-width for consistency */
+            line-height: 1.1;
+            text-shadow: 0 0 15px rgba(255, 165, 0, 0.2); /* Changed to orange */
+            margin-left: 0; /* Ensure it's not auto-centering */
+            margin-right: auto; /* Push it to the left within its max-width */
+            /* To make it "visually" centered as a block within main's full width,
+               but still left-aligned, you'd apply margin: 0 auto to h1 if it also had a max-width
+               and main had a full width. Since main now aligns children to flex-start,
+               these margin properties on h1 make it flush left within main's padding.
+               If you want h1 to be centered like a block within main, then remove margin-left/right
+               and let main's align-items: center handle it, but that would affect all main children. */
+        }
 
-        .case li::before {
-            content: '✨ ';
-            position: absolute;
-            left: 0; /* 子弹头距离 li 左边缘为0 */
-            top: 50%; /* 尝试垂直居中子弹头 */
-            transform: translateY(-50%); /* 调整以精确居中 */
-            color: var(--accent-hover);
-        }
+        .note-text {
+            color: var(--text-secondary);
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            max-width: 800px; /* Max-width for consistency */
+            text-align: center; /* Changed to left-align */
+            line-height: 1.8;
+            font-weight: 300;
+            margin-left: 0; /* Ensure it's not auto-centering */
+            margin-right: auto; /* Push it to the left within its max-width */
+        }
 
-        .case strong {
-            color: var(--accent-hover);
-            font-weight: 700;
-        }
+        .resume-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
+            padding: 15px 35px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.3em;
+            margin-bottom: 80px;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            /* NEW: Add margin-right: auto to push it left, if main is align-items: flex-start */
+            margin-right: auto;
+        }
 
-        /* Separator Line */
-        hr {
-            border: none;
-            border-top: 3px dashed var(--border-color);
-            margin: 80px auto;
-            width: 60%;
-            opacity: 0.6;
-            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
-            background-size: 100% 3px;
-            background-repeat: no-repeat;
-        }
+        .resume-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px var(--shadow-dark), 0 0 20px var(--shadow-light-accent);
+        }
 
-        /* Contact Info */
-        .contact-info {
-            width: 100%;
-            max-width: 900px;
-            margin-top: 50px; /* 减少上方留白 */
-            padding: 50px;
-            background-color: var(--bg-secondary);
-            border-radius: 15px;
-            box-shadow: 0 -8px 25px var(--shadow-dark);
-            border: 1px solid var(--border-color);
-            text-align: center; /* This is intentional for contact info */
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            overflow: hidden;
-            z-index: 0;
-            margin-bottom: 50px; /* 减少下方留白 */
-        }
+        /* Project Cards (Cases) */
+        .case-container {
+            width: 100%;
+            max-width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* align-items: center; */ /* REMOVED: This was centering the case cards within the container */
+            align-items: flex-start; /* ADDED: Align case cards to the start (left) */
+            gap: 70px;
+            padding: 0;
+            padding-bottom: 30px; /* 减少案例容器底部留白 */
+            margin: 0 auto; /* NEW: Center the case-container block horizontally within main */
+        }
 
-        .contact-info::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 165, 0, 0.08) 0%, transparent 70%); /* Changed to orange */
-            animation: rotateGlow 40s linear infinite;
-            z-index: -1;
-        }
+        .case {
+            display: flex;
+            flex-direction: column; /* Default to column for consistency, will change with media query */
+            align-items: flex-start; /* Ensure the content within the case starts from the left */
+            width: 100%;
+            max-width: 1300px;
+            gap: 40px;
+            background-color: var(--bg-secondary);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px var(--shadow-dark);
+            padding: 40px;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            /* To make each case block itself appear "left-centered" within case-container,
+               if case-container had a smaller max-width, you'd put margin: 0 auto here.
+               But since case-container is 100% width and aligning its children to flex-start,
+               this aligns cases to the left within the container. */
+        }
 
-        @keyframes rotateGlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        /* New layout for the case: Title on top, description on left, video on right */
+        .case-header {
+            width: 100%;
+            text-align: left; /* Align the case title to the left */
+            margin-bottom: 30px; /* Space between title and content */
+        }
 
-        .contact-info p {
-            margin-bottom: 0; /* Removed bottom margin as only one item */
-            color: var(--text-primary);
-            font-size: 1.15em;
-            line-height: 1.7;
-            font-weight: 300;
-            /* This p will follow the text-align: center of its parent .contact-info */
-        }
+        .case-header h2 {
+            font-size: 3.5em;
+            margin-top: 0;
+            margin-bottom: 0;
+            color: var(--text-primary);
+            font-weight: 700;
+            text-align: left;
+            border-bottom: 4px solid var(--accent-color);
+            padding-bottom: 20px;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            width: fit-content;
+        }
 
-        .contact-info strong {
-            font-weight: 700;
-            color: var(--accent-hover);
-        }
+        .case-content {
+            display: flex;
+            flex-direction: row; /* Main content layout */
+            align-items: flex-start;
+            width: 100%;
+            gap: 40px;
+        }
 
-        .contact-info a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
-            font-weight: 600;
-        }
+        /* For large screens, case cards should be wider */
+        @media (min-width: 1200px) {
+            .case {
+                max-width: 1600px; /* Wider case cards, increased from 1500px */
+                padding: 50px 60px; /* Adjusted padding */
+            }
+        }
+        @media (min-width: 1600px) {
+            .case {
+                max-width: 1900px; /* Further wider, increased from 1800px */
+            }
+        }
 
-        .contact-info a:hover {
-            text-decoration: underline;
-            color: var(--accent-hover);
-        }
+        /* Orange border on hover for cases */
+        .case:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px var(--shadow-dark), 0 0 30px var(--shadow-light-accent);
+            border-color: var(--accent-hover); /* Orange border on hover */
+        }
 
-        /* --- Scroll to Top Button (New Element) --- */
-        #scrollToTopBtn {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed position */
-            bottom: 30px; /* Place at the bottom */
-            right: 30px; /* Place at the right */
-            z-index: 99; /* High z-index to be on top */
-            border: none; /* Remove borders */
-            outline: none; /* Remove outline */
-            background-color: var(--accent-color); /* Set a background color */
-            color: var(--bg-primary); /* Text color */
-            cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px 20px; /* Some padding */
-            border-radius: 10px;
-            font-size: 1.1em; /* Increase font size */
-            font-weight: 600;
-            box-shadow: 0 5px 10px var(--shadow-dark);
-            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
-        }
+        .case-description {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* **核心：让内部内容在垂直方向上居中** */
+    align-items: center; /* **核心：让内部内容在水平方向上靠左对齐** */
+    max-width: 50%;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
 
-        #scrollToTopBtn:hover {
-            background-color: var(--accent-hover); /* Darker background on hover */
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
-        }
+        .video-frame {
+            flex-shrink: 0; /* Prevent shrinking */
+            width: 50%; /* Adjust video width relative to description */
+            max-width: 800px; /* Max width for video, increased from 700px */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align video to the top */
+        }
 
-        /* Mobile Adaptations */
-        @media (max-width: 1024px) {
-            body {
-                flex-direction: column;
-                padding: 0;
-                font-size: min(17px, 4.2vw);
-            }
+        .video-frame iframe {
+            width: 100%;
+            aspect-ratio: 12 / 7; /* Ensure 16:9 aspect ratio */
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--border-color);
+            transition: border-color var(--transition-speed) ease-in-out;
+        }
 
-            .sidebar-nav {
-                position: relative;
-                width: 100%;
-                height: auto;
-                min-width: unset;
-                padding: 30px 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                box-shadow: 0 3px 10px var(--shadow-dark);
-            }
+        /* Orange border on hover for video frames */
+        .video-frame iframe:hover {
+            border: 3px solid var(--accent-hover);
+        }
 
-            .sidebar-nav h3 {
-                font-size: 1.5em;
-                margin-bottom: 30px;
-                text-align: center;
-            }
+        .case ul {
+            padding-left: 0;
+            margin-top: 0;
+            list-style: none; /* Remove default list style */
+            color: var(--text-primary);
+            /* text-align: center; */ /* REMOVED: This was centering list items */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align list items to the left within the ul */
+            max-width: 100%; /* Adjust max-width for list items */
+        }
 
-            .sidebar-nav ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
+        .case li {
+            margin-bottom: 15px;
+            font-size: 1.15em;
+            line-height: 1.7;
+            position: relative; /* For custom bullet */
+            padding-left: 35px; /* Space for custom bullet */
+            text-align: left; /* Keep text within list item aligned left */
+            width: 100%; /* Make li take full width to align content left */
+        }
+        
+        .case li::before {
+            content: '✨ '; /* Different emoji */
+            position: absolute;
+            left: 0;
+            color: var(--accent-hover);
+        }
 
-            .sidebar-nav li {
-                margin-bottom: 0;
-            }
+        .case strong {
+            color: var(--accent-hover);
+            font-weight: 700;
+        }
 
-            .sidebar-nav a {
-                padding: 10px 18px;
-                font-size: 1em;
-                transform: none !important; /* Override hover transform for better mobile tap experience */
-                box-shadow: none !important; /* Override hover shadow for mobile */
-                border-bottom: 2px solid transparent; /* Simple underline for mobile */
-                border-radius: 8px;
-            }
+        /* Separator Line */
+        hr {
+            border: none;
+            border-top: 3px dashed var(--border-color);
+            margin: 80px auto;
+            width: 60%;
+            opacity: 0.6;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+        }
 
-            .sidebar-nav a::after {
-                display: none; /* Hide complex underline on mobile */
-            }
+        /* Contact Info */
+        .contact-info {
+            width: 100%;
+            max-width: 900px;
+            margin-top: 50px; /* 减少上方留白 */
+            padding: 50px;
+            background-color: var(--bg-secondary);
+            border-radius: 15px;
+            box-shadow: 0 -8px 25px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            text-align: center; /* This is intentional for contact info */
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+            margin-bottom: 50px; /* 减少下方留白 */
+        }
 
-            .sidebar-nav a:hover, .sidebar-nav a.active {
-                background-color: var(--accent-light);
-                color: var(--accent-hover);
-                border-bottom: 2px solid var(--accent-hover);
-            }
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 165, 0, 0.08) 0%, transparent 70%); /* Changed to orange */
+            animation: rotateGlow 40s linear infinite;
+            z-index: -1;
+        }
 
-            main {
-                padding: 50px 20px;
-                max-width: 100%; /* Occupy full width on small screens */
-                padding-left: 20px;
-                padding-right: 20px;
-                padding-bottom: 50px; /* 调整移动端 main 的底部留白 */
-                align-items: flex-start; /* Keep children aligned left on mobile */
-                margin: 0 auto; /* Ensure main itself is still centered if needed, though width is 100% here */
-            }
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-            h1 {
-                font-size: min(4.5em, 11vw);
-                margin-bottom: 25px;
-                text-align: left; /* Changed to left-align */
-                margin-left: 0;
-                margin-right: auto;
-            }
+        .contact-info p {
+            margin-bottom: 0; /* Removed bottom margin as only one item */
+            color: var(--text-primary);
+            font-size: 1.15em;
+            line-height: 1.7;
+            font-weight: 300;
+            /* This p will follow the text-align: center of its parent .contact-info */
+        }
 
-            .note-text {
-                font-size: 1.1em;
-                margin-bottom: 40px;
-                text-align: left; /* Changed to left-align */
-                margin-left: 0;
-                margin-right: auto;
-            }
+        .contact-info strong {
+            font-weight: 700;
+            color: var(--accent-hover);
+        }
 
-            .resume-button {
-                padding: 14px 30px;
-                font-size: 1.2em;
-                margin-bottom: 60px;
-                margin-right: auto; /* Push left on mobile */
-            }
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
+            font-weight: 600;
+        }
 
-            .case-container {
-                gap: 60px;
-                padding-bottom: 40px; /* 调整移动端案例容器底部留白 */
-                align-items: flex-start; /* Align case cards to the left */
-                margin: 0 auto; /* Keep case-container centered as a block */
-            }
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
+        }
 
-            .case {
-                flex-direction: column; /* Revert to column for smaller screens */
-                padding: 40px;
-                gap: 30px;
-                border-radius: 12px;
-                max-width: 100%; /* Occupy full width on small screens */
-            }
+        /* --- Scroll to Top Button (New Element) --- */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 30px; /* Place at the bottom */
+            right: 30px; /* Place at the right */
+            z-index: 99; /* High z-index to be on top */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: var(--accent-color); /* Set a background color */
+            color: var(--bg-primary); /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px 20px; /* Some padding */
+            border-radius: 10px;
+            font-size: 1.1em; /* Increase font size */
+            font-weight: 600;
+            box-shadow: 0 5px 10px var(--shadow-dark);
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
 
-            .case-header {
-                margin-bottom: 20px;
-            }
+        #scrollToTopBtn:hover {
+            background-color: var(--accent-hover); /* Darker background on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
+        }
 
-            .case-header h2 {
-                font-size: 2.8em;
-                margin-bottom: 0;
-                padding-bottom: 18px;
-                text-align: left; /* Changed from center to left for mobile */
-                margin-left: 0; /* Remove auto-centering */
-                margin-right: auto; /* Push to the left */
-            }
+        /* Mobile Adaptations */
+        @media (max-width: 1024px) {
+            body {
+                flex-direction: column;
+                padding: 0;
+                font-size: min(17px, 4.2vw);
+            }
 
-            .case-content {
-                flex-direction: column;
-                gap: 30px;
-            }
+            .sidebar-nav {
+                position: relative;
+                width: 100%;
+                height: auto;
+                min-width: unset;
+                padding: 30px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: 0 3px 10px var(--shadow-dark);
+            }
 
-            .case-description {
-                text-align: left; /* Keep text description aligned left */
-                align-items: flex-start; /* Ensure description content is aligned left */
-                max-width: 100%; /* Mobile takes full width */
-                margin: 0; /* Remove auto margins */
-                padding-right: 0; /* Remove right padding */
-            }
+            .sidebar-nav h3 {
+                font-size: 1.5em;
+                margin-bottom: 30px;
+                text-align: center;
+            }
 
-            .video-frame {
-                width: 100%; /* Full width for video in column layout */
-                margin-top: 0; /* Remove extra top margin */
-            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
 
-            .case ul {
-                max-width: 95%;
-                align-items: flex-start; /* Align list items to the left */
-                text-align: left; /* Keep list item text aligned left */
-            }
+            .sidebar-nav li {
+                margin-bottom: 0;
+            }
 
-            .case li {
-                font-size: 1.1em;
-                margin-bottom: 15px;
-                padding-left: 30px;
-                width: 100%; /* Ensure li takes full width */
-            }
+            .sidebar-nav a {
+                padding: 10px 18px;
+                font-size: 1em;
+                transform: none !important; /* Override hover transform for better mobile tap experience */
+                box-shadow: none !important; /* Override hover shadow for mobile */
+                border-bottom: 2px solid transparent; /* Simple underline for mobile */
+                border-radius: 8px;
+            }
 
-            .case li::before {
-                font-size: 0.9em;
-                left: 5px;
-            }
+            .sidebar-nav a::after {
+                display: none; /* Hide complex underline on mobile */
+            }
 
-            hr {
-                margin: 70px auto;
-                width: 70%;
-            }
+            .sidebar-nav a:hover, .sidebar-nav a.active {
+                background-color: var(--accent-light);
+                color: var(--accent-hover);
+                border-bottom: 2px solid var(--accent-hover);
+            }
 
-            .contact-info {
-                padding: 40px;
-                margin-top: 50px; /* 调整移动端联系信息上方留白 */
-                max-width: 95%;
-                border-radius: 12px;
-                margin-bottom: 40px; /* 调整移动端联系信息下方留白 */
-            }
+            main {
+                padding: 50px 20px;
+                max-width: 100%; /* Occupy full width on small screens */
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 50px; /* 调整移动端 main 的底部留白 */
+                align-items: flex-start; /* Keep children aligned left on mobile */
+                margin: 0 auto; /* Ensure main itself is still centered if needed, though width is 100% here */
+            }
 
-            .contact-info p {
-                font-size: 1.1em;
-                margin-bottom: 0; /* Adjust for single line */
-            }
+            h1 {
+                font-size: min(4.5em, 11vw);
+                margin-bottom: 25px;
+                text-align: left; /* Changed to left-align */
+                margin-left: 0;
+                margin-right: auto;
+            }
 
-            #scrollToTopBtn {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 18px;
-                font-size: 1em;
-            }
-        }
+            .note-text {
+                font-size: 1.1em;
+                margin-bottom: 40px;
+                text-align: left; /* Changed to left-align */
+                margin-left: 0;
+                margin-right: auto;
+            }
 
-        @media (max-width: 768px) {
-            body {
-                font-size: min(15px, 3.8vw);
-            }
+            .resume-button {
+                padding: 14px 30px;
+                font-size: 1.2em;
+                margin-bottom: 60px;
+                margin-right: auto; /* Push left on mobile */
+            }
 
-            .sidebar-nav {
-                padding: 25px 15px;
-            }
+            .case-container {
+                gap: 60px;
+                padding-bottom: 40px; /* 调整移动端案例容器底部留白 */
+                align-items: flex-start; /* Align case cards to the left */
+                margin: 0 auto; /* Keep case-container centered as a block */
+            }
 
-            .sidebar-nav h3 {
-                font-size: 1.3em;
-                margin-bottom: 25px;
-            }
+            .case {
+                flex-direction: column; /* Revert to column for smaller screens */
+                padding: 40px;
+                gap: 30px;
+                border-radius: 12px;
+                max-width: 100%; /* Occupy full width on small screens */
+            }
 
-            .sidebar-nav ul {
-                gap: 10px;
-            }
+            .case-header {
+                margin-bottom: 20px;
+            }
 
-            .sidebar-nav a {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
+            .case-header h2 {
+                font-size: 2.8em;
+                margin-bottom: 0;
+                padding-bottom: 18px;
+                border-bottom: 3px solid var(--accent-color);
+                text-align: left; /* Changed from center to left for mobile */
+                margin-left: 0; /* Remove auto-centering */
+                margin-right: auto; /* Push to the left */
+            }
 
-            main {
-                padding: 40px 15px;
-                max-width: 100%; /* Ensure full width on smaller screens */
-                padding-left: 15px;
-                padding-right: 15px;
-                padding-bottom: 40px; /* 调整更小屏幕 main 的底部留白 */
-                align-items: flex-start; /* Keep children aligned left on smaller mobile */
-                margin: 0 auto;
-            }
+            .case-content {
+                flex-direction: column;
+                gap: 30px;
+            }
 
-            h1 {
-                font-size: min(4em, 10vw);
-                margin-bottom: 20px;
-                text-align: left; /* Changed to left-align */
-                margin-left: 0;
-                margin-right: auto;
-            }
+            .case-description {
+                text-align: left; /* Keep text description aligned left */
+                align-items: flex-start; /* Ensure description content is aligned left */
+                max-width: 100%; /* Mobile takes full width */
+                margin: 0; /* Remove auto margins */
+                padding-right: 0; /* Remove right padding */
+            }
 
-            .note-text {
-                font-size: 1em;
-                margin-bottom: 30px;
-                text-align: left; /* Changed to left-align */
-                margin-left: 0;
-                margin-right: auto;
-            }
+            .video-frame {
+                width: 100%; /* Full width for video in column layout */
+                margin-top: 0; /* Remove extra top margin */
+            }
 
-            .resume-button {
-                padding: 12px 25px;
-                font-size: 1.1em;
-                margin-bottom: 50px;
-                margin-right: auto; /* Push left on smaller mobile */
-            }
+            .case ul {
+                max-width: 95%;
+                align-items: flex-start; /* Align list items to the left */
+                text-align: left; /* Keep list item text aligned left */
+            }
 
-            .case-container {
-                gap: 50px;
-                padding-bottom: 30px; /* 调整更小屏幕案例容器底部留白 */
-                align-items: flex-start; /* Align case cards to the left */
-                margin: 0 auto;
-            }
+            .case li {
+                font-size: 1.1em;
+                margin-bottom: 15px;
+                padding-left: 30px;
+                width: 100%; /* Ensure li takes full width */
+            }
 
-            .case {
-                padding: 30px;
-                gap: 25px;
-                max-width: 100%; /* Ensure full width on smaller screens */
-            }
+            .case li::before {
+                font-size: 0.9em;
+                left: 5px;
+            }
 
-            .case-header h2 {
-                font-size: 2.5em;
-                margin-bottom: 0;
-                padding-bottom: 15px;
-                text-align: left; /* Changed from center to left for smaller mobile */
-                margin-left: 0; /* Remove auto-centering */
-                margin-right: auto; /* Push to the left */
-            }
+            hr {
+                margin: 70px auto;
+                width: 70%;
+            }
 
-            .case li {
-                font-size: 1em;
-                margin-bottom: 10px;
-                padding-left: 25px;
-            }
+            .contact-info {
+                padding: 40px;
+                margin-top: 50px; /* 调整移动端联系信息上方留白 */
+                max-width: 95%;
+                border-radius: 12px;
+                margin-bottom: 40px; /* 调整移动端联系信息下方留白 */
+            }
 
-            hr {
-                margin: 50px auto;
-                width: 80%;
-            }
+            .contact-info p {
+                font-size: 1.1em;
+                margin-bottom: 0; /* Adjust for single line */
+            }
 
-            .contact-info {
-                padding: 30px;
-                margin-top: 40px; /* 调整更小屏幕联系信息上方留白 */
-                margin-bottom: 30px; /* 调整更小屏幕联系信息下方留白 */
-            }
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
+                font-size: 1em;
+            }
+        }
 
-            .contact-info p {
-                font-size: 1em;
-                margin-bottom: 0; /* Adjust for single line */
-            }
+        @media (max-width: 768px) {
+            body {
+                font-size: min(15px, 3.8vw);
+            }
 
-            #scrollToTopBtn {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-        }
-    </style>
+            .sidebar-nav {
+                padding: 25px 15px;
+            }
+
+            .sidebar-nav h3 {
+                font-size: 1.3em;
+                margin-bottom: 25px;
+            }
+
+            .sidebar-nav ul {
+                gap: 10px;
+            }
+
+            .sidebar-nav a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+
+            main {
+                padding: 40px 15px;
+                max-width: 100%; /* Ensure full width on smaller screens */
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-bottom: 40px; /* 调整更小屏幕 main 的底部留白 */
+                align-items: flex-start; /* Keep children aligned left on smaller mobile */
+                margin: 0 auto;
+            }
+
+            h1 {
+                font-size: min(4em, 10vw);
+                margin-bottom: 20px;
+                text-align: left; /* Changed to left-align */
+                margin-left: 0;
+                margin-right: auto;
+            }
+
+            .note-text {
+                font-size: 1em;
+                margin-bottom: 30px;
+                text-align: left; /* Changed to left-align */
+                margin-left: 0;
+                margin-right: auto;
+            }
+
+            .resume-button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+                margin-bottom: 50px;
+                margin-right: auto; /* Push left on smaller mobile */
+            }
+
+            .case-container {
+                gap: 50px;
+                padding-bottom: 30px; /* 调整更小屏幕案例容器底部留白 */
+                align-items: flex-start; /* Align case cards to the left */
+                margin: 0 auto;
+            }
+
+            .case {
+                padding: 30px;
+                gap: 25px;
+                max-width: 100%; /* Ensure full width on smaller screens */
+            }
+
+            .case-header h2 {
+                font-size: 2.5em;
+                margin-bottom: 0;
+                padding-bottom: 15px;
+                text-align: left; /* Changed from center to left for smaller mobile */
+                margin-left: 0; /* Remove auto-centering */
+                margin-right: auto; /* Push to the left */
+            }
+
+            .case li {
+                font-size: 1em;
+                margin-bottom: 10px;
+                padding-left: 25px;
+            }
+
+            hr {
+                margin: 50px auto;
+                width: 80%;
+            }
+
+            .contact-info {
+                padding: 30px;
+                margin-top: 40px; /* 调整更小屏幕联系信息上方留白 */
+                margin-bottom: 30px; /* 调整更小屏幕联系信息下方留白 */
+            }
+
+            .contact-info p {
+                font-size: 1em;
+                margin-bottom: 0; /* Adjust for single line */
+            }
+
+            #scrollToTopBtn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="sidebar-nav">
-        <h3>Lotto's 作品集</h3>
-        <ul>
-            <li><a href="#case1">案例 1: Pico & XRToolkit</a></li>
-            <li><a href="#case2">案例 2: SteamVR 博物馆</a></li>
-            <li><a href="#case3">案例 3: 敦煌莫高窟</a></li>
-            <li><a href="#contact">联系方式</a></li>
-        </ul>
-    </div>
+    <div class="sidebar-nav">
+        <h3>Lotto's 作品集</h3>
+        <ul>
+            <li><a href="#case1">案例 1: Pico & XRToolkit</a></li>
+            <li><a href="#case2">案例 2: SteamVR 博物馆</a></li>
+            <li><a href="#case3">案例 3: 敦煌莫高窟</a></li>
+            <li><a href="#contact">联系方式</a></li>
+        </ul>
+    </div>
 
-    <main>
-        <h1>Lotto's XR 开发作品集</h1>
-        <p class="note-text">视频资源托管至 YouTube，可能需要网络代理。</p>
+    <main>
+        <h1>Lotto's XR 开发作品集</h1>
+        <p class="note-text">视频资源托管至 YouTube，可能需要网络代理。</p>
 
-        <div class="case-container">
-            <div class="case" id="case1">
-                <div class="case-header">
-                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                </div>
-                <div class="case-content">
-                    <div class="case-description">
-                        <ul>
-                            <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
-                            <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
-                            <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
-                            <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                            <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
-                        </ul>
-                                                <div class="case-footer">
-                            <span class="tech-stack">技术栈: Unity, PicoSDK, XRToolkit</span>
-                            <span class="project-date">2024年</span>
-                        </div>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
+        <div class="case-container">
+            <div class="case" id="case1">
+                <div class="case-header">
+                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                </div>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                            <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                            <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                            <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                            <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://youtu.be/lkxX5npWaH0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
 
-            <hr>
+            <hr>
 
-            <div class="case" id="case2">
-                <div class="case-header">
-                    <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
-                </div>
-                <div class="case-content">
-                    <div class="case-description">
-                        <ul>
-                            <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
-                            <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
-                            <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                            <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
-                            <li><strong>完善的UI界面</strong>：允许用户设置场景中的各种显示参数</li>
-                        </ul>
-                                                <div class="case-footer">
-                            <span class="tech-stack">技术栈: Unity, SteamVR, XRToolkit, URP, DoTween</span>
-                            <span class="project-date">2023年</span>
-                        </div>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
+            <div class="case" id="case2">
+                <div class="case-header">
+                    <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
+                </div>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                            <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                            <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                            <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
+                            <li><strong>完善的UI界面</strong>：允许用户设置场景中的各种显示参数</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://youtu.be/VGgtfCvVX90" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
 
-            <hr>
+            <hr>
 
-            <div class="case" id="case3">
-                <div class="case-header">
-                    <h2>案例 3: 敦煌莫高窟 XR 数字内容开发</h2>
-                </div>
-                <div class="case-content">
-                    <div class="case-description">
-                        <ul>
-                            <li><strong>Unity HDRP 管线</strong>：超高清渲染，完美呈现文物细节。</li>
-                            <li><strong>PicoVR 与 SteamVR 双平台</strong>：实现跨设备无缝体验。</li>
-                            <li><strong>可交互文物展示</strong>：用户可近距离观察、旋转、放大文物。</li>
-                            <li><strong>智能语音导览</strong>：提供沉浸式文化讲解。</li>
-                        </ul>
-                                                <div class="case-footer">
-                            <span class="tech-stack">技术栈: Unity, HDRP, PicoVR, SteamVR</span>
-                            <span class="project-date">2023年</span>
-                        </div>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="http://googleusercontent.com/youtube.com/2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <div class="case" id="case3">
+                <div class="case-header">
+                    <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
+                </div>
+                <div class="case-content">
+                    <div class="case-description">
+                        <ul>
+                            <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
+                            <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                            <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                            <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                            <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
+                        </ul>
+                    </div>
+                    <div class="video-frame">
+                        <iframe src="https://youtube.com/shorts/RVqD44g99II" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-cross-origin" allowfullscreen></iframe>                    </div>
+                </div>
+            </div>
+        </div>
 
-        <hr>
+        <section id="contact" class="contact-info">
+            <p>我的邮箱: <a href="mailto:lotto125zero@gmail.com">lotto125@gmail.com</a></p>
+        </section>
+    </main>
 
-        <div class="contact-info" id="contact">
-            <p>如有任何疑问或合作意向，请随时通过以下方式联系我：</p>
-            <p>
-                邮箱: <strong><a href="mailto:lottodev@example.com">lottodev@example.com</a></strong>
-            </p>
-        </div>
+    <button id="scrollToTopBtn">回到顶部</button>
 
-    </main>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
 
-    <button onclick="scrollToTop()" id="scrollToTopBtn" title="返回顶部">返回顶部</button>
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
 
-    <script>
-        // Smooth scrolling for sidebar links
-        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
+                // Remove active class from all and add to clicked
+                document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Set active class on scroll
+        const sections = document.querySelectorAll('.case, #contact');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-                // Update active class
-                document.querySelectorAll('.sidebar-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
 
-        // Highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('main > div[id], main > hr');
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute('id');
-                }
-            });
+            // Show/hide scroll to top button
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+        // Scroll to top functionality
+        document.getElementById("scrollToTopBtn").addEventListener("click", function() {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
 
-            // Show/hide scroll to top button
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                document.getElementById("scrollToTopBtn").style.display = "block";
-            } else {
-                document.getElementById("scrollToTopBtn").style.display = "none";
-            }
-        });
-
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-    </script>
+        // Initial active state for first section on load
+        if (sections.length > 0) {
+            navLinks[0].classList.add('active');
+        }
+    </script>
 </body>
 </html>
