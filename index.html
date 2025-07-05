@@ -209,11 +209,11 @@
             margin-left: 0; /* Ensure it's not auto-centering */
             margin-right: auto; /* Push it to the left within its max-width */
             /* To make it "visually" centered as a block within main's full width,
-               but still left-aligned, you'd apply margin: 0 auto to h1 if it also had a max-width
-               and main had a full width. Since main now aligns children to flex-start,
-               these margin properties on h1 make it flush left within main's padding.
-               If you want h1 to be centered like a block within main, then remove margin-left/right
-               and let main's align-items: center handle it, but that would affect all main children. */
+                but still left-aligned, you'd apply margin: 0 auto to h1 if it also had a max-width
+                and main had a full width. Since main now aligns children to flex-start,
+                these margin properties on h1 make it flush left within main's padding.
+                If you want h1 to be centered like a block within main, then remove margin-left/right
+                and let main's align-items: center handle it, but that would affect all main children. */
         }
 
         .note-text {
@@ -286,9 +286,9 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             /* To make each case block itself appear "left-centered" within case-container,
-               if case-container had a smaller max-width, you'd put margin: 0 auto here.
-               But since case-container is 100% width and aligning its children to flex-start,
-               this aligns cases to the left within the container. */
+                if case-container had a smaller max-width, you'd put margin: 0 auto here.
+                But since case-container is 100% width and aligning its children to flex-start,
+                this aligns cases to the left within the container. */
         }
 
         /* New layout for the case: Title on top, description on left, video on right */
@@ -341,15 +341,15 @@
         }
 
         .case-description {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; /* **核心：让内部内容在垂直方向上居中** */
-    align-items: center; /* **核心：让内部内容在水平方向上靠左对齐** */
-    max-width: 50%;
-    box-sizing: border-box;
-    padding-right: 20px;
-}
+            flex: 1;
+            display: flex;
+            flex-direction: column; /* Changed to column to stack text content */
+            justify-content: center; /* Center content vertically */
+            align-items: flex-start; /* Align content to the left */
+            max-width: 50%;
+            box-sizing: border-box;
+            padding-right: 20px;
+        }
 
         .video-frame {
             flex-shrink: 0; /* Prevent shrinking */
@@ -380,7 +380,6 @@
             margin-top: 0;
             list-style: none; /* Remove default list style */
             color: var(--text-primary);
-            /* text-align: center; */ /* REMOVED: This was centering list items */
             display: flex;
             flex-direction: column;
             align-items: flex-start; /* Align list items to the left within the ul */
@@ -389,7 +388,7 @@
 
         .case li {
             margin-bottom: 15px;
-            font-size: 1.5em;
+            font-size: 1.15em;
             line-height: 1.7;
             position: relative; /* For custom bullet */
             padding-left: 35px; /* Space for custom bullet */
@@ -864,37 +863,41 @@
                 <div class="case-content">
                     <div class="case-description">
                         <ul>
-                            <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                            <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                            <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                            <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                            <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
+                            <li><strong>高精度模型导入</strong>：将敦煌莫高窟的详细模型导入XR环境。</li>
+                            <li><strong>历史文化还原</strong>：重现壁画、雕塑等艺术细节。</li>
+                            <li><strong>虚拟导览系统</strong>：提供沉浸式导览体验和语音讲解。</li>
+                            <li><strong>多媒体互动</strong>：集成图片、文字、视频等丰富内容。</li>
+                            <li><strong>用户路径规划</strong>：优化参观路线，提升探索体验。</li>
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_20`，一个Shorts视频的链接会是`或者`[https://www.youtube.com/embed/YOUR\_VIDEO\_ID\_21](https://www.google.com/search?q=https://www.youtube.com/embed/YOUR_VIDEO_ID_21)\`（如果是Shorts）。" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
-        </div>
+        </div> <hr>
 
-        <section id="contact" class="contact-info">
-            <p>欢迎联系我获取更多信息！</p>
-            <p>我的邮箱: <a href="mailto:lotto125zero@gmail.com">lotto125@gmail.com</a></p>
-        </section>
+        <section id="contact-section" class="contact-info">
+            <h2 style="color: var(--accent-color); font-size: 2em; margin-bottom: 20px;">联系我</h2>
+            <p>如果您对我的作品感兴趣或有合作意向，欢迎通过以下方式联系我：</p>
+            <p>
+                <strong>邮箱：</strong>
+                <a href="mailto:your_email@example.com">your_email@example.com</a> </p>
+            </section>
+
     </main>
 
-    <button id="scrollToTopBtn">回到顶部</button>
+    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for sidebar navigation
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
-
-                // Remove active class from all and add to clicked
+                // Remove 'active' from all links and add to the clicked one
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
@@ -902,16 +905,16 @@
             });
         });
 
-        // Set active class on scroll
-        const sections = document.querySelectorAll('.case, #contact');
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main .case, #contact-section');
         const navLinks = document.querySelectorAll('.sidebar-nav a');
 
         window.addEventListener('scroll', () => {
             let current = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100; // Adjust offset as needed
+                const sectionTop = section.offsetTop - 100; // Offset for header/padding
                 const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
@@ -924,25 +927,17 @@
             });
 
             // Show/hide scroll to top button
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollToTopBtn.style.display = "block";
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("scrollToTopBtn").style.display = "block";
             } else {
-                scrollToTopBtn.style.display = "none";
+                document.getElementById("scrollToTopBtn").style.display = "none";
             }
         });
 
-        // Scroll to top functionality
-        document.getElementById("scrollToTopBtn").addEventListener("click", function() {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        });
-
-        // Initial active state for first section on load
-        if (sections.length > 0) {
-            navLinks[0].classList.add('active');
+        // Scroll to top button functionality
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
     </script>
 </body>
