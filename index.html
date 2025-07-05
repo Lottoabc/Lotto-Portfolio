@@ -16,12 +16,12 @@
             --text-secondary: #A0A0A0; /* Muted gray for secondary text */
             --accent-color: #FF7F00; /* Vibrant Orange */
             --accent-hover: #E66A00; /* Darker Orange for hover states */
-            --accent-light: rgba(255, 127, 0, 0.15); /* Light accent for subtle backgrounds/glows */
-            --border-color: #444444; /* Dark gray for borders */
-            --shadow-dark: rgba(0, 0, 0, 0.7); /* Darker, more pronounced shadow */
-            --shadow-light-accent: rgba(255, 127, 0, 0.25); /* More pronounced accent-colored light shadow/glow */
+            --accent-light: rgba(255, 127, 0, 0.1); /* Lighter accent for subtle backgrounds/glows */
+            --border-color: #333333; /* Darker gray for flatter borders */
+            --shadow-dark: rgba(0, 0, 0, 0.5); /* Less pronounced shadow */
+            --shadow-light-accent: rgba(255, 127, 0, 0.15); /* Less pronounced accent-colored light shadow/glow */
             --nav-width: 300px; /* Wider navigation */
-            --transition-speed: 0.4s; /* Global transition speed */
+            --transition-speed: 0.3s; /* Slightly faster global transition speed */
         }
 
         /* Base styles */
@@ -33,14 +33,11 @@
             line-height: 1.8; /* Improved line height */
             color: var(--text-primary);
             background-color: var(--bg-primary);
+            /* Simplified background - removed some gradients for flatter look */
             background-image:
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.15"/></svg>'),
-                radial-gradient(at 50% 0%, rgba(255, 127, 0, 0.05) 0%, transparent 75%),
-                radial-gradient(at 0% 100%, rgba(255, 127, 0, 0.04) 0%, transparent 65%),
-                radial-gradient(at 100% 100%, rgba(255, 127, 0, 0.04) 0%, transparent 65%),
-                linear-gradient(to bottom, var(--bg-primary), #000000);
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.08"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.08"/></svg>');
             background-repeat: repeat;
-            background-blend-mode: overlay, normal, normal, normal, normal;
+            background-blend-mode: normal;
             position: relative;
             overflow-x: hidden;
             box-sizing: border-box;
@@ -52,7 +49,7 @@
             scroll-behavior: smooth;
         }
 
-        /* Dynamic background particle layer */
+        /* Dynamic background particle layer - reduced opacity for flatter look */
         body::before {
             content: '';
             position: fixed;
@@ -60,10 +57,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="1" fill="rgba(255, 255, 255, 0.15)"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg"><circle cx="5" cy="5" r="1" fill="rgba(255, 255, 255, 0.08)"/></svg>');
             background-size: 200px 200px; /* Larger and denser particles */
             background-repeat: repeat;
-            opacity: 0.1;
+            opacity: 0.08; /* Reduced opacity */
             z-index: -1;
             animation: moveBackground 120s linear infinite, fadeBackground 20s ease-in-out infinite alternate;
         }
@@ -74,9 +71,9 @@
         }
 
         @keyframes fadeBackground {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
+            0% { opacity: 0.08; }
+            50% { opacity: 0.15; } /* Slightly less peak opacity */
+            100% { opacity: 0.08; }
         }
 
         /* Sidebar Navigation */
@@ -90,13 +87,13 @@
             background-color: #080808; /* Darker nav background */
             padding: 50px 30px;
             box-sizing: border-box;
-            border-right: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color); /* Softer border */
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             overflow-y: auto;
             z-index: 100;
-            box-shadow: 3px 0 15px var(--shadow-dark);
+            box-shadow: 2px 0 10px var(--shadow-dark); /* Reduced shadow */
         }
 
         .sidebar-nav h3 {
@@ -127,7 +124,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             padding: 15px 20px;
-            border-radius: 10px;
+            border-radius: 8px; /* Slightly less rounded */
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             text-align: left;
             font-size: 1.2em;
@@ -144,7 +141,7 @@
             bottom: 8px;
             left: 20px;
             width: 0%;
-            height: 3px;
+            height: 2px; /* Thinner underline */
             background-color: var(--accent-hover);
             transition: width var(--transition-speed) ease-out;
         }
@@ -152,8 +149,8 @@
         .sidebar-nav a:hover, .sidebar-nav a.active {
             background-color: var(--accent-light);
             color: var(--accent-hover);
-            transform: translateX(15px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 127, 0, 0.1);
+            transform: translateX(10px); /* Less pronounced movement */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), 0 0 5px rgba(255, 127, 0, 0.08); /* Reduced shadow */
         }
 
         .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
@@ -202,7 +199,7 @@
             width: 100%;
             max-width: 1000px;
             line-height: 1.1;
-            text-shadow: 0 0 15px rgba(255, 127, 0, 0.2);
+            text-shadow: 0 0 10px rgba(255, 127, 0, 0.1); /* Softer text shadow */
         }
 
         .note-text {
@@ -220,22 +217,22 @@
             background-color: var(--accent-color);
             color: var(--bg-primary);
             padding: 15px 35px;
-            border-radius: 12px;
+            border-radius: 8px; /* Slightly less rounded */
             text-decoration: none;
             font-weight: 700;
             font-size: 1.3em;
             margin-bottom: 80px;
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--accent-color);
+            box-shadow: 0 5px 15px var(--shadow-dark); /* Reduced shadow */
+            border: 1px solid var(--accent-color); /* Thinner border */
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
 
         .resume-button:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px var(--shadow-dark), 0 0 20px var(--shadow-light-accent);
+            transform: translateY(-5px); /* Less pronounced lift */
+            box-shadow: 0 8px 18px var(--shadow-dark), 0 0 15px var(--shadow-light-accent); /* Reduced shadow and glow */
         }
 
         /* Project Cards (Cases) */
@@ -258,16 +255,16 @@
             gap: 30px;
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
-            border-radius: 15px;
-            box-shadow: 0 10px 25px var(--shadow-dark);
+            border-radius: 12px; /* Slightly less rounded */
+            box-shadow: 0 8px 20px var(--shadow-dark); /* Reduced shadow */
             padding: 40px;
             box-sizing: border-box;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color); /* Softer border */
             transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px); /* Less blur */
+            -webkit-backdrop-filter: blur(3px);
         }
         /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
@@ -283,8 +280,8 @@
         }
 
         .case:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 0 0 5px var(--accent-color), 0 20px 40px var(--shadow-dark), 0 0 30px var(--shadow-light-accent); /* Orange border on hover */
+            transform: translateY(-8px); /* Less pronounced lift */
+            box-shadow: 0 0 0 3px var(--accent-color), 0 15px 30px var(--shadow-dark), 0 0 20px var(--shadow-light-accent); /* Orange border on hover, reduced shadow */
         }
 
         .case-description {
@@ -308,14 +305,14 @@
             width: 100%;
             aspect-ratio: 16 / 9; /* Changed aspect ratio to 16:9 for more comfortable viewing */
             height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--border-color);
+            border-radius: 8px; /* Slightly less rounded */
+            box-shadow: 0 5px 15px var(--shadow-dark); /* Reduced shadow */
+            border: 1px solid var(--border-color); /* Thinner border */
             transition: border-color var(--transition-speed) ease-in-out;
         }
 
         .video-frame iframe:hover {
-            border: 3px solid var(--accent-hover);
+            border: 2px solid var(--accent-hover); /* Thinner border on hover */
         }
 
         .case h2 {
@@ -325,7 +322,7 @@
             color: var(--text-primary);
             font-weight: 700;
             text-align: center; /* Center title */
-            border-bottom: 4px solid var(--accent-color);
+            border-bottom: 3px solid var(--accent-color); /* Thinner border */
             padding-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.04em;
@@ -373,12 +370,12 @@
         /* Separator Line */
         hr {
             border: none;
-            border-top: 3px dashed var(--border-color);
+            border-top: 2px dashed var(--border-color); /* Thinner dashed line */
             margin: 80px auto;
             width: 60%;
-            opacity: 0.6;
+            opacity: 0.5; /* Reduced opacity */
             background: linear-gradient(to right, transparent, var(--accent-color), transparent);
-            background-size: 100% 3px;
+            background-size: 100% 2px; /* Thinner gradient */
             background-repeat: no-repeat;
         }
 
@@ -389,9 +386,9 @@
             margin-top: 100px;
             padding: 50px;
             background-color: var(--bg-secondary);
-            border-radius: 15px;
-            box-shadow: 0 -8px 25px var(--shadow-dark);
-            border: 1px solid var(--border-color);
+            border-radius: 12px; /* Slightly less rounded */
+            box-shadow: 0 -5px 20px var(--shadow-dark); /* Reduced shadow */
+            border: 1px solid var(--border-color); /* Thinner border */
             text-align: center;
             margin-left: auto;
             margin-right: auto;
@@ -407,7 +404,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 127, 0, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(255, 127, 0, 0.05) 0%, transparent 70%); /* Reduced opacity */
             animation: rotateGlow 40s linear infinite;
             z-index: -1;
         }
@@ -455,20 +452,20 @@
             color: var(--bg-primary); /* Text color */
             cursor: pointer; /* Add a mouse pointer on hover */
             padding: 15px 20px; /* Some padding */
-            border-radius: 10px;
+            border-radius: 8px; /* Slightly less rounded */
             font-size: 1.1em; /* Increase font size */
             font-weight: 600;
-            box-shadow: 0 5px 10px var(--shadow-dark);
+            box-shadow: 0 3px 8px var(--shadow-dark); /* Reduced shadow */
             transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         #scrollToTopBtn:hover {
             background-color: var(--accent-hover); /* Darker background on hover */
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
+            transform: translateY(-3px); /* Less pronounced lift */
+            box-shadow: 0 5px 12px var(--shadow-dark), 0 0 8px var(--shadow-light-accent); /* Reduced shadow and glow */
         }
 
-        /* --- Project Modal (New Element) --- */
+        /* --- Project Modal (Removed auto popup) --- */
         .modal {
             display: none; /* Hidden by default - This is key to prevent auto popup */
             position: fixed; /* Stay in place */
@@ -478,10 +475,10 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.85); /* Black w/ more opacity */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.4s ease-out forwards;
+            background-color: rgba(0, 0, 0, 0.7); /* Less opacity for background */
+            backdrop-filter: blur(5px); /* Less blur */
+            -webkit-backdrop-filter: blur(5px);
+            /* Removed animation: fadeIn for flatter, more immediate hide */
             padding: 20px;
             box-sizing: border-box;
             display: flex; /* Changed to flex to center content */
@@ -493,13 +490,13 @@
             background-color: var(--bg-secondary);
             margin: auto;
             padding: 40px 60px;
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
+            border: 1px solid var(--border-color); /* Thinner border */
+            border-radius: 12px; /* Slightly less rounded */
             width: 80%;
             max-width: 1200px;
-            box-shadow: 0 12px 30px var(--shadow-dark);
+            box-shadow: 0 8px 20px var(--shadow-dark); /* Reduced shadow */
             position: relative;
-            animation: slideIn 0.5s ease-out forwards;
+            /* Removed animation: slideIn for flatter, more immediate hide */
             overflow-y: auto; /* Allow scrolling within modal content */
             max-height: 90vh; /* Limit height to viewport */
         }
@@ -518,7 +515,7 @@
         .modal-close:hover,
         .modal-close:focus {
             color: var(--accent-hover);
-            transform: scale(1.1);
+            transform: scale(1.05); /* Less pronounced scale */
         }
 
         .modal h2 {
@@ -527,7 +524,7 @@
             margin-top: 0;
             margin-bottom: 30px;
             text-align: center;
-            border-bottom: 4px solid var(--accent-color);
+            border-bottom: 3px solid var(--accent-color); /* Thinner border */
             padding-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.04em;
@@ -565,16 +562,7 @@
             font-weight: 600;
         }
 
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        /* Removed fadeIn and slideIn animations for modal to prevent auto popup and provide flatter appearance */
 
         /* Mobile Adaptations */
         @media (max-width: 1024px) {
@@ -592,7 +580,7 @@
                 padding: 30px 20px;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
-                box-shadow: 0 3px 10px var(--shadow-dark);
+                box-shadow: 0 2px 8px var(--shadow-dark); /* Reduced shadow */
             }
 
             .sidebar-nav h3 {
@@ -618,7 +606,7 @@
                 transform: none !important; /* Override hover transform for better mobile tap experience */
                 box-shadow: none !important; /* Override hover shadow for mobile */
                 border-bottom: 2px solid transparent; /* Simple underline for mobile */
-                border-radius: 8px;
+                border-radius: 6px; /* Slightly less rounded */
             }
 
             .sidebar-nav a::after {
@@ -661,7 +649,7 @@
             .case {
                 padding: 40px;
                 gap: 30px;
-                border-radius: 12px;
+                border-radius: 10px; /* Slightly less rounded */
                 max-width: 100%; /* Occupy full width on small screens */
             }
 
@@ -696,7 +684,7 @@
                 padding: 40px;
                 margin-top: 80px;
                 max-width: 95%;
-                border-radius: 12px;
+                border-radius: 10px; /* Slightly less rounded */
             }
 
             .contact-info p {
@@ -714,7 +702,7 @@
             .modal-content {
                 padding: 30px 40px;
                 width: 90%;
-                border-radius: 12px;
+                border-radius: 10px; /* Slightly less rounded */
                 max-height: 85vh;
             }
 
@@ -937,94 +925,25 @@
             }
         }
 
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-        // Smooth scroll for sidebar links
-        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                // Remove active class from all links
-                document.querySelectorAll('.sidebar-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-
-                // Add active class to the clicked link
-                this.classList.add('active');
-
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Set active class on page load and scroll
-        function setActiveNavLink() {
-            const sections = document.querySelectorAll('main > div[id], main > h1, main > .contact-info');
-            const navLinks = document.querySelectorAll('.sidebar-nav a');
-            let currentActive = null;
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150; // Offset to activate a bit earlier
-                const sectionBottom = sectionTop + section.offsetHeight;
-                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-                    currentActive = section.id;
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').substring(1) === currentActive) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Special handling for the very top (home) or initial load
-            if (window.scrollY === 0) {
-                navLinks[0].classList.add('active');
-            }
-        }
-
-        window.addEventListener('scroll', setActiveNavLink);
-        window.addEventListener('load', setActiveNavLink); // Set active on load
-
-        // Project Modal functionality (Placeholder, modify with actual content loading logic)
-        // This part needs more robust JavaScript to load dynamic content into the modal.
-        // For demonstration, I'm just keeping the basic structure.
-
-        // Get the modal
-        const modal = document.getElementById("projectModal");
+        // Project Modal functionality (No auto-popup on load)
+        // You would typically have buttons or links that trigger this modal to open.
+        // For example:
+        // function openModal(title, videoSrc, description) {
+        //     document.getElementById('modalTitle').innerText = title;
+        //     document.getElementById('modalVideo').innerHTML = `<iframe src="${videoSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        //     document.getElementById('modalDescription').innerHTML = description;
+        //     document.getElementById('projectModal').style.display = 'flex';
+        // }
 
         // Get the <span> element that closes the modal
-        const span = document.getElementsByClassName("modal-close")[0];
-
-        // Function to open the modal (you would call this from your project cards)
-        // Example: <div class="case" onclick="openProjectModal('Project Title', 'youtube-embed-url', 'Description goes here.')">
-        function openProjectModal(title, videoSrc, descriptionHtml) {
-            document.getElementById("modalTitle").innerText = title;
-            document.getElementById("modalVideo").innerHTML = `<iframe src="${videoSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-            document.getElementById("modalDescription").innerHTML = descriptionHtml;
-            modal.style.display = "flex"; // Use flex to center content
-        }
+        let span = document.getElementsByClassName("modal-close")[0];
+        let modal = document.getElementById("projectModal");
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
-            // Stop video when closing modal
-            document.getElementById("modalVideo").innerHTML = '';
         }
 
-        // When the user clicks anywhere outside of the modal content, close it
+        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                // Stop video when closing modal
-                document.getElementById("modalVideo").innerHTML = '';
-            }
-        }
-    </script>
-</body>
-</html>
+            if (
