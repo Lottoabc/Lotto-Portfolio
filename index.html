@@ -163,7 +163,7 @@
         /* Main Content Area */
         main {
             flex-grow: 1;
-            padding: 80px 60px; /* Increased padding for main content */
+            padding: 60px 40px; /* Slightly reduced padding for main content */
             box-sizing: border-box;
             min-width: 0;
             display: flex;
@@ -175,7 +175,7 @@
         }
 
         h1 {
-            font-size: 5.5em; /* Significantly larger heading */
+            font-size: 5em; /* Slightly smaller heading */
             margin-bottom: 30px;
             color: var(--text-primary);
             font-weight: 800;
@@ -189,8 +189,8 @@
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.25em; /* Larger and more prominent note */
-            margin-bottom: 60px;
+            font-size: 1.2em; /* Slightly smaller note */
+            margin-bottom: 50px; /* Reduced margin */
             max-width: 1000px;
             text-align: center;
             line-height: 1.9;
@@ -201,12 +201,12 @@
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--bg-primary);
-            padding: 18px 40px; /* Larger button */
+            padding: 16px 35px; /* Slightly smaller button */
             border-radius: 15px; /* More rounded */
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.35em; /* Larger font */
-            margin-bottom: 100px;
+            font-size: 1.25em; /* Slightly smaller font */
+            margin-bottom: 80px; /* Reduced margin */
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             box-shadow: 0 8px 20px var(--shadow-dark);
             border: 2px solid var(--accent-color); /* Thicker border */
@@ -227,7 +227,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 90px; /* More space between cases */
+            gap: 70px; /* Reduced space between cases */
             padding: 0;
         }
 
@@ -236,13 +236,13 @@
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
             width: 100%;
-            max-width: 900px; /* Adjusted max-width for cases to make them less high and improve readability */
-            gap: 30px; /* Adjusted gap for column layout, reduced for compactness */
+            max-width: 850px; /* Adjusted max-width for cases to make them less high and improve readability */
+            gap: 25px; /* Adjusted gap for column layout, reduced for compactness */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
             border-radius: 20px; /* Even rounder corners */
             box-shadow: 0 12px 30px var(--shadow-dark);
-            padding: 50px; /* Reduced padding for less height */
+            padding: 40px; /* Reduced padding for less height */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
@@ -270,7 +270,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 900px; /* Increased max-width for video frame for "longer" appearance */
+            max-width: 850px; /* Increased max-width for video frame for "longer" appearance */
             margin: 0 auto; /* Center the video frame */
         }
 
@@ -289,14 +289,14 @@
         }
 
         .case h2 {
-            font-size: 3.8em; /* Larger case title */
+            font-size: 3.5em; /* Slightly smaller case title */
             margin-top: 0;
-            margin-bottom: 40px;
+            margin-bottom: 30px; /* Reduced margin */
             color: var(--text-primary);
             font-weight: 700;
             text-align: center; /* Center title */
             border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
-            padding-bottom: 25px;
+            padding-bottom: 20px; /* Reduced padding */
             line-height: 1.1;
             letter-spacing: -0.04em;
             width: fit-content; /* Make border fit content */
@@ -313,14 +313,14 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Ensures the ul itself is centered */
-            max-width: 600px; /* Limit list width for better readability and symmetry */
+            max-width: 550px; /* Limit list width for better readability and symmetry */
             margin-left: auto;
             margin-right: auto;
         }
 
         .case li {
-            margin-bottom: 20px; /* More space between list items */
-            font-size: 1.25em; /* Larger list item font */
+            margin-bottom: 15px; /* Reduced space between list items */
+            font-size: 1.15em; /* Slightly smaller list item font */
             line-height: 1.7;
             position: relative; /* For custom bullet */
             padding-left: 35px; /* Space for custom bullet */
@@ -344,7 +344,7 @@
         hr {
             border: none;
             border-top: 3px dashed var(--border-color); /* Thicker dashed line */
-            margin: 100px auto; /* More vertical space */
+            margin: 80px auto; /* Reduced vertical space */
             width: 70%; /* Slightly narrower */
             opacity: 0.6;
             background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
@@ -355,9 +355,9 @@
         /* Contact Info */
         .contact-info {
             width: 100%;
-            max-width: 800px; /* Wider contact area */
-            margin-top: 120px; /* More space from last project */
-            padding: 60px;
+            max-width: 750px; /* Slightly narrower contact area */
+            margin-top: 100px; /* Reduced space from last project */
+            padding: 50px; /* Reduced padding */
             background-color: var(--bg-secondary);
             border-radius: 20px;
             box-shadow: 0 -8px 25px var(--shadow-dark);
@@ -388,9 +388,9 @@
         }
 
         .contact-info p {
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* Reduced margin */
             color: var(--text-primary);
-            font-size: 1.2em; /* Larger font */
+            font-size: 1.15em; /* Slightly smaller font */
             line-height: 1.8;
             font-weight: 300;
         }
@@ -772,7 +772,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -789,7 +789,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
@@ -807,7 +807,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
