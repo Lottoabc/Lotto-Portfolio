@@ -163,16 +163,38 @@
         /* Main Content Area */
         main {
             flex-grow: 1;
-            padding: 60px 40px; /* Slightly reduced padding for main content */
+            padding: 60px 40px; /* Kept current padding, but max-width will make it appear less "empty" */
             box-sizing: border-box;
             min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: calc(100% - var(--nav-width));
+            max-width: calc(100% - var(--nav-width)); /* Original max-width, adjust below */
             margin: 0 auto;
             position: relative; /* For scroll indicators */
+            
+            /* >>>>>>>>>>>>>>>>> 关键修改：增加 main 的最大宽度 <<<<<<<<<<<<<<<<< */
+            max-width: 1600px; /* 增加最大宽度，让内容区域更宽 */
+            width: 100%; /* 确保在 max-width 范围内占据全部宽度 */
+            padding-left: 60px; /* 增加左右内边距，但通过 max-width 控制总宽度 */
+            padding-right: 60px;
         }
+        /* 对于大屏幕，希望 main 区域更宽，但又不至于完全铺满 */
+        @media (min-width: 1600px) {
+            main {
+                max-width: 1600px; /* 保持在某个最大值，防止过宽 */
+                padding-left: 80px; /* 适当增加左右内边距 */
+                padding-right: 80px;
+            }
+        }
+        @media (min-width: 1920px) { /* 针对更大屏幕 */
+            main {
+                max-width: 1800px; /* 进一步增加最大宽度 */
+                padding-left: 100px; /* 进一步增加左右内边距 */
+                padding-right: 100px;
+            }
+        }
+
 
         h1 {
             font-size: 5em; /* Slightly smaller heading */
@@ -223,7 +245,7 @@
         /* Project Cards (Cases) */
         .case-container {
             width: 100%;
-            max-width: 1400px; /* Wider container */
+            max-width: 100%; /* <<<<<<<<<<<<<<<<< 保持案例容器为 100% 宽度，让内部案例卡片控制宽度 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -235,8 +257,8 @@
             display: flex;
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
-            width: 100%;
-            max-width: 850px; /* Adjusted max-width for cases to make them less high and improve readability */
+            width: 100%; /* <<<<<<<<<<<<<<<<< 保持案例卡片宽度 100%，让 max-width 控制其最大值 */
+            max-width: 1000px; /* <<<<<<<<<<<<<<<<< 增加案例卡片的最大宽度 */
             gap: 25px; /* Adjusted gap for column layout, reduced for compactness */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
@@ -251,6 +273,19 @@
             backdrop-filter: blur(5px); /* Subtle blur for depth */
             -webkit-backdrop-filter: blur(5px);
         }
+        /* 针对大屏幕，让案例卡片更宽 */
+        @media (min-width: 1200px) {
+            .case {
+                max-width: 1200px; /* 更宽的案例卡片 */
+                padding: 50px 60px; /* 调整内边距 */
+            }
+        }
+        @media (min-width: 1600px) {
+            .case {
+                max-width: 1400px; /* 进一步更宽 */
+            }
+        }
+
 
         .case:hover {
             transform: translateY(-15px); /* More lift */
@@ -270,7 +305,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 850px; /* Increased max-width for video frame for "longer" appearance */
+            max-width: 100%; /* <<<<<<<<<<<<<<<<< 视频帧最大宽度也调整为 100% */
             margin: 0 auto; /* Center the video frame */
         }
 
@@ -313,7 +348,7 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Ensures the ul itself is centered */
-            max-width: 550px; /* Limit list width for better readability and symmetry */
+            max-width: 700px; /* <<<<<<<<<<<<<<<<< 增加列表最大宽度 */
             margin-left: auto;
             margin-right: auto;
         }
@@ -345,7 +380,7 @@
             border: none;
             border-top: 3px dashed var(--border-color); /* Thicker dashed line */
             margin: 80px auto; /* Reduced vertical space */
-            width: 70%; /* Slightly narrower */
+            width: 80%; /* <<<<<<<<<<<<<<<<< 稍微增加宽度 */
             opacity: 0.6;
             background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
             background-size: 100% 3px;
@@ -355,7 +390,7 @@
         /* Contact Info */
         .contact-info {
             width: 100%;
-            max-width: 750px; /* Slightly narrower contact area */
+            max-width: 900px; /* <<<<<<<<<<<<<<<<< 增加联系信息区域的最大宽度 */
             margin-top: 100px; /* Reduced space from last project */
             padding: 50px; /* Reduced padding */
             background-color: var(--bg-secondary);
@@ -466,7 +501,7 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             width: 80%; /* Adjusted width */
-            max-width: 1000px; /* Maximum width */
+            max-width: 1200px; /* <<<<<<<<<<<<<<<<< 增加模态框最大宽度 */
             box-shadow: 0 15px 35px var(--shadow-dark);
             position: relative;
             animation: slideIn 0.4s ease-out forwards;
@@ -553,7 +588,9 @@
 
             main {
                 padding: 60px 20px;
-                max-width: 100%;
+                max-width: 100%; /* 在小屏幕上让 main 占据全部宽度 */
+                padding-left: 20px; /* 调整小屏幕下的内边距 */
+                padding-right: 20px;
             }
 
             h1 {
@@ -580,6 +617,7 @@
                 padding: 40px;
                 gap: 30px;
                 border-radius: 15px;
+                max-width: 100%; /* 在小屏幕上，案例卡片也占据全部宽度 */
             }
 
             .case h2 {
@@ -667,6 +705,9 @@
 
             main {
                 padding: 40px 15px;
+                max-width: 100%; /* 确保在更小屏幕上仍然占据全部宽度 */
+                padding-left: 15px;
+                padding-right: 15px;
             }
 
             h1 {
@@ -692,6 +733,7 @@
             .case {
                 padding: 30px;
                 gap: 25px;
+                max-width: 100%; /* 确保在更小屏幕上仍然占据全部宽度 */
             }
 
             .case h2 {
