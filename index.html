@@ -16,17 +16,18 @@
             --accent-hover: #FFC080; /* 强调色悬停效果 */
             --border-color: #333; /* 边框颜色 */
             --shadow-color: rgba(0, 0, 0, 0.5); /* 柔和阴影 */
+            --nav-width: 200px; /* 导航栏宽度 */
         }
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             text-align: center;
             margin: 0;
-            padding: 50px 30px;
+            /* 调整 padding 来适应导航栏 */
+            padding: 0;
             font-size: min(18px, 4.5vw);
             line-height: 1.7;
             color: var(--text-primary);
-            /* ---------------------- 基础背景和动态背景容器设置（未注释，已应用） ---------------------- */
             background-color: #121212; /* Fallback */
             background-image:
                 /* 模拟颗粒感的背景图，保持不动 */
@@ -38,18 +39,18 @@
                 /* 底部较深的线性渐变 */
                 linear-gradient(to bottom, #121212, #0a0a0a);
             background-repeat: repeat; /* 颗粒感背景重复 */
-            /* 确保混合模式正确应用，叠加颗粒感在渐变之上 */
             background-blend-mode: overlay, normal, normal, normal, normal;
             position: relative; /* 为伪元素提供定位上下文 */
             overflow-x: hidden; /* 防止动态元素溢出导致横向滚动条 */
             box-sizing: border-box;
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; /* 使用 flexbox 布局 */
+            flex-direction: row; /* 导航栏和内容并排 */
+            align-items: flex-start; /* 内容顶部对齐 */
+            justify-content: flex-start;
         }
 
-        /* 动态背景层 (未注释，已应用) */
+        /* 动态背景层 */
         body::before {
             content: '';
             position: fixed; /* 固定在视口 */
@@ -67,7 +68,7 @@
             animation: moveBackground 60s linear infinite, fadeBackground 10s ease-in-out infinite alternate;
         }
 
-        /* 动画关键帧 (未注释，已应用) */
+        /* 动画关键帧 */
         @keyframes moveBackground {
             from {
                 background-position: 0 0;
@@ -89,6 +90,74 @@
             z-index: 1;
         }
 
+        /* 导航栏样式 */
+        .sidebar-nav {
+            position: sticky; /* 粘性定位，随滚动 */
+            top: 0; /* 顶部对齐 */
+            left: 0;
+            width: var(--nav-width);
+            min-width: var(--nav-width); /* 确保宽度不变 */
+            height: 100vh; /* 占满视口高度 */
+            background-color: #0d0d0d; /* 导航栏背景色，比主背景更深 */
+            padding: 30px 15px;
+            box-sizing: border-box;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow-y: auto; /* 如果内容过多可滚动 */
+            z-index: 100; /* 确保在最上层 */
+        }
+
+        .sidebar-nav h3 {
+            color: var(--accent-color);
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            text-align: left;
+            font-size: 1.05em;
+            white-space: nowrap; /* 防止标题过长换行 */
+            overflow: hidden;
+            text-overflow: ellipsis; /* 超出部分显示省略号 */
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: rgba(249, 173, 109, 0.1); /* 强调色半透明背景 */
+            color: var(--accent-hover);
+            transform: translateX(5px);
+        }
+
+        /* 主内容区域 */
+        main {
+            flex-grow: 1; /* 占据剩余空间 */
+            padding: 50px 30px; /* 调整内边距 */
+            box-sizing: border-box;
+            min-width: 0; /* 允许内容缩小 */
+        }
+
         h1 {
             font-size: min(4.2em, 9.5vw);
             margin-bottom: 15px;
@@ -102,6 +171,8 @@
             font-size: 1.05em;
             margin-bottom: 30px;
             max-width: 800px;
+            margin-left: auto; /* 居中 */
+            margin-right: auto; /* 居中 */
         }
 
         .resume-button {
@@ -224,6 +295,8 @@
             box-shadow: 0 -4px 15px var(--shadow-color);
             border: 1px solid var(--border-color);
             text-align: center;
+            margin-left: auto; /* 居中 */
+            margin-right: auto; /* 居中 */
         }
 
         .contact-info p {
@@ -249,9 +322,49 @@
         /* 移动端适配 */
         @media (max-width: 768px) {
             body {
-                padding: 30px 15px;
-                font-size: min(17px, 4.2vw);
+                flex-direction: column; /* 导航栏和内容垂直堆叠 */
+                padding: 0; /* 主体不再有左右padding */
             }
+            .sidebar-nav {
+                position: relative; /* 取消固定定位 */
+                width: 100%; /* 导航栏占满宽度 */
+                height: auto; /* 高度自适应内容 */
+                padding: 20px 15px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color); /* 底部边框 */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                overflow-y: visible; /* 在小屏幕上不限制高度滚动 */
+            }
+            .sidebar-nav h3 {
+                margin-bottom: 15px;
+                text-align: center;
+            }
+            .sidebar-nav ul {
+                display: flex; /* 导航项水平排列 */
+                flex-wrap: wrap; /* 允许换行 */
+                justify-content: center; /* 居中显示导航项 */
+                gap: 10px; /* 导航项间距 */
+            }
+            .sidebar-nav li {
+                margin-bottom: 0; /* 取消垂直间距 */
+                width: auto; /* 宽度自适应内容 */
+            }
+            .sidebar-nav a {
+                padding: 8px 12px;
+                font-size: 0.95em;
+                text-align: center;
+                white-space: normal; /* 允许换行 */
+                overflow: visible;
+                text-overflow: clip;
+            }
+
+            main {
+                padding: 30px 15px; /* 主内容区域的内边距 */
+                width: 100%; /* 确保主内容区域占满宽度 */
+            }
+
             h1 {
                 font-size: 3.5em;
             }
@@ -310,71 +423,79 @@
     </style>
 </head>
 <body>
-    <h1>Lotto's XR 开发作品集</h1>
-    <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
+    <nav class="sidebar-nav">
+        <h3>项目导航</h3>
+        <ul>
+            <li><a href="#case1">案例 1: 交互开发</a></li>
+            <li><a href="#case2">案例 2: 博物馆项目</a></li>
+            <li><a href="#case3">案例 3: 莫高窟项目</a></li>
+            <li><a href="#contact">联系我</a></li>
+        </ul>
+    </nav>
 
-<!--     <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank" class="resume-button">
-        下载我的简历
-    </a> -->
+    <main>
+        <h1>Lotto's XR 开发作品集</h1>
+        <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
 
-    <div class="case-container">
-        <div class="case">
-            <div class="case-description">
-                <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                <ul>
-                    <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
-                    <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
-                    <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
-                    <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
-                    <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
-                </ul>
+        <div class="case-container">
+            <div class="case" id="case1">
+                <div class="case-description">
+                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                    <ul>
+                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
-            <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
+
+            <hr>
+
+            <div class="case" id="case2">
+                <div class="case-description">
+                    <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
+                    <ul>
+                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/VGgtfCvVX90" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="case" id="case3">
+                <div class="case-description">
+                    <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
+                    <ul>
+                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
+                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
+                </div>
             </div>
         </div>
 
         <hr>
 
-        <div class="case">
-            <div class="case-description">
-                <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
-                <ul>
-                    <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
-                    <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
-                    <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
-                    <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
-                </ul>
-            </div>
-            <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/VGgtfCvVX90" frameborder="0" allowfullscreen></iframe>
-            </div>
+        <div class="contact-info" id="contact">
+            <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
+            <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
         </div>
-
-        <hr>
-
-        <div class="case">
-            <div class="case-description">
-                <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
-                <ul>
-                    <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                    <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                    <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                    <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                    <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
-                </ul>
-            </div>
-            <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <div class="contact-info">
-        <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
-        <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
-    </div>
+    </main>
 </body>
 </html>
