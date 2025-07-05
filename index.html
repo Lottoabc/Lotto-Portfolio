@@ -322,13 +322,17 @@
         }
 
         .case-description {
-            flex: 1; /* Take up remaining space */
+            /* 移除 flex: 1; 让其宽度由内容决定 */
+            /* flex: 1; */
             display: flex;
             flex-direction: column;
             justify-content: flex-start; /* Align text to the top */
             text-align: left; /* Align text description to the left */
             /* 新增：让介绍内容居中 */
             align-items: center;
+            /* 设置一个最大宽度，防止内容过宽 */
+            max-width: 50%; /* 可以根据需要调整，例如设置为 600px */
+            margin: 0 auto; /* 居中整个文本块 */
         }
 
         .video-frame {
@@ -364,7 +368,7 @@
             display: flex;
             flex-direction: column;
             /* 修改：让 ul 自身内容居中，通过 align-items 控制 */
-            align-items: center; 
+            align-items: center; /* 这里的 align-items: center 会让 ul 在其父容器中居中 */
             max-width: 100%; /* Adjust max-width for list items */
         }
 
@@ -376,7 +380,7 @@
             padding-left: 35px; /* Space for custom bullet */
             text-align: left; /* Keep text within list item aligned left */
             /* 修正：让 li 宽度适配内容，并允许 ul 居中 */
-            width: fit-content; 
+            width: fit-content;
         }
         
         .case li::before {
@@ -604,6 +608,8 @@
             .case-description {
                 text-align: center; /* Center text description for column layout */
                 align-items: center; /* 确保移动端描述内容居中 */
+                max-width: 100%; /* 移动端占据全宽 */
+                margin: 0 auto;
             }
 
             .video-frame {
@@ -891,7 +897,7 @@
             }
         };
 
-        scrollToTopBtn.addEventListener('click', function() {
+        scrollToTopBtn.addEventListener("click", function() {
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         });
