@@ -492,547 +492,388 @@
 
         .modal h2 {
             color: var(--accent-color);
-            font-size: 3.5em;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-hover);
-            padding-bottom: 20px;
+            /* ... (rest of .modal h2 styles) ... */
         }
 
-        .modal-section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .modal-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .modal-section h3 {
-            color: var(--text-primary);
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-            line-height: 1.3;
-        }
-
-        .modal-section p, .modal-section ul {
-            color: var(--text-secondary);
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            padding-left: 0;
-        }
-
-        .modal-section ul {
-            list-style-type: '✨ ';
-            padding-left: 30px;
-        }
-
-        .modal-section li {
-            margin-bottom: 10px;
-        }
-
-        .modal-images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .modal-images img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .modal-images img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 140, 0, 0.1);
-        }
-
-        /* Modal Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* --- Scroll Indicator (New Element) --- */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: var(--bg-tertiary);
-            z-index: 1000;
-        }
-
-        .scroll-indicator-bar {
-            height: 100%;
-            width: 0%;
-            background-color: var(--accent-color);
-            transition: width 0.1s linear;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            body {
-                font-size: 17px;
-            }
-            .sidebar-nav {
-                padding: 40px 25px;
-                width: 250px;
-                min-width: 250px;
-            }
-            .sidebar-nav h3 {
-                font-size: 1.6em;
-                margin-bottom: 40px;
-            }
-            .sidebar-nav a {
-                padding: 12px 20px;
-                font-size: 1.15em;
-            }
-            main {
-                padding: 60px 40px;
-            }
-            h1 {
-                font-size: 4.5em;
-                margin-bottom: 25px;
-            }
-            .note-text {
-                font-size: 1.15em;
-                margin-bottom: 50px;
-            }
-            .resume-button {
-                padding: 16px 35px;
-                font-size: 1.2em;
-                margin-bottom: 80px;
-            }
-            .case-container {
-                gap: 70px;
-            }
-            .case {
-                padding: 50px;
-                gap: 30px; /* Adjusted for column layout */
-                max-width: 900px; /* Adjusted max-width for cases */
-            }
-            .case h2 {
-                font-size: 3em;
-                margin-bottom: 30px;
-            }
-            .case li {
-                font-size: 1.15em;
-            }
-            .contact-info {
-                padding: 40px;
-                margin-top: 90px;
-            }
-            .contact-info p {
-                font-size: 1.1em;
-            }
-            .modal-content {
-                width: 90%;
-                padding: 30px 40px;
-            }
-            .modal h2 {
-                font-size: 3em;
-            }
-            .modal-section h3 {
-                font-size: 2em;
-            }
-            .modal-section p, .modal-section ul {
-                font-size: 1.05em;
-            }
-        }
-
-        @media (max-width: 992px) { /* Tablets and smaller desktops */
+        /* Mobile Adaptations */
+        @media (max-width: 1024px) {
             body {
                 flex-direction: column;
                 padding: 0;
-                font-size: 16px;
+                font-size: min(17px, 4.2vw);
             }
+
             .sidebar-nav {
                 position: relative;
                 width: 100%;
                 height: auto;
-                padding: 25px 20px;
+                min-width: unset;
+                padding: 30px 20px;
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                overflow-y: visible;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 3px 15px var(--shadow-dark);
             }
+
             .sidebar-nav h3 {
-                width: 100%;
-                margin-bottom: 20px;
+                font-size: 1.5em;
+                margin-bottom: 30px;
                 text-align: center;
             }
+
             .sidebar-nav ul {
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
                 gap: 15px;
-                width: 100%;
-                padding: 0 15px;
             }
+
             .sidebar-nav li {
                 margin-bottom: 0;
-                width: auto;
             }
+
             .sidebar-nav a {
                 padding: 10px 18px;
-                font-size: 1.05em;
-                text-align: center;
-                white-space: normal;
-                overflow: visible;
-                text-overflow: clip;
+                font-size: 1em;
+                transform: none !important; /* Override hover transform for better mobile tap experience */
+                box-shadow: none !important; /* Override hover shadow for mobile */
+                border-bottom: 2px solid transparent; /* Simple underline for mobile */
                 border-radius: 8px;
             }
-            .sidebar-nav a:hover, .sidebar-nav a.active {
-                transform: none;
-            }
+
             .sidebar-nav a::after {
-                content: none; /* Remove underline on mobile */
+                display: none; /* Hide complex underline on mobile */
+            }
+
+            .sidebar-nav a:hover, .sidebar-nav a.active {
+                background-color: var(--accent-light);
+                color: var(--accent-hover);
+                border-bottom: 2px solid var(--accent-hover);
             }
 
             main {
-                padding: 40px 25px;
-                width: 100%;
+                padding: 60px 20px;
                 max-width: 100%;
             }
+
             h1 {
-                font-size: 3.8em;
-                text-align: center;
+                font-size: min(4.5em, 11vw);
+                margin-bottom: 25px;
             }
+
             .note-text {
-                margin-bottom: 40px;
-                text-align: center;
-                max-width: 100%;
                 font-size: 1.1em;
+                margin-bottom: 40px;
             }
+
             .resume-button {
-                padding: 14px 30px;
+                padding: 15px 30px;
                 font-size: 1.1em;
                 margin-bottom: 60px;
             }
+
             .case-container {
-                gap: 50px;
+                gap: 60px;
             }
+
             .case {
-                flex-direction: column; /* Ensure column layout */
-                align-items: center;
-                text-align: center;
                 padding: 40px;
-                gap: 30px; /* Adjusted for column layout */
-                max-width: 98%;
+                gap: 30px;
+                border-radius: 15px;
             }
-            .case-description, .video-frame {
-                width: 100%;
-                padding: 0;
-            }
+
             .case h2 {
                 font-size: 2.8em;
-                text-align: center;
                 margin-bottom: 30px;
+                padding-bottom: 20px;
+                border-bottom: 3px solid var(--accent-color);
             }
+
             .case ul {
-                padding-left: 20px;
-                text-align: left;
+                max-width: 90%;
             }
+
             .case li {
+                font-size: 1.1em;
                 margin-bottom: 15px;
-                font-size: 1.05em;
+                padding-left: 30px;
             }
+
+            .case li::before {
+                font-size: 0.9em;
+                left: 5px;
+            }
+
             hr {
-                margin: 60px auto;
-                width: 90%;
+                margin: 70px auto;
+                width: 80%;
             }
+
             .contact-info {
-                padding: 35px;
-                margin-top: 70px;
-                max-width: 98%;
+                padding: 40px;
+                margin-top: 80px;
+                max-width: 95%;
+                border-radius: 15px;
             }
+
             .contact-info p {
-                font-size: 1.0em;
+                font-size: 1.1em;
+                margin-bottom: 20px;
             }
-            .modal-content {
-                width: 95%;
-                padding: 25px 30px;
-            }
-            .modal h2 {
-                font-size: 2.8em;
-            }
-            .modal-section h3 {
-                font-size: 1.8em;
-            }
-            .modal-section p, .modal-section ul {
+
+            #scrollToTopBtn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 18px;
                 font-size: 1em;
+            }
+
+            .modal-content {
+                padding: 30px 40px;
+                width: 95%;
+                border-radius: 15px;
+                max-height: 85vh;
+            }
+
+            .modal-close {
+                font-size: 30px;
+                top: 15px;
+                right: 20px;
             }
         }
 
-        @media (max-width: 576px) { /* Mobile */
+        @media (max-width: 768px) {
             body {
-                font-size: 15px;
+                font-size: min(16px, 4vw);
             }
+
             .sidebar-nav {
-                padding: 15px 10px;
+                padding: 20px 15px;
             }
+
             .sidebar-nav h3 {
-                font-size: 1.2em;
-                margin-bottom: 15px;
+                font-size: 1.3em;
+                margin-bottom: 20px;
             }
+
             .sidebar-nav ul {
-                gap: 8px;
-                padding: 0 5px;
+                gap: 10px;
             }
+
             .sidebar-nav a {
                 padding: 8px 12px;
                 font-size: 0.9em;
             }
+
             main {
-                padding: 30px 15px;
+                padding: 40px 15px;
             }
+
             h1 {
-                font-size: 2.5em;
+                font-size: min(3.8em, 10vw);
                 margin-bottom: 20px;
             }
+
             .note-text {
+                font-size: 1em;
                 margin-bottom: 30px;
-                font-size: 0.95em;
             }
+
             .resume-button {
-                padding: 10px 20px;
-                font-size: 0.9em;
-                margin-bottom: 40px;
+                padding: 12px 25px;
+                font-size: 1em;
+                margin-bottom: 50px;
             }
+
             .case-container {
-                gap: 35px;
+                gap: 50px;
             }
+
             .case {
-                padding: 25px;
+                padding: 30px;
                 gap: 25px;
             }
+
             .case h2 {
-                font-size: 2em;
-                margin-bottom: 20px;
+                font-size: 2.4em;
+                margin-bottom: 25px;
+                padding-bottom: 15px;
             }
-            .case ul {
-                padding-left: 15px;
-            }
+
             .case li {
-                font-size: 0.95em;
+                font-size: 1em;
+                margin-bottom: 10px;
+                padding-left: 25px;
             }
+
             hr {
-                margin: 40px auto;
+                margin: 50px auto;
+                width: 90%;
             }
+
             .contact-info {
-                padding: 25px;
-                margin-top: 50px;
+                padding: 30px;
+                margin-top: 60px;
             }
+
             .contact-info p {
+                font-size: 1em;
+                margin-bottom: 15px;
+            }
+
+            #scrollToTopBtn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
                 font-size: 0.9em;
             }
+
             .modal-content {
-                padding: 20px 25px;
-                max-height: 95vh;
+                padding: 25px 30px;
             }
-            .modal h2 {
-                font-size: 2.2em;
-            }
+
             .modal-close {
-                font-size: 30px;
+                font-size: 25px;
                 top: 10px;
-                right: 20px;
-            }
-            .modal-section h3 {
-                font-size: 1.6em;
-            }
-            .modal-section p, .modal-section ul {
-                font-size: 0.9em;
-            }
-            .modal-images {
-                flex-direction: column;
+                right: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-indicator-bar"></div>
-    </div>
-
-    <nav class="sidebar-nav">
+    <div class="sidebar-nav">
         <h3>Lotto's 作品集</h3>
         <ul>
-            <li><a href="#about">关于我</a></li>
-            <li><a href="#case1">XR 交互开发</a></li>
-            <li><a href="#case2">SteamVR 博物馆</a></li>
-            <li><a href="#case3">敦煌莫高窟项目</a></li>
-            <li><a href="#contact">联系我</a></li>
+            <li><a href="#case1">案例 1: Pico & XRToolkit</a></li>
+            <li><a href="#case2">案例 2: SteamVR 博物馆</a></li>
+            <li><a href="#case3">案例 3: 敦煌莫高窟</a></li>
+            <li><a href="#contact">联系方式</a></li>
         </ul>
-    </nav>
+    </div>
 
     <main>
-        <section id="about" style="width: 100%; max-width: 1200px; text-align: center; margin-bottom: 100px;">
-<!--             <img src="https://lottoabc.github.io/SomeStudyNote/img/profile.jpg" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);"> -->
-            <h1 style="font-size: 4.5em; margin-bottom: 20px;">Lotto's XR 开发作品集</h1>
-            <p class="note-text" style="font-size: 1.3em; max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
-                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能。
-            </p>
-            <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
-                我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
-            </p>
-            <a href="https://github.com/Lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" target="_blank" class="resume-button">下载我的简历</a>
-        </section>
+        <h1>Lotto's XR 开发作品集</h1>
+        <p class="note-text">以下展示了我的部分 XR 开发案例，视频资源托管至 YouTube，可能需要网络代理。</p>
 
-        <hr style="margin-top: 0;">
+        <a href="https://github.com/lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" download="Lotto的简历.pdf" target="_blank" class="resume-button">
+            下载我的简历
+        </a>
 
         <div class="case-container">
             <div class="case" id="case1">
                 <div class="case-description">
-                    <h2>XR 交互开发</h2>
+                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                     <ul>
-                        <li>🚀 <strong>凝视交互:</strong> 通过精确的凝视检测实现高效的交互逻辑。</li>
-                        <li>🚀 <strong>手势识别与追踪:</strong> 结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
-                        <li>🚀 <strong>角色攀爬系统:</strong> 设计并实现了高度仿真的攀爬机制，极大地增强沉浸感与物理反馈。</li>
-                        <li>🚀 <strong>Socket 组件交互:</strong> 构建模块化的 Socket 交互，提升系统模块化和扩展性。</li>
-                        <li>🚀 <strong>UI 交互:</strong> 设计并实施了沉浸式用户界面交互，提升用户体验。</li>
+                        <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
+                        <li><strong>手势识别与追踪</strong>：用户通过手部动作操控虚拟环境。</li>
+                        <li><strong>角色攀爬系统</strong>：模拟真实攀爬体验，增强沉浸感。</li>
+                        <li><strong>Socket 组件交互</strong>：实现灵活的组件间互动逻辑。</li>
+                        <li><strong>PXR_Manager 应用</strong>：探索<strong>无手柄交互</strong>，实践<strong>钢琴演奏、手势交互、射击体验</strong>。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/38" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/6" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
+
+            <hr>
 
             <div class="case" id="case2">
                 <div class="case-description">
-                    <h2>SteamVR 博物馆</h2>
+                    <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                     <ul>
-                        <li>🚀 <strong>多展厅设计:</strong> 包含多个主题展厅，每个展厅展示不同的艺术品或历史文物。</li>
-                        <li>🚀 <strong>沉浸式导航:</strong> 利用 SteamVR 的空间定位和追踪技术，提供流畅自然的移动体验。</li>
-                        <li>🚀 <strong>展品互动:</strong> 用户可以近距离观察展品，并通过交互操作获取详细信息。</li>
-                        <li>🚀 <strong>环境音效:</strong> 根据展厅主题和展品内容，融入匹配的环境音效，增强沉浸感。</li>
-                        <li>🚀 <strong>性能优化:</strong> 针对 SteamVR 平台进行优化，确保在高分辨率下依然流畅运行。</li>
+                        <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
+                        <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
+                        <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
+                        <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>手柄射线检测交互</strong>。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/39" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/7" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
 
+            <hr>
+
             <div class="case" id="case3">
                 <div class="case-description">
-                    <h2>敦煌莫高窟项目</h2>
+                    <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                     <ul>
-                        <li>🚀 <strong>高精度模型:</strong> 采用激光扫描和摄影测量技术，还原莫高窟洞窟的真实细节。</li>
-                        <li>🚀 <strong>历史文化导览:</strong> 集成丰富的历史资料和文化解读，为用户提供深入的导览体验。</li>
-                        <li>🚀 <strong>多语言支持:</strong> 提供中文、英文等多语言选项，满足不同用户的需求。</li>
-                        <li>🚀 <strong>实时光照:</strong> 模拟不同时间段的光照效果，展现洞窟在不同光线下的美感。</li>
-                        <li>🚀 <strong>教育互动:</strong> 结合问答、探索等互动元素，提升用户对敦煌文化的学习兴趣。</li>
+                        <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
+                        <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
+                        <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
+                        <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
+                        <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>实践，比赛时限时4小时完成，部分细节待优化。</li>
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/40" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/8" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
         <hr>
 
-        <section id="contact" class="contact-info">
-            <p>感谢您浏览我的作品集！如果您对 XR 开发有任何疑问或合作意向，欢迎随时与我联系。期待与您共同探索 XR 的未来！</p>
-            <p>我的邮箱：<strong>lotto125zero@gmail.com</strong></p>
-            <p>您也可以通过 <a href="https://github.com/Lottoabc" target="_blank">GitHub</a> 找到我。</p>
-        </section>
+        <div class="contact-info" id="contact">
+            <p>感谢您的耐心浏览！如有任何疑问或合作意向，欢迎随时联系我。</p>
+            <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
+        </div>
     </main>
 
-    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
+    <button onclick="scrollToTop()" id="scrollToTopBtn" title="回到顶部">顶部</button>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Smooth scrolling for sidebar navigation
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
 
-                // Remove active class from all and add to clicked
+                // Remove 'active' class from all links
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
+                // Add 'active' class to the clicked link
                 this.classList.add('active');
             });
         });
 
-        // Set active class on scroll
+        // Highlight active link on scroll
         window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('main section, .case');
-            const navLinks = document.querySelectorAll('.sidebar-nav a');
             let current = '';
-
+            const sections = document.querySelectorAll('.case, .contact-info');
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjusted offset for better activation
+                const sectionTop = section.offsetTop - (window.innerHeight / 3); // Offset for better highlighting
+                if (scrollY >= sectionTop) {
                     current = section.getAttribute('id');
                 }
             });
 
-            navLinks.forEach(link => {
+            document.querySelectorAll('.sidebar-nav a').forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href').includes(current)) {
                     link.classList.add('active');
                 }
             });
 
-            // Show/Hide scroll to top button
+            // Show/hide scroll to top button
             const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 scrollToTopBtn.style.display = "block";
             } else {
                 scrollToTopBtn.style.display = "none";
             }
-
-            // Scroll indicator bar
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
         });
 
-        // Function to scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
-
-        // Initial active link setting on load
-        document.addEventListener('DOMContentLoaded', () => {
-            const firstSection = document.querySelector('main section');
-            if (firstSection) {
-                const firstNavLink = document.querySelector(`.sidebar-nav a[href="#${firstSection.id}"]`);
-                if (firstNavLink) {
-                    firstNavLink.classList.add('active');
-                }
-            }
-        });
     </script>
 </body>
 </html>
