@@ -263,12 +263,13 @@
             padding: 40px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
-            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out; /* Added border-color transition */
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out, height 0.5s ease-in-out; /* Added height transition */
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
             cursor: pointer; /* Make it clickable */
+            height: auto; /* Default to auto height */
         }
         /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
@@ -300,11 +301,12 @@
 
         .video-frame {
             width: 100%; /* Take full width in column layout */
-            display: flex;
+            display: none; /* Initially hidden */
             justify-content: center;
             align-items: center;
             max-width: 100%;
             margin: 0 auto; /* Center the video frame */
+            margin-top: 20px; /* Add some spacing above the video when visible */
         }
 
         .video-frame iframe {
@@ -423,7 +425,7 @@
         }
 
         .contact-info p {
-            margin-bottom: 20px;
+            margin-bottom: 0; /* Removed bottom margin as only one item */
             color: var(--text-primary);
             font-size: 1.15em;
             line-height: 1.7;
@@ -471,135 +473,6 @@
             background-color: var(--accent-hover); /* Darker background on hover */
             transform: translateY(-5px);
             box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
-        }
-
-        /* --- Project Modal (New Element) --- */
-        .modal {
-            display: none; /* Hidden by default - This is key to prevent auto popup */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.85); /* Black w/ more opacity */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.4s ease-out forwards;
-            padding: 20px;
-            box-sizing: border-box;
-            /* Flex properties for centering content */
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: var(--bg-secondary);
-            margin: auto; /* This works with flex for centering */
-            padding: 40px 60px;
-            border: 1px solid var(--border-color);
-            border-radius: 15px;
-            width: 80%;
-            max-width: 1200px;
-            box-shadow: 0 12px 30px var(--shadow-dark);
-            position: relative;
-            animation: slideIn 0.5s ease-out forwards;
-            overflow-y: auto; /* Allow scrolling within modal content */
-            max-height: 90vh; /* Limit height to viewport */
-        }
-
-        .modal-close {
-            color: var(--text-secondary);
-            font-size: 40px;
-            font-weight: bold;
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            cursor: pointer;
-            transition: color var(--transition-speed), transform var(--transition-speed);
-        }
-
-        .modal-close:hover,
-        .modal-close:focus {
-            color: var(--accent-hover);
-            transform: scale(1.1);
-        }
-
-        .modal h2 {
-            color: var(--accent-color);
-            font-size: 3.2em;
-            margin-top: 0;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 4px solid var(--accent-color);
-            padding-bottom: 20px;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            font-weight: 700;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .modal p {
-            color: var(--text-primary);
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .modal ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .modal li {
-            position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-            font-size: 1em;
-            line-height: 1.6;
-            text-align: left; /* Ensure text aligns left within modal list items */
-        }
-        .modal li::before {
-            content: '✅ '; /* Checkmark for modal list items */
-            position: absolute;
-            left: 0;
-            color: var(--accent-color);
-        }
-        .modal strong {
-            color: var(--accent-hover);
-            font-weight: 600;
-        }
-
-        /* Ensure video in modal is responsive and not too wide */
-        .modal-video-wrapper { /* New wrapper for modal video */
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            margin-top: 30px; /* Spacing below content */
-        }
-
-        .modal-video-wrapper iframe {
-            width: 100%;
-            max-width: 800px; /* Adjust as needed for modal video width */
-            aspect-ratio: 16 / 9; /* Standard video aspect ratio */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--border-color);
-            transition: border-color var(--transition-speed) ease-in-out;
-        }
-
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         /* Mobile Adaptations */
@@ -727,7 +600,7 @@
 
             .contact-info p {
                 font-size: 1.1em;
-                margin-bottom: 15px;
+                margin-bottom: 0; /* Adjust for single line */
             }
 
             #scrollToTopBtn {
@@ -735,19 +608,6 @@
                 right: 20px;
                 padding: 12px 18px;
                 font-size: 1em;
-            }
-
-            .modal-content {
-                padding: 30px 40px;
-                width: 90%;
-                border-radius: 12px;
-                max-height: 85vh;
-            }
-
-            .modal-close {
-                font-size: 35px;
-                top: 15px;
-                right: 25px;
             }
         }
 
@@ -831,7 +691,7 @@
 
             .contact-info p {
                 font-size: 1em;
-                margin-bottom: 12px;
+                margin-bottom: 0; /* Adjust for single line */
             }
 
             #scrollToTopBtn {
@@ -839,16 +699,6 @@
                 right: 15px;
                 padding: 10px 15px;
                 font-size: 0.9em;
-            }
-
-            .modal-content {
-                padding: 25px 35px;
-            }
-
-            .modal-close {
-                font-size: 30px;
-                top: 12px;
-                right: 20px;
             }
         }
     </style>
@@ -873,8 +723,7 @@
         </a>
 
         <div class="case-container">
-            <div class="case" id="case1" data-title="案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1">
-                <div class="case-description">
+            <div class="case" id="case1" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
                     <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                     <ul>
                         <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
@@ -885,14 +734,13 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
-            <div class="case" id="case2" data-title="案例 2: SteamVR 和 XRToolkit 博物馆项目实践" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2">
-                <div class="case-description">
+            <div class="case" id="case2" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
                     <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                     <ul>
                         <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
@@ -902,14 +750,13 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
-            <div class="case" id="case3" data-title="案例 3: 敦煌莫高窟博物馆项目" data-video-src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3">
-                <div class="case-description">
+            <div class="case" id="case3" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
                     <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                     <ul>
                         <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
@@ -920,35 +767,17 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_FOR_CASE3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
-        <hr>
-
         <section id="contact" class="contact-info">
-            <h2>联系我</h2>
-            <p>如果您对我的作品感兴趣，或有任何合作意向，欢迎随时与我联系！</p>
-            <p>电子邮件: <strong><a href="mailto:lotto.contact@example.com">lotto.contact@example.com</a></strong></p>
-            <p>LinkedIn: <strong><a href="https://www.linkedin.com/in/lotto-xr-dev" target="_blank">linkedin.com/in/lotto-xr-dev</a></strong></p>
-            <p>GitHub: <strong><a href="https://github.com/lottoabc" target="_blank">github.com/lottoabc</a></strong></p>
-            <p>期待与您共同探索 XR 的无限可能！</p>
+            <p>我的邮箱: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
         </section>
     </main>
 
     <button id="scrollToTopBtn" title="回到顶部">顶部</button>
-
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <div id="modalDescription"></div>
-            <div class="modal-video-wrapper">
-                <iframe id="modalVideo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Smooth scrolling for sidebar navigation
@@ -1009,56 +838,58 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         });
 
+        // --- Case Card Expand/Collapse Functionality ---
+        const cases = document.querySelectorAll(".case");
 
-        // --- Modal Functionality ---
-        const projectModal = document.getElementById("projectModal");
-        const modalCloseBtn = document.querySelector(".modal-close");
-        const modalTitle = document.getElementById("modalTitle");
-        const modalDescription = document.getElementById("modalDescription");
-        const modalVideo = document.getElementById("modalVideo");
-        const cases = document.querySelectorAll(".case"); // Get all case elements
-
-        // Add click event listener to each case
         cases.forEach(caseElement => {
+            const description = caseElement.querySelector(".case-description");
+            const videoFrame = caseElement.querySelector(".video-frame");
+            const iframe = videoFrame.querySelector("iframe");
+            let isExpanded = false;
+            let originalCaseHeight; // To store the initial height of the case element
+
+            // Store the original video source from data-video-src and clear the iframe src initially
+            const videoSrc = caseElement.getAttribute('data-video-src');
+            iframe.removeAttribute('src'); // Ensure iframe is empty on load
+
+            // Set a click listener for the entire case card
             caseElement.addEventListener('click', function() {
-                const title = this.getAttribute('data-title');
-                const videoSrc = this.getAttribute('data-video-src');
-                const descriptionHtml = this.querySelector('.case-description').innerHTML; // Get inner HTML of description
+                if (!isExpanded) {
+                    // Store the current height of the case before expanding
+                    originalCaseHeight = caseElement.offsetHeight;
 
-                modalTitle.textContent = title;
-                modalDescription.innerHTML = descriptionHtml; // Set innerHTML to retain formatting
-                modalVideo.src = videoSrc + "?autoplay=1&rel=0"; // Autoplay and hide related videos
+                    description.style.display = "none"; // Hide description
+                    videoFrame.style.display = "flex"; // Show video frame
+                    iframe.src = videoSrc + "?autoplay=1&rel=0"; // Load and autoplay video, disable related videos
 
-                projectModal.style.display = "flex"; // Show the modal using flex for centering
-                document.body.style.overflow = "hidden"; // Prevent scrolling on body when modal is open
-            });
-        });
+                    // Temporarily set height to auto to calculate expanded height
+                    caseElement.style.height = 'auto';
+                    const expandedHeight = caseElement.offsetHeight;
+                    
+                    // Animate to expanded height
+                    caseElement.style.height = originalCaseHeight + 'px'; // Reset to original height for smooth transition
+                    requestAnimationFrame(() => {
+                        caseElement.style.height = expandedHeight + "px";
+                    });
 
-        // When the user clicks on <span> (x), close the modal
-        modalCloseBtn.addEventListener('click', function() {
-            projectModal.style.display = "none"; // Hide the modal
-            modalVideo.src = ""; // Stop video playback
-            document.body.style.overflow = "auto"; // Re-enable body scrolling
-        });
+                    isExpanded = true;
+                } else {
+                    description.style.display = "flex"; // Show description
+                    videoFrame.style.display = "none"; // Hide video frame
+                    iframe.src = ""; // Stop video playback
 
-        // When the user clicks anywhere outside of the modal content, close it
-        window.addEventListener('click', function(event) {
-            if (event.target == projectModal) {
-                projectModal.style.display = "none"; // Hide the modal
-                modalVideo.src = ""; // Stop video playback
-                document.body.style.overflow = "auto"; // Re-enable body scrolling
-            }
-        });
+                    // Animate back to original height
+                    caseElement.style.height = originalCaseHeight + "px"; // Animate back to stored original height
+                    
+                    // Reset height to auto after the transition completes
+                    setTimeout(() => {
+                        caseElement.style.transition = ""; // Remove transition temporarily
+                        caseElement.style.height = "auto";
+                    }, 500); // Should match CSS transition duration
 
-        // Optional: Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === "Escape") {
-                if (projectModal.style.display === "flex") { // Check if modal is currently open
-                    projectModal.style.display = "none";
-                    modalVideo.src = ""; // Stop video playback
-                    document.body.style.overflow = "auto"; // Re-enable body scrolling
+                    isExpanded = false;
                 }
-            }
+            });
         });
     </script>
 </body>
