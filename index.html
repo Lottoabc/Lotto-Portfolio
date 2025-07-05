@@ -7,19 +7,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* CSS Variables - Original color palette with minor adjustments for overall cohesion */
+        /* CSS Variables - Orange color palette */
         :root {
             --bg-primary: #0A0A0A; /* Dark almost black */
             --bg-secondary: #1E1E1E; /* Slightly lighter for cards/sections */
             --bg-tertiary: #333333; /* For subtle internal elements */
             --text-primary: #E0E0E0; /* Light gray for main text */
             --text-secondary: #A0A0A0; /* Muted gray for secondary text */
-            --accent-color: #007BFF; /* A vibrant blue */
-            --accent-hover: #0056b3; /* Darker blue for hover states */
-            --accent-light: rgba(0, 123, 255, 0.15); /* Light accent for subtle backgrounds/glows */
+            --accent-color: #FF7F00; /* Vibrant Orange */
+            --accent-hover: #E66A00; /* Darker Orange for hover states */
+            --accent-light: rgba(255, 127, 0, 0.15); /* Light accent for subtle backgrounds/glows */
             --border-color: #444444; /* Dark gray for borders */
             --shadow-dark: rgba(0, 0, 0, 0.7); /* Darker, more pronounced shadow */
-            --shadow-light-accent: rgba(0, 123, 255, 0.25); /* More pronounced accent-colored light shadow/glow */
+            --shadow-light-accent: rgba(255, 127, 0, 0.25); /* More pronounced accent-colored light shadow/glow */
             --nav-width: 300px; /* Wider navigation */
             --transition-speed: 0.4s; /* Global transition speed */
         }
@@ -29,15 +29,15 @@
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
             margin: 0;
             padding: 0;
-            font-size: 19px; /* Slightly larger base font for readability */
+            font-size: clamp(16px, 1.2vw + 1rem, 19px); /* Responsive font size */
             line-height: 1.8; /* Improved line height */
             color: var(--text-primary);
             background-color: var(--bg-primary);
             background-image:
                 url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.15"/></svg>'),
-                radial-gradient(at 50% 0%, rgba(0, 123, 255, 0.05) 0%, transparent 75%),
-                radial-gradient(at 0% 100%, rgba(0, 123, 255, 0.04) 0%, transparent 65%),
-                radial-gradient(at 100% 100%, rgba(0, 123, 255, 0.04) 0%, transparent 65%),
+                radial-gradient(at 50% 0%, rgba(255, 127, 0, 0.05) 0%, transparent 75%),
+                radial-gradient(at 0% 100%, rgba(255, 127, 0, 0.04) 0%, transparent 65%),
+                radial-gradient(at 100% 100%, rgba(255, 127, 0, 0.04) 0%, transparent 65%),
                 linear-gradient(to bottom, var(--bg-primary), #000000);
             background-repeat: repeat;
             background-blend-mode: overlay, normal, normal, normal, normal;
@@ -153,7 +153,7 @@
             background-color: var(--accent-light);
             color: var(--accent-hover);
             transform: translateX(15px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 123, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 8px rgba(255, 127, 0, 0.1);
         }
 
         .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
@@ -202,7 +202,7 @@
             width: 100%;
             max-width: 1000px;
             line-height: 1.1;
-            text-shadow: 0 0 15px rgba(0, 123, 255, 0.2);
+            text-shadow: 0 0 15px rgba(255, 127, 0, 0.2);
         }
 
         .note-text {
@@ -282,10 +282,9 @@
             }
         }
 
-
         .case:hover {
             transform: translateY(-12px);
-            box-shadow: 0 20px 40px var(--shadow-dark), 0 0 30px var(--shadow-light-accent);
+            box-shadow: 0 0 0 5px var(--accent-color), 0 20px 40px var(--shadow-dark), 0 0 30px var(--shadow-light-accent); /* Orange border on hover */
         }
 
         .case-description {
@@ -307,7 +306,7 @@
 
         .video-frame iframe {
             width: 100%;
-            aspect-ratio: 5 / 3; /* Changed aspect ratio to 5:3 */
+            aspect-ratio: 16 / 9; /* Changed aspect ratio to 16:9 for more comfortable viewing */
             height: auto;
             border-radius: 12px;
             box-shadow: 0 8px 20px var(--shadow-dark);
@@ -408,7 +407,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(0, 123, 255, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(255, 127, 0, 0.08) 0%, transparent 70%);
             animation: rotateGlow 40s linear infinite;
             z-index: -1;
         }
@@ -915,7 +914,7 @@
 
     <div id="projectModal" class="modal">
         <div class="modal-content">
-            <span class="modal-close">&times;</span>
+            <span class="modal-close">×</span>
             <h2 id="modalTitle"></h2>
             <div id="modalVideo" class="video-frame"></div>
             <div id="modalDescription"></div>
@@ -943,84 +942,89 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        // Sidebar active link functionality
-        document.addEventListener("DOMContentLoaded", function() {
-            const sections = document.querySelectorAll("main .case, main .contact-info");
-            const navLinks = document.querySelectorAll(".sidebar-nav a");
+        // Smooth scroll for sidebar links
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
 
-            function setActiveLink() {
-                let currentActive = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionHeight = section.clientHeight;
-                    // Adjust offset for better active state triggering
-                    if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                        currentActive = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
+                // Remove active class from all links
+                document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href').includes(currentActive)) {
-                        link.classList.add('active');
-                    }
                 });
-            }
 
-            window.addEventListener('scroll', setActiveLink);
-            setActiveLink(); // Set active link on load
+                // Add active class to the clicked link
+                this.classList.add('active');
 
-            // Smooth scroll for sidebar links
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Set active class on page load and scroll
+        function setActiveNavLink() {
+            const sections = document.querySelectorAll('main > div[id], main > h1, main > .contact-info');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            let currentActive = null;
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150; // Offset to activate a bit earlier
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentActive = section.id;
+                }
+            });
+
             navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetSection = document.getElementById(targetId);
-                    if (targetSection) {
-                        window.scrollTo({
-                            top: targetSection.offsetTop - 20, // Adjust scroll position if needed
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === currentActive) {
+                    link.classList.add('active');
+                }
             });
-        });
 
-        // Modal functionality
+            // Special handling for the very top (home) or initial load
+            if (window.scrollY === 0) {
+                navLinks[0].classList.add('active');
+            }
+        }
+
+        window.addEventListener('scroll', setActiveNavLink);
+        window.addEventListener('load', setActiveNavLink); // Set active on load
+
+        // Project Modal functionality (Placeholder, modify with actual content loading logic)
+        // This part needs more robust JavaScript to load dynamic content into the modal.
+        // For demonstration, I'm just keeping the basic structure.
+
+        // Get the modal
         const modal = document.getElementById("projectModal");
-        const closeModal = document.getElementsByClassName("modal-close")[0];
-        const modalTitle = document.getElementById("modalTitle");
-        const modalVideo = document.getElementById("modalVideo");
-        const modalDescription = document.getElementById("modalDescription");
 
-        document.querySelectorAll('.case').forEach(caseElement => {
-            caseElement.addEventListener('click', function() {
-                const title = this.querySelector('h2').innerText;
-                const videoSrc = this.querySelector('iframe').src;
-                const descriptionHtml = this.querySelector('.case-description ul').outerHTML; // Get the whole ul for description
+        // Get the <span> element that closes the modal
+        const span = document.getElementsByClassName("modal-close")[0];
 
-                modalTitle.innerText = title;
-                modalVideo.innerHTML = `<iframe src="${videoSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
-                modalDescription.innerHTML = descriptionHtml; // Set the full description list
+        // Function to open the modal (you would call this from your project cards)
+        // Example: <div class="case" onclick="openProjectModal('Project Title', 'youtube-embed-url', 'Description goes here.')">
+        function openProjectModal(title, videoSrc, descriptionHtml) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalVideo").innerHTML = `<iframe src="${videoSrc}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+            document.getElementById("modalDescription").innerHTML = descriptionHtml;
+            modal.style.display = "flex"; // Use flex to center content
+        }
 
-                modal.style.display = "flex"; // Use flex to center the modal content
-                document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
-            });
-        });
-
-        closeModal.addEventListener('click', function() {
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
             modal.style.display = "none";
-            document.body.style.overflow = "auto"; // Restore scrolling
-            modalVideo.innerHTML = ''; // Clear video to stop playback
-        });
+            // Stop video when closing modal
+            document.getElementById("modalVideo").innerHTML = '';
+        }
 
-        window.addEventListener('click', function(event) {
+        // When the user clicks anywhere outside of the modal content, close it
+        window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
-                document.body.style.overflow = "auto"; // Restore scrolling
-                modalVideo.innerHTML = ''; // Clear video to stop playback
+                // Stop video when closing modal
+                document.getElementById("modalVideo").innerHTML = '';
             }
-        });
+        }
     </script>
 </body>
 </html>
