@@ -9,17 +9,17 @@
     <style>
         /* CSS Variables - Enhanced and more detailed color palette */
         :root {
-            --bg-primary: #080808; /* Even deeper primary background */
-            --bg-secondary: #1A1A1A; /* Card background, subtle difference */
-            --bg-tertiary: #282828; /* Used for subtle section breaks or internal elements */
-            --text-primary: #EDEDED; /* Brighter primary text for contrast */
-            --text-secondary: #B0B0B0; /* Softer secondary text */
-            --accent-color: #FF8C00; /* Vibrant Orange */
-            --accent-hover: #FFA500; /* Brighter Orange on hover */
-            --accent-light: rgba(255, 140, 0, 0.1); /* Light accent for backgrounds */
-            --border-color: #383838; /* Stronger border for definition */
-            --shadow-dark: rgba(0, 0, 0, 0.8); /* Deeper, more pronounced shadow */
-            --shadow-light-accent: rgba(255, 140, 0, 0.2); /* Accent-colored light shadow/glow */
+            --bg-primary: #0A0A0A; /* Slightly lighter black for depth */
+            --bg-secondary: #1E1E1E; /* Card background, subtle difference */
+            --bg-tertiary: #333333; /* Used for subtle section breaks or internal elements */
+            --text-primary: #E0E0E0; /* Brighter primary text for contrast */
+            --text-secondary: #A0A0A0; /* Softer secondary text */
+            --accent-color: #007BFF; /* Muted Blue */
+            --accent-hover: #0056b3; /* Darker Blue on hover */
+            --accent-light: rgba(0, 123, 255, 0.1); /* Light accent for backgrounds */
+            --border-color: #444444; /* Stronger border for definition */
+            --shadow-dark: rgba(0, 0, 0, 0.6); /* Less pronounced shadow */
+            --shadow-light-accent: rgba(0, 123, 255, 0.15); /* Accent-colored light shadow/glow */
             --nav-width: 280px; /* Slightly wider navigation for more content */
             --transition-speed: 0.3s; /* Global transition speed */
         }
@@ -34,10 +34,10 @@
             color: var(--text-primary);
             background-color: var(--bg-primary);
             background-image:
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.1"/></svg>'),
-                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 75%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
-                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%23252525" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%23252525" opacity="0.1"/></svg>'),
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 75%), /* Less prominent */
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 65%), /* Less prominent */
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.02) 0%, transparent 65%), /* Less prominent */
                 linear-gradient(to bottom, var(--bg-primary), #000000); /* Darker bottom gradient */
             background-repeat: repeat;
             background-blend-mode: overlay, normal, normal, normal, normal;
@@ -60,10 +60,10 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="0.8" fill="rgba(255, 255, 255, 0.15)"/></svg>');
+            background-image: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="0.8" fill="rgba(255, 255, 255, 0.1)"/></svg>'); /* Lighter particles */
             background-size: 150px 150px; /* Larger and denser particles */
             background-repeat: repeat;
-            opacity: 0.12;
+            opacity: 0.08; /* Less opaque */
             z-index: -1;
             animation: moveBackground 100s linear infinite, fadeBackground 15s ease-in-out infinite alternate;
         }
@@ -74,9 +74,9 @@
         }
 
         @keyframes fadeBackground {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
+            0% { opacity: 0.08; }
+            50% { opacity: 0.15; } /* Less intense fade */
+            100% { opacity: 0.08; }
         }
 
         /* Sidebar Navigation */
@@ -87,8 +87,8 @@
             width: var(--nav-width);
             min-width: var(--nav-width);
             height: 100vh;
-            background-color: #050505; /* Even darker nav background */
-            padding: 50px 30px; /* Increased padding */
+            background-color: #080808; /* Darker nav background */
+            padding: 40px 25px; /* Reduced padding for flatter look */
             box-sizing: border-box;
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -96,18 +96,18 @@
             align-items: flex-start;
             overflow-y: auto;
             z-index: 100;
-            box-shadow: 3px 0 15px var(--shadow-dark); /* Stronger shadow */
+            box-shadow: 2px 0 10px var(--shadow-dark); /* Less strong shadow */
         }
 
         .sidebar-nav h3 {
             color: var(--accent-color);
-            font-size: 1.8em;
+            font-size: 1.7em; /* Slightly smaller */
             margin-top: 0;
-            margin-bottom: 50px; /* More space below title */
+            margin-bottom: 40px; /* More space below title */
             text-align: left;
             width: 100%;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-weight: 700; /* Less bold */
+            letter-spacing: -0.01em; /* Less aggressive letter spacing */
         }
 
         .sidebar-nav ul {
@@ -118,7 +118,7 @@
         }
 
         .sidebar-nav li {
-            margin-bottom: 25px; /* Increased spacing */
+            margin-bottom: 20px; /* Reduced spacing */
             width: 100%;
         }
 
@@ -126,25 +126,25 @@
             display: block;
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 14px 22px; /* Larger clickable area */
-            border-radius: 12px; /* Softer corners */
+            padding: 12px 18px; /* Smaller clickable area */
+            border-radius: 8px; /* Less rounded corners for flatter look */
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             text-align: left;
-            font-size: 1.2em; /* Larger font for readability */
+            font-size: 1.1em; /* Slightly smaller font */
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-weight: 600;
+            font-weight: 500; /* Less bold */
             position: relative;
         }
 
         .sidebar-nav a::after {
             content: '';
             position: absolute;
-            bottom: 6px; /* Adjust underline position */
-            left: 22px;
+            bottom: 5px; /* Adjust underline position */
+            left: 18px;
             width: 0%;
-            height: 3px; /* Thicker underline */
+            height: 2px; /* Thinner underline */
             background-color: var(--accent-hover);
             transition: width var(--transition-speed) ease-out;
         }
@@ -152,104 +152,102 @@
         .sidebar-nav a:hover, .sidebar-nav a.active {
             background-color: var(--accent-light);
             color: var(--accent-hover);
-            transform: translateX(15px); /* More pronounced slide effect */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.1); /* Subtle accent glow */
+            transform: translateX(10px); /* Less pronounced slide effect */
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), 0 0 5px rgba(0, 123, 255, 0.08); /* Subtle accent glow */
         }
 
         .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
-            width: calc(100% - 44px); /* Underline width adjusted for padding */
+            width: calc(100% - 36px); /* Underline width adjusted for padding */
         }
 
         /* Main Content Area */
         main {
             flex-grow: 1;
-            padding: 60px 40px; /* Kept current padding, but max-width will make it appear less "empty" */
+            padding: 50px 30px; /* Reduced padding */
             box-sizing: border-box;
             min-width: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-width: calc(100% - var(--nav-width)); /* Original max-width, adjust below */
+            max-width: 1600px; /* Increase max-width */
+            width: 100%;
+            padding-left: 50px; /* Adjust left/right padding */
+            padding-right: 50px;
             margin: 0 auto;
-            position: relative; /* For scroll indicators */
-            
-            /* >>>>>>>>>>>>>>>>> 关键修改：增加 main 的最大宽度 <<<<<<<<<<<<<<<<< */
-            max-width: 1600px; /* 增加最大宽度，让内容区域更宽 */
-            width: 100%; /* 确保在 max-width 范围内占据全部宽度 */
-            padding-left: 60px; /* 增加左右内边距，但通过 max-width 控制总宽度 */
-            padding-right: 60px;
+            position: relative;
+            /* For scroll indicators */
         }
-        /* 对于大屏幕，希望 main 区域更宽，但又不至于完全铺满 */
+        /* For large screens, main area should be wider but not fully stretched */
         @media (min-width: 1600px) {
             main {
-                max-width: 1600px; /* 保持在某个最大值，防止过宽 */
-                padding-left: 80px; /* 适当增加左右内边距 */
-                padding-right: 80px;
+                max-width: 1600px; /* Maintain max-width to prevent overstretching */
+                padding-left: 70px; /* Slightly increased left/right padding */
+                padding-right: 70px;
             }
         }
-        @media (min-width: 1920px) { /* 针对更大屏幕 */
+        @media (min-width: 1920px) { /* For even larger screens */
             main {
-                max-width: 1800px; /* 进一步增加最大宽度 */
-                padding-left: 100px; /* 进一步增加左右内边距 */
-                padding-right: 100px;
+                max-width: 1800px; /* Further increase max-width */
+                padding-left: 90px; /* Further increase left/right padding */
+                padding-right: 90px;
             }
         }
 
 
         h1 {
-            font-size: 5em; /* Slightly smaller heading */
-            margin-bottom: 30px;
+            font-size: 4.5em; /* Smaller heading */
+            margin-bottom: 25px;
             color: var(--text-primary);
-            font-weight: 800;
-            letter-spacing: -0.06em;
+            font-weight: 700; /* Less bold */
+            letter-spacing: -0.05em;
             text-align: center;
             width: 100%;
-            max-width: 1400px;
+            max-width: 1200px; /* Adjusted max-width */
             line-height: 1.1;
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.2); /* Soft text shadow */
+            text-shadow: 0 0 10px rgba(0, 123, 255, 0.15); /* Softer text shadow */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.2em; /* Slightly smaller note */
-            margin-bottom: 50px; /* Reduced margin */
-            max-width: 1000px;
+            font-size: 1.1em; /* Slightly smaller note */
+            margin-bottom: 40px; /* Reduced margin */
+            max-width: 900px; /* Adjusted max-width */
             text-align: center;
-            line-height: 1.9;
-            font-weight: 400;
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
             color: var(--bg-primary);
-            padding: 16px 35px; /* Slightly smaller button */
-            border-radius: 15px; /* More rounded */
+            padding: 14px 30px; /* Slightly smaller button */
+            border-radius: 10px; /* Less rounded */
             text-decoration: none;
-            font-weight: 700;
-            font-size: 1.25em; /* Slightly smaller font */
-            margin-bottom: 80px; /* Reduced margin */
+            font-weight: 600;
+            font-size: 1.2em; /* Slightly smaller font */
+            margin-bottom: 70px; /* Reduced margin */
             transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--accent-color); /* Thicker border */
-            text-transform: uppercase; /* Uppercase for more impact */
-            letter-spacing: 0.05em;
+            box-shadow: 0 6px 15px var(--shadow-dark); /* Less strong shadow */
+            border: 1px solid var(--accent-color); /* Thinner border */
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
         }
 
         .resume-button:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-8px); /* More pronounced lift */
-            box-shadow: 0 15px 30px var(--shadow-dark), 0 0 25px var(--shadow-light-accent); /* Stronger glow */
+            transform: translateY(-5px); /* Less pronounced lift */
+            box-shadow: 0 10px 20px var(--shadow-dark), 0 0 15px var(--shadow-light-accent); /* Softer glow */
         }
 
         /* Project Cards (Cases) */
         .case-container {
             width: 100%;
-            max-width: 100%; /* <<<<<<<<<<<<<<<<< 保持案例容器为 100% 宽度，让内部案例卡片控制宽度 */
+            max-width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 70px; /* Reduced space between cases */
+            gap: 60px; /* Reduced space between cases */
             padding: 0;
         }
 
@@ -257,39 +255,39 @@
             display: flex;
             flex-direction: column; /* Changed to column for top/bottom layout */
             align-items: center; /* Center items in column layout */
-            width: 100%; /* <<<<<<<<<<<<<<<<< 保持案例卡片宽度 100%，让 max-width 控制其最大值 */
-            max-width: 1000px; /* <<<<<<<<<<<<<<<<< 增加案例卡片的最大宽度 */
-            gap: 25px; /* Adjusted gap for column layout, reduced for compactness */
+            width: 100%;
+            max-width: 900px; /* Reduced max-width for flatter appearance */
+            gap: 20px; /* Reduced gap for compactness */
             text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
-            border-radius: 20px; /* Even rounder corners */
-            box-shadow: 0 12px 30px var(--shadow-dark);
-            padding: 40px; /* Reduced padding for less height */
+            border-radius: 12px; /* Less rounded corners for flatter look */
+            box-shadow: 0 8px 20px var(--shadow-dark); /* Less strong shadow */
+            padding: 35px; /* Reduced padding for less height */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px); /* Subtle blur for depth */
-            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(3px); /* Less blur for depth */
+            -webkit-backdrop-filter: blur(3px);
         }
-        /* 针对大屏幕，让案例卡片更宽 */
+        /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
             .case {
-                max-width: 1200px; /* 更宽的案例卡片 */
-                padding: 50px 60px; /* 调整内边距 */
+                max-width: 1100px; /* Wider case cards */
+                padding: 40px 50px; /* Adjusted padding */
             }
         }
         @media (min-width: 1600px) {
             .case {
-                max-width: 1400px; /* 进一步更宽 */
+                max-width: 1300px; /* Further wider */
             }
         }
 
 
         .case:hover {
-            transform: translateY(-15px); /* More lift */
-            box-shadow: 0 25px 45px var(--shadow-dark), 0 0 40px var(--shadow-light-accent); /* Enhanced hover shadow and glow */
+            transform: translateY(-10px); /* Less lift */
+            box-shadow: 0 18px 35px var(--shadow-dark), 0 0 25px var(--shadow-light-accent); /* Softer hover shadow and glow */
         }
 
         .case-description {
@@ -305,35 +303,35 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            max-width: 100%; /* <<<<<<<<<<<<<<<<< 视频帧最大宽度也调整为 100% */
+            max-width: 100%;
             margin: 0 auto; /* Center the video frame */
         }
 
         .video-frame iframe {
             width: 100%;
-            aspect-ratio: 16 / 9;
+            aspect-ratio: 5 / 3; /* Adjusted aspect ratio to 5:3 */
             height: auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--border-color); /* Thicker default border */
+            border-radius: 10px; /* Less rounded */
+            box-shadow: 0 6px 15px var(--shadow-dark); /* Less strong shadow */
+            border: 1px solid var(--border-color); /* Thinner default border */
             transition: border-color var(--transition-speed) ease-in-out;
         }
 
         .video-frame iframe:hover {
-            border: 3px solid var(--accent-hover); /* More pronounced hover border */
+            border: 2px solid var(--accent-hover); /* Less pronounced hover border */
         }
 
         .case h2 {
-            font-size: 3.5em; /* Slightly smaller case title */
+            font-size: 3em; /* Smaller case title */
             margin-top: 0;
-            margin-bottom: 30px; /* Reduced margin */
+            margin-bottom: 25px; /* Reduced margin */
             color: var(--text-primary);
-            font-weight: 700;
+            font-weight: 600; /* Less bold */
             text-align: center; /* Center title */
-            border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
-            padding-bottom: 20px; /* Reduced padding */
+            border-bottom: 3px solid var(--accent-color); /* Thinner accent border */
+            padding-bottom: 15px; /* Reduced padding */
             line-height: 1.1;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
             width: fit-content; /* Make border fit content */
             margin-left: auto;
             margin-right: auto;
@@ -348,23 +346,23 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Ensures the ul itself is centered */
-            max-width: 700px; /* <<<<<<<<<<<<<<<<< 增加列表最大宽度 */
+            max-width: 600px; /* Reduced max-width */
             margin-left: auto;
             margin-right: auto;
         }
 
         .case li {
-            margin-bottom: 15px; /* Reduced space between list items */
-            font-size: 1.15em; /* Slightly smaller list item font */
-            line-height: 1.7;
+            margin-bottom: 10px; /* Reduced space between list items */
+            font-size: 1.1em; /* Slightly smaller list item font */
+            line-height: 1.6;
             position: relative; /* For custom bullet */
-            padding-left: 35px; /* Space for custom bullet */
+            padding-left: 30px; /* Space for custom bullet */
             text-align: left; /* Align text within list item */
             width: 100%; /* Ensure list item takes full width of its container */
         }
         
         .case li::before {
-            content: '🚀 '; /* More thematic emoji */
+            content: '✨ '; /* Different emoji */
             position: absolute;
             left: 0;
             color: var(--accent-hover);
@@ -372,30 +370,30 @@
 
         .case strong {
             color: var(--accent-hover);
-            font-weight: 700;
+            font-weight: 600;
         }
 
         /* Separator Line */
         hr {
             border: none;
-            border-top: 3px dashed var(--border-color); /* Thicker dashed line */
-            margin: 80px auto; /* Reduced vertical space */
-            width: 80%; /* <<<<<<<<<<<<<<<<< 稍微增加宽度 */
-            opacity: 0.6;
+            border-top: 2px dashed var(--border-color); /* Thinner dashed line */
+            margin: 60px auto; /* Reduced vertical space */
+            width: 70%; /* Reduced width */
+            opacity: 0.5;
             background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
-            background-size: 100% 3px;
+            background-size: 100% 2px;
             background-repeat: no-repeat;
         }
 
         /* Contact Info */
         .contact-info {
             width: 100%;
-            max-width: 900px; /* <<<<<<<<<<<<<<<<< 增加联系信息区域的最大宽度 */
-            margin-top: 100px; /* Reduced space from last project */
-            padding: 50px; /* Reduced padding */
+            max-width: 800px; /* Reduced max-width */
+            margin-top: 80px; /* Reduced space from last project */
+            padding: 40px; /* Reduced padding */
             background-color: var(--bg-secondary);
-            border-radius: 20px;
-            box-shadow: 0 -8px 25px var(--shadow-dark);
+            border-radius: 12px; /* Less rounded */
+            box-shadow: 0 -6px 20px var(--shadow-dark); /* Less strong shadow */
             border: 1px solid var(--border-color);
             text-align: center;
             margin-left: auto;
@@ -412,7 +410,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle at center, rgba(0, 123, 255, 0.05) 0%, transparent 70%); /* Muted glow */
             animation: rotateGlow 30s linear infinite; /* Subtle rotating glow */
             z-index: -1;
         }
@@ -423,15 +421,15 @@
         }
 
         .contact-info p {
-            margin-bottom: 20px; /* Reduced margin */
+            margin-bottom: 15px; /* Reduced margin */
             color: var(--text-primary);
-            font-size: 1.15em; /* Slightly smaller font */
-            line-height: 1.8;
+            font-size: 1.1em; /* Slightly smaller font */
+            line-height: 1.7;
             font-weight: 300;
         }
 
         .contact-info strong {
-            font-weight: 700;
+            font-weight: 600;
             color: var(--accent-hover);
         }
 
@@ -439,7 +437,7 @@
             color: var(--accent-color);
             text-decoration: none;
             transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .contact-info a:hover {
@@ -451,26 +449,26 @@
         #scrollToTopBtn {
             display: none; /* Hidden by default */
             position: fixed; /* Fixed position */
-            bottom: 30px; /* Place at the bottom */
-            right: 30px; /* Place at the right */
+            bottom: 25px; /* Place at the bottom */
+            right: 25px; /* Place at the right */
             z-index: 99; /* High z-index to be on top */
             border: none; /* Remove borders */
             outline: none; /* Remove outline */
             background-color: var(--accent-color); /* Set a background color */
             color: var(--bg-primary); /* Text color */
             cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px 20px; /* Some padding */
-            border-radius: 10px; /* Rounded corners */
-            font-size: 1.1em; /* Increase font size */
-            font-weight: 600;
-            box-shadow: 0 4px 10px var(--shadow-dark);
+            padding: 12px 18px; /* Some padding */
+            border-radius: 8px; /* Less rounded corners */
+            font-size: 1em; /* Increase font size */
+            font-weight: 500;
+            box-shadow: 0 3px 8px var(--shadow-dark); /* Less strong shadow */
             transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         #scrollToTopBtn:hover {
             background-color: var(--accent-hover); /* Darker background on hover */
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
+            transform: translateY(-3px); /* Less pronounced lift */
+            box-shadow: 0 6px 12px var(--shadow-dark), 0 0 8px var(--shadow-light-accent); /* Softer glow */
         }
 
         /* --- Project Modal (New Element) --- */
@@ -483,11 +481,11 @@
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.8); /* Black w/ less opacity */
+            backdrop-filter: blur(8px); /* Less frosted glass effect */
+            -webkit-backdrop-filter: blur(8px);
             animation: fadeIn 0.3s ease-out forwards;
-            padding: 20px;
+            padding: 15px; /* Reduced padding */
             box-sizing: border-box;
             display: flex; /* Changed to flex to center content */
             justify-content: center;
@@ -497,25 +495,25 @@
         .modal-content {
             background-color: var(--bg-secondary);
             margin: auto;
-            padding: 40px 60px;
+            padding: 30px 50px; /* Reduced padding */
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            width: 80%; /* Adjusted width */
-            max-width: 1200px; /* <<<<<<<<<<<<<<<<< 增加模态框最大宽度 */
-            box-shadow: 0 15px 35px var(--shadow-dark);
+            border-radius: 12px; /* Less rounded */
+            width: 85%; /* Adjusted width */
+            max-width: 1100px; /* Reduced max-width */
+            box-shadow: 0 10px 25px var(--shadow-dark); /* Less strong shadow */
             position: relative;
             animation: slideIn 0.4s ease-out forwards;
             overflow-y: auto; /* Allow scrolling within modal content */
-            max-height: 90vh; /* Limit height to viewport */
+            max-height: 85vh; /* Limit height to viewport */
         }
 
         .modal-close {
             color: var(--text-secondary);
-            font-size: 40px;
+            font-size: 35px; /* Slightly smaller */
             font-weight: bold;
             position: absolute;
-            top: 20px;
-            right: 30px;
+            top: 15px; /* Reduced top position */
+            right: 25px; /* Reduced right position */
             cursor: pointer;
             transition: color var(--transition-speed), transform var(--transition-speed);
         }
@@ -523,7 +521,7 @@
         .modal-close:hover,
         .modal-close:focus {
             color: var(--accent-hover);
-            transform: scale(1.1);
+            transform: scale(1.05); /* Less pronounced scale */
         }
 
         .modal h2 {
@@ -544,15 +542,15 @@
                 width: 100%;
                 height: auto;
                 min-width: unset;
-                padding: 30px 20px;
+                padding: 25px 18px; /* Further reduced */
                 border-right: none;
                 border-bottom: 1px solid var(--border-color);
-                box-shadow: 0 3px 15px var(--shadow-dark);
+                box-shadow: 0 2px 8px var(--shadow-dark); /* Softer shadow */
             }
 
             .sidebar-nav h3 {
-                font-size: 1.5em;
-                margin-bottom: 30px;
+                font-size: 1.4em;
+                margin-bottom: 25px;
                 text-align: center;
             }
 
@@ -560,7 +558,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 15px;
+                gap: 12px; /* Reduced gap */
             }
 
             .sidebar-nav li {
@@ -568,12 +566,12 @@
             }
 
             .sidebar-nav a {
-                padding: 10px 18px;
-                font-size: 1em;
+                padding: 9px 15px; /* Reduced padding */
+                font-size: 0.95em;
                 transform: none !important; /* Override hover transform for better mobile tap experience */
                 box-shadow: none !important; /* Override hover shadow for mobile */
-                border-bottom: 2px solid transparent; /* Simple underline for mobile */
-                border-radius: 8px;
+                border-bottom: 1px solid transparent; /* Simple underline for mobile */
+                border-radius: 6px; /* Less rounded */
             }
 
             .sidebar-nav a::after {
@@ -583,146 +581,29 @@
             .sidebar-nav a:hover, .sidebar-nav a.active {
                 background-color: var(--accent-light);
                 color: var(--accent-hover);
-                border-bottom: 2px solid var(--accent-hover);
+                border-bottom: 1px solid var(--accent-hover);
             }
 
             main {
-                padding: 60px 20px;
-                max-width: 100%; /* 在小屏幕上让 main 占据全部宽度 */
-                padding-left: 20px; /* 调整小屏幕下的内边距 */
-                padding-right: 20px;
+                padding: 50px 18px; /* Reduced padding */
+                max-width: 100%; /* Occupy full width on small screens */
+                padding-left: 18px; /* Adjust padding for small screens */
+                padding-right: 18px;
             }
 
             h1 {
-                font-size: min(4.5em, 11vw);
-                margin-bottom: 25px;
-            }
-
-            .note-text {
-                font-size: 1.1em;
-                margin-bottom: 40px;
-            }
-
-            .resume-button {
-                padding: 15px 30px;
-                font-size: 1.1em;
-                margin-bottom: 60px;
-            }
-
-            .case-container {
-                gap: 60px;
-            }
-
-            .case {
-                padding: 40px;
-                gap: 30px;
-                border-radius: 15px;
-                max-width: 100%; /* 在小屏幕上，案例卡片也占据全部宽度 */
-            }
-
-            .case h2 {
-                font-size: 2.8em;
-                margin-bottom: 30px;
-                padding-bottom: 20px;
-                border-bottom: 3px solid var(--accent-color);
-            }
-
-            .case ul {
-                max-width: 90%;
-            }
-
-            .case li {
-                font-size: 1.1em;
-                margin-bottom: 15px;
-                padding-left: 30px;
-            }
-
-            .case li::before {
-                font-size: 0.9em;
-                left: 5px;
-            }
-
-            hr {
-                margin: 70px auto;
-                width: 80%;
-            }
-
-            .contact-info {
-                padding: 40px;
-                margin-top: 80px;
-                max-width: 95%;
-                border-radius: 15px;
-            }
-
-            .contact-info p {
-                font-size: 1.1em;
-                margin-bottom: 20px;
-            }
-
-            #scrollToTopBtn {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 18px;
-                font-size: 1em;
-            }
-
-            .modal-content {
-                padding: 30px 40px;
-                width: 95%;
-                border-radius: 15px;
-                max-height: 85vh;
-            }
-
-            .modal-close {
-                font-size: 30px;
-                top: 15px;
-                right: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                font-size: min(16px, 4vw);
-            }
-
-            .sidebar-nav {
-                padding: 20px 15px;
-            }
-
-            .sidebar-nav h3 {
-                font-size: 1.3em;
-                margin-bottom: 20px;
-            }
-
-            .sidebar-nav ul {
-                gap: 10px;
-            }
-
-            .sidebar-nav a {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
-
-            main {
-                padding: 40px 15px;
-                max-width: 100%; /* 确保在更小屏幕上仍然占据全部宽度 */
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-
-            h1 {
-                font-size: min(3.8em, 10vw);
+                font-size: min(4em, 10vw);
                 margin-bottom: 20px;
             }
 
             .note-text {
                 font-size: 1em;
-                margin-bottom: 30px;
+                margin-bottom: 35px;
             }
 
             .resume-button {
-                padding: 12px 25px;
-                font-size: 1em;
+                padding: 13px 28px;
+                font-size: 1.05em;
                 margin-bottom: 50px;
             }
 
@@ -731,53 +612,170 @@
             }
 
             .case {
-                padding: 30px;
+                padding: 35px; /* Reduced padding */
                 gap: 25px;
-                max-width: 100%; /* 确保在更小屏幕上仍然占据全部宽度 */
+                border-radius: 10px; /* Less rounded */
+                max-width: 100%; /* Occupy full width on small screens */
             }
 
             .case h2 {
-                font-size: 2.4em;
+                font-size: 2.6em;
                 margin-bottom: 25px;
                 padding-bottom: 15px;
+                border-bottom: 2px solid var(--accent-color);
+            }
+
+            .case ul {
+                max-width: 95%;
             }
 
             .case li {
-                font-size: 1em;
-                margin-bottom: 10px;
-                padding-left: 25px;
+                font-size: 1.05em;
+                margin-bottom: 12px;
+                padding-left: 28px;
+            }
+
+            .case li::before {
+                font-size: 0.85em;
+                left: 3px;
             }
 
             hr {
-                margin: 50px auto;
-                width: 90%;
+                margin: 60px auto;
+                width: 75%;
             }
 
             .contact-info {
-                padding: 30px;
-                margin-top: 60px;
+                padding: 35px;
+                margin-top: 70px;
+                max-width: 95%;
+                border-radius: 10px;
             }
 
             .contact-info p {
-                font-size: 1em;
+                font-size: 1.05em;
                 margin-bottom: 15px;
             }
 
             #scrollToTopBtn {
-                bottom: 15px;
-                right: 15px;
+                bottom: 18px;
+                right: 18px;
                 padding: 10px 15px;
-                font-size: 0.9em;
+                font-size: 0.95em;
             }
 
             .modal-content {
-                padding: 25px 30px;
+                padding: 25px 35px;
+                width: 95%;
+                border-radius: 10px;
+                max-height: 80vh;
+            }
+
+            .modal-close {
+                font-size: 30px;
+                top: 12px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: min(15px, 3.8vw);
+            }
+
+            .sidebar-nav {
+                padding: 18px 10px;
+            }
+
+            .sidebar-nav h3 {
+                font-size: 1.2em;
+                margin-bottom: 18px;
+            }
+
+            .sidebar-nav ul {
+                gap: 8px;
+            }
+
+            .sidebar-nav a {
+                padding: 7px 10px;
+                font-size: 0.85em;
+            }
+
+            main {
+                padding: 35px 10px;
+                max-width: 100%; /* Ensure full width on smaller screens */
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            h1 {
+                font-size: min(3.5em, 9vw);
+                margin-bottom: 15px;
+            }
+
+            .note-text {
+                font-size: 0.95em;
+                margin-bottom: 25px;
+            }
+
+            .resume-button {
+                padding: 10px 22px;
+                font-size: 0.95em;
+                margin-bottom: 40px;
+            }
+
+            .case-container {
+                gap: 40px;
+            }
+
+            .case {
+                padding: 25px;
+                gap: 20px;
+                max-width: 100%; /* Ensure full width on smaller screens */
+            }
+
+            .case h2 {
+                font-size: 2.2em;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+            }
+
+            .case li {
+                font-size: 1em;
+                margin-bottom: 8px;
+                padding-left: 22px;
+            }
+
+            hr {
+                margin: 40px auto;
+                width: 85%;
+            }
+
+            .contact-info {
+                padding: 25px;
+                margin-top: 50px;
+            }
+
+            .contact-info p {
+                font-size: 1em;
+                margin-bottom: 12px;
+            }
+
+            #scrollToTopBtn {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 12px;
+                font-size: 0.85em;
+            }
+
+            .modal-content {
+                padding: 20px 25px;
             }
 
             .modal-close {
                 font-size: 25px;
-                top: 10px;
-                right: 15px;
+                top: 8px;
+                right: 12px;
             }
         }
     </style>
@@ -878,39 +876,57 @@
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
+
                 // Add 'active' class to the clicked link
                 this.classList.add('active');
             });
         });
 
-        // Highlight active link on scroll
-        window.addEventListener('scroll', () => {
-            let current = '';
-            const sections = document.querySelectorAll('.case, .contact-info');
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - (window.innerHeight / 3); // Offset for better highlighting
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main > div[id], main > h1, main > .contact-info');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3 // Adjust this value as needed, 0.3 means when 30% of the section is visible
+        };
+
+        const sectionObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    if (id) { // Only process sections with an ID that corresponds to a nav link
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
                 }
             });
+        }, observerOptions);
 
-            document.querySelectorAll('.sidebar-nav a').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+        sections.forEach(section => {
+            sectionObserver.observe(section);
+        });
 
-            // Show/hide scroll to top button
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        // Scroll to Top button functionality
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
                 scrollToTopBtn.style.display = "block";
             } else {
                 scrollToTopBtn.style.display = "none";
             }
-        });
+        }
 
-        // Scroll to top function
+        // When the user clicks on the button, scroll to the top of the document
         function scrollToTop() {
             window.scrollTo({
                 top: 0,
