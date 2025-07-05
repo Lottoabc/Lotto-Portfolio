@@ -175,6 +175,7 @@
             padding-right: 60px;
             margin: 0 auto;
             position: relative;
+            z-index: 1; /* Ensure content is above background */
         }
         /* For large screens, main area should be wider but not fully stretched */
         @media (min-width: 1600px) {
@@ -251,36 +252,33 @@
 
         .case {
             display: flex;
-            flex-direction: column; /* Changed to column for top/bottom layout */
-            align-items: center; /* Center items in column layout */
+            flex-direction: row; /* Changed to row for left/right layout */
+            align-items: flex-start; /* Align items to the top in row layout */
             width: 100%;
-            max-width: 1000px;
-            gap: 30px;
-            text-align: center; /* Center text for column layout */
+            max-width: 1300px; /* Adjust max-width for row layout */
+            gap: 40px; /* Increased gap between description and video */
             background-color: var(--bg-secondary);
             border-radius: 15px;
             box-shadow: 0 10px 25px var(--shadow-dark);
             padding: 40px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
-            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out, height 0.5s ease-in-out; /* Added height transition */
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out, border-color var(--transition-speed) ease-in-out;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(5px);
-            cursor: pointer; /* Make it clickable */
-            height: auto; /* Default to auto height */
         }
         /* For large screens, case cards should be wider */
         @media (min-width: 1200px) {
             .case {
-                max-width: 1300px; /* Wider case cards */
+                max-width: 1500px; /* Wider case cards */
                 padding: 50px 60px; /* Adjusted padding */
             }
         }
         @media (min-width: 1600px) {
             .case {
-                max-width: 1500px; /* Further wider */
+                max-width: 1800px; /* Further wider */
             }
         }
 
@@ -292,32 +290,30 @@
         }
 
         .case-description {
-            width: 100%; /* Take full width in column layout */
+            flex: 1; /* Take up remaining space */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            text-align: center; /* Center text description */
+            justify-content: flex-start; /* Align text to the top */
+            text-align: left; /* Align text description to the left */
         }
 
         .video-frame {
-            width: 100%; /* Take full width in column layout */
-            display: none; /* Initially hidden */
+            flex-shrink: 0; /* Prevent shrinking */
+            width: 50%; /* Adjust video width relative to description */
+            max-width: 700px; /* Max width for video */
+            display: flex;
             justify-content: center;
-            align-items: center;
-            max-width: 100%;
-            margin: 0 auto; /* Center the video frame */
-            margin-top: 20px; /* Add some spacing above the video when visible */
+            align-items: flex-start; /* Align video to the top */
         }
 
         .video-frame iframe {
             width: 100%;
-            aspect-ratio: 16 / 9; /* Changed aspect ratio to 16:9 */
+            aspect-ratio: 16 / 9; /* Ensure 16:9 aspect ratio */
             height: auto;
             border-radius: 12px;
             box-shadow: 0 8px 20px var(--shadow-dark);
             border: 2px solid var(--border-color);
             transition: border-color var(--transition-speed) ease-in-out;
-            max-width: 800px; /* Add a max-width for the iframe itself */
         }
 
         /* Orange border on hover for video frames */
@@ -331,28 +327,26 @@
             margin-bottom: 30px;
             color: var(--text-primary);
             font-weight: 700;
-            text-align: center; /* Center title */
+            text-align: left; /* Align title to the left */
             border-bottom: 4px solid var(--accent-color);
             padding-bottom: 20px;
             line-height: 1.1;
             letter-spacing: -0.04em;
             width: fit-content; /* Make border fit content */
-            margin-left: auto;
-            margin-right: auto;
+            margin-left: 0; /* Remove auto margin */
+            margin-right: auto; /* Push to left */
         }
 
         .case ul {
-            padding-left: 0; /* Remove default padding as text is centered */
+            padding-left: 0;
             margin-top: 0;
             list-style: none; /* Remove default list style */
             color: var(--text-primary);
-            text-align: center; /* Center list items */
+            text-align: left; /* Align list items to the left */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Ensures the ul itself is centered */
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            align-items: flex-start; /* Ensures the ul itself is aligned left */
+            max-width: 100%; /* Adjust max-width for list items */
         }
 
         .case li {
@@ -558,10 +552,20 @@
             }
 
             .case {
+                flex-direction: column; /* Revert to column for smaller screens */
                 padding: 40px;
                 gap: 30px;
                 border-radius: 12px;
                 max-width: 100%; /* Occupy full width on small screens */
+            }
+
+            .case-description {
+                text-align: center; /* Center text description for column layout */
+            }
+
+            .video-frame {
+                width: 100%; /* Full width for video in column layout */
+                margin-top: 20px; /* Add some spacing above the video */
             }
 
             .case h2 {
@@ -569,10 +573,15 @@
                 margin-bottom: 25px;
                 padding-bottom: 18px;
                 border-bottom: 3px solid var(--accent-color);
+                text-align: center; /* Center title for column layout */
+                margin-left: auto; /* Center title */
+                margin-right: auto; /* Center title */
             }
 
             .case ul {
                 max-width: 95%;
+                align-items: center; /* Center list for column layout */
+                text-align: left; /* Keep list item text aligned left */
             }
 
             .case li {
@@ -723,7 +732,8 @@
         </a>
 
         <div class="case-container">
-            <div class="case" id="case1" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
+            <div class="case" id="case1">
+                <div class="case-description">
                     <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                     <ul>
                         <li><strong>凝视交互</strong>：通过视线追踪实现直观交互。</li>
@@ -734,13 +744,14 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
-            <div class="case" id="case2" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
+            <div class="case" id="case2">
+                <div class="case-description">
                     <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
                     <ul>
                         <li><strong>URP（通用渲染管线）</strong>：实现高质量视觉渲染。</li>
@@ -750,13 +761,14 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/v2FhJq4kEJU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
-            <div class="case" id="case3" data-video-src="https://www.youtube.com/embed/dQw4w9WgXcQ"> <div class="case-description">
+            <div class="case" id="case3">
+                <div class="case-description">
                     <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
                     <ul>
                         <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
@@ -767,7 +779,7 @@
                     </ul>
                 </div>
                 <div class="video-frame">
-                    <iframe src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
@@ -821,7 +833,7 @@
                 }
             });
         });
-
+        
         // Scroll to Top Button functionality
         const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
@@ -836,60 +848,6 @@
         scrollToTopBtn.addEventListener('click', function() {
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        });
-
-        // --- Case Card Expand/Collapse Functionality ---
-        const cases = document.querySelectorAll(".case");
-
-        cases.forEach(caseElement => {
-            const description = caseElement.querySelector(".case-description");
-            const videoFrame = caseElement.querySelector(".video-frame");
-            const iframe = videoFrame.querySelector("iframe");
-            let isExpanded = false;
-            let originalCaseHeight; // To store the initial height of the case element
-
-            // Store the original video source from data-video-src and clear the iframe src initially
-            const videoSrc = caseElement.getAttribute('data-video-src');
-            iframe.removeAttribute('src'); // Ensure iframe is empty on load
-
-            // Set a click listener for the entire case card
-            caseElement.addEventListener('click', function() {
-                if (!isExpanded) {
-                    // Store the current height of the case before expanding
-                    originalCaseHeight = caseElement.offsetHeight;
-
-                    description.style.display = "none"; // Hide description
-                    videoFrame.style.display = "flex"; // Show video frame
-                    iframe.src = videoSrc + "?autoplay=1&rel=0"; // Load and autoplay video, disable related videos
-
-                    // Temporarily set height to auto to calculate expanded height
-                    caseElement.style.height = 'auto';
-                    const expandedHeight = caseElement.offsetHeight;
-                    
-                    // Animate to expanded height
-                    caseElement.style.height = originalCaseHeight + 'px'; // Reset to original height for smooth transition
-                    requestAnimationFrame(() => {
-                        caseElement.style.height = expandedHeight + "px";
-                    });
-
-                    isExpanded = true;
-                } else {
-                    description.style.display = "flex"; // Show description
-                    videoFrame.style.display = "none"; // Hide video frame
-                    iframe.src = ""; // Stop video playback
-
-                    // Animate back to original height
-                    caseElement.style.height = originalCaseHeight + "px"; // Animate back to stored original height
-                    
-                    // Reset height to auto after the transition completes
-                    setTimeout(() => {
-                        caseElement.style.transition = ""; // Remove transition temporarily
-                        caseElement.style.height = "auto";
-                    }, 500); // Should match CSS transition duration
-
-                    isExpanded = false;
-                }
-            });
         });
     </script>
 </body>
