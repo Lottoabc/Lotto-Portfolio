@@ -4,41 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
-        /* CSS 变量 - 更新强调色为橙色调，增加更多细节颜色 */
+        /* CSS Variables - Enhanced and more detailed color palette */
         :root {
-            --bg-primary: #0A0A0A; /* 更深的背景，增加对比度 */
-            --bg-secondary: #1C1C1C; /* 卡片背景，与主背景有区分 */
-            --text-primary: #E0E0E0; /* 主文本颜色，更柔和 */
-            --text-secondary: #A0A0A0; /* 副文本颜色，更细腻 */
-            --accent-color: #FF8C00; /* 更有活力的亮橙色 */
-            --accent-hover: #FFA500; /* 强调色悬停效果，更亮 */
-            --border-color: #333333; /* 边框颜色，略深 */
-            --shadow-color-dark: rgba(0, 0, 0, 0.7); /* 更深的阴影 */
-            --shadow-color-light: rgba(255, 140, 0, 0.15); /* 强调色浅阴影 */
-            --nav-width: 260px; /* 调整导航栏宽度，增加空间感 */
+            --bg-primary: #080808; /* Even deeper primary background */
+            --bg-secondary: #1A1A1A; /* Card background, subtle difference */
+            --bg-tertiary: #282828; /* Used for subtle section breaks or internal elements */
+            --text-primary: #EDEDED; /* Brighter primary text for contrast */
+            --text-secondary: #B0B0B0; /* Softer secondary text */
+            --accent-color: #FF8C00; /* Vibrant Orange */
+            --accent-hover: #FFA500; /* Brighter Orange on hover */
+            --accent-light: rgba(255, 140, 0, 0.1); /* Light accent for backgrounds */
+            --border-color: #383838; /* Stronger border for definition */
+            --shadow-dark: rgba(0, 0, 0, 0.8); /* Deeper, more pronounced shadow */
+            --shadow-light-accent: rgba(255, 140, 0, 0.2); /* Accent-colored light shadow/glow */
+            --nav-width: 280px; /* Slightly wider navigation for more content */
+            --transition-speed: 0.3s; /* Global transition speed */
         }
 
+        /* Base styles */
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            text-align: center;
             margin: 0;
             padding: 0;
-            font-size: min(17px, 4.2vw); /* 调整基础字体大小 */
-            line-height: 1.8; /* 增加行高，提升可读性 */
+            font-size: 18px; /* Slightly larger base font for readability */
+            line-height: 1.7; /* Improved line height */
             color: var(--text-primary);
-            background-color: var(--bg-primary); /* Fallback */
+            background-color: var(--bg-primary);
             background-image:
-                /* 更精细的颗粒感背景图 */
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.15"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.15"/></svg>'),
-                /* 柔和的径向渐变，调整位置和颜色 */
-                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 70%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.03) 0%, transparent 60%),
-                /* 底部较深的线性渐变 */
-                linear-gradient(to bottom, var(--bg-primary), #050505);
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.1"/></svg>'),
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 75%),
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+                linear-gradient(to bottom, var(--bg-primary), #000000); /* Darker bottom gradient */
             background-repeat: repeat;
             background-blend-mode: overlay, normal, normal, normal, normal;
             position: relative;
@@ -49,11 +49,10 @@
             flex-direction: row;
             align-items: flex-start;
             justify-content: flex-start;
-            overflow-y: scroll; /* 允许主体滚动 */
-            scroll-behavior: smooth; /* 平滑滚动 */
+            scroll-behavior: smooth;
         }
 
-        /* 动态背景层 - 增强粒子效果 */
+        /* Dynamic background particle layer */
         body::before {
             content: '';
             position: fixed;
@@ -61,30 +60,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"><circle cx="3" cy="3" r="0.7" fill="rgba(255, 255, 255, 0.1)"/></svg>');
-            background-size: 100px 100px; /* 控制点的大小和密度 */
+            background-image: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="0.8" fill="rgba(255, 255, 255, 0.15)"/></svg>');
+            background-size: 150px 150px; /* Larger and denser particles */
             background-repeat: repeat;
-            opacity: 0.1;
+            opacity: 0.12;
             z-index: -1;
-            animation: moveBackground 80s linear infinite, fadeBackground 12s ease-in-out infinite alternate; /* 调整动画速度和周期 */
+            animation: moveBackground 100s linear infinite, fadeBackground 15s ease-in-out infinite alternate;
         }
 
         @keyframes moveBackground {
-            from {
-                background-position: 0 0;
-            }
-            to {
-                background-position: 200% 200%; /* 更长的对角线移动 */
-            }
+            from { background-position: 0 0; }
+            to { background-position: 300% 300%; } /* Slower, more expansive movement */
         }
 
         @keyframes fadeBackground {
-            0% { opacity: 0.08; }
-            50% { opacity: 0.15; } /* 更多透明度变化 */
-            100% { opacity: 0.08; }
+            0% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.1; }
         }
 
-        /* 导航栏样式 */
+        /* Sidebar Navigation */
         .sidebar-nav {
             position: sticky;
             top: 0;
@@ -92,8 +87,8 @@
             width: var(--nav-width);
             min-width: var(--nav-width);
             height: 100vh;
-            background-color: #080808; /* 导航栏背景色更深 */
-            padding: 40px 25px; /* 调整内边距 */
+            background-color: #050505; /* Even darker nav background */
+            padding: 50px 30px; /* Increased padding */
             box-sizing: border-box;
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -101,17 +96,18 @@
             align-items: flex-start;
             overflow-y: auto;
             z-index: 100;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.4); /* 导航栏阴影 */
+            box-shadow: 3px 0 15px var(--shadow-dark); /* Stronger shadow */
         }
 
         .sidebar-nav h3 {
             color: var(--accent-color);
-            font-size: 1.6em; /* 标题字体 */
+            font-size: 1.8em;
             margin-top: 0;
-            margin-bottom: 40px;
+            margin-bottom: 50px; /* More space below title */
             text-align: left;
             width: 100%;
-            font-weight: 700;
+            font-weight: 800;
+            letter-spacing: -0.02em;
         }
 
         .sidebar-nav ul {
@@ -122,7 +118,7 @@
         }
 
         .sidebar-nav li {
-            margin-bottom: 20px; /* 导航项间距 */
+            margin-bottom: 25px; /* Increased spacing */
             width: 100%;
         }
 
@@ -130,239 +126,273 @@
             display: block;
             color: var(--text-secondary);
             text-decoration: none;
-            padding: 12px 20px; /* 调整内边距 */
-            border-radius: 10px; /* 更圆润的边角 */
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            padding: 14px 22px; /* Larger clickable area */
+            border-radius: 12px; /* Softer corners */
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
             text-align: left;
-            font-size: 1.15em; /* 链接字体 */
+            font-size: 1.2em; /* Larger font for readability */
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            font-weight: 500;
-            position: relative; /* 用于伪元素下划线 */
+            font-weight: 600;
+            position: relative;
         }
 
         .sidebar-nav a::after {
             content: '';
             position: absolute;
-            bottom: 8px; /* 调整下划线位置 */
-            left: 20px;
+            bottom: 6px; /* Adjust underline position */
+            left: 22px;
             width: 0%;
-            height: 2px;
+            height: 3px; /* Thicker underline */
             background-color: var(--accent-hover);
-            transition: width 0.3s ease-out;
+            transition: width var(--transition-speed) ease-out;
         }
 
         .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: rgba(255, 140, 0, 0.18); /* 更明显的强调色半透明背景 */
+            background-color: var(--accent-light);
             color: var(--accent-hover);
-            transform: translateX(10px); /* 更明显的悬停效果 */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 导航项悬停阴影 */
+            transform: translateX(15px); /* More pronounced slide effect */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.1); /* Subtle accent glow */
         }
 
         .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
-            width: calc(100% - 40px); /* 悬停时下划线宽度 */
+            width: calc(100% - 44px); /* Underline width adjusted for padding */
         }
 
-
-        /* 主内容区域 */
+        /* Main Content Area */
         main {
             flex-grow: 1;
-            padding: 60px 50px; /* 调整内边距 */
+            padding: 80px 60px; /* Increased padding for main content */
             box-sizing: border-box;
             min-width: 0;
             display: flex;
             flex-direction: column;
-            align-items: center; /* 居中内容 */
-            max-width: calc(100% - var(--nav-width)); /* 限制最大宽度，防止内容过宽 */
-            margin: 0 auto; /* 确保 main 在父容器中居中 */
+            align-items: center;
+            max-width: calc(100% - var(--nav-width));
+            margin: 0 auto;
+            position: relative; /* For scroll indicators */
         }
 
         h1 {
-            font-size: min(4.8em, 10vw); /* 更大的标题 */
-            margin-bottom: 25px;
+            font-size: 5.5em; /* Significantly larger heading */
+            margin-bottom: 30px;
             color: var(--text-primary);
-            font-weight: 800; /* 更粗的字体 */
-            letter-spacing: -0.05em;
+            font-weight: 800;
+            letter-spacing: -0.06em;
             text-align: center;
-            width: 100%; /* 确保标题占据可用宽度 */
-            max-width: 1200px; /* 增加最大宽度 */
+            width: 100%;
+            max-width: 1400px;
+            line-height: 1.1;
+            text-shadow: 0 0 15px rgba(255, 140, 0, 0.2); /* Soft text shadow */
         }
 
         .note-text {
             color: var(--text-secondary);
-            font-size: 1.15em; /* 稍大字体 */
-            margin-bottom: 50px;
-            max-width: 1200px; /* 增加最大宽度 */
+            font-size: 1.25em; /* Larger and more prominent note */
+            margin-bottom: 60px;
+            max-width: 1000px;
             text-align: center;
-            line-height: 1.8;
-            margin-left: auto;
-            margin-right: auto;
+            line-height: 1.9;
+            font-weight: 400;
         }
 
         .resume-button {
             display: inline-block;
             background-color: var(--accent-color);
-            color: var(--bg-primary); /* 按钮文字颜色 */
-            padding: 16px 35px; /* 调整按钮大小 */
-            border-radius: 12px; /* 更圆润的边角 */
+            color: var(--bg-primary);
+            padding: 18px 40px; /* Larger button */
+            border-radius: 15px; /* More rounded */
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.25em; /* 调整按钮字体大小 */
-            margin-bottom: 80px;
-            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 15px var(--shadow-color-dark);
-            border: 1px solid var(--accent-color); /* 按钮边框 */
+            font-size: 1.35em; /* Larger font */
+            margin-bottom: 100px;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--accent-color); /* Thicker border */
+            text-transform: uppercase; /* Uppercase for more impact */
+            letter-spacing: 0.05em;
         }
 
         .resume-button:hover {
             background-color: var(--accent-hover);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px var(--shadow-color-dark), 0 0 20px var(--shadow-color-light); /* 更强的悬停阴影和强调色光晕 */
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 15px 30px var(--shadow-dark), 0 0 25px var(--shadow-light-accent); /* Stronger glow */
         }
 
+        /* Project Cards (Cases) */
         .case-container {
             width: 100%;
-            max-width: 1200px; /* 案例容器宽度，增加以适应更宽的视频 */
+            max-width: 1400px; /* Wider container */
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 70px; /* 案例之间间距 */
+            gap: 90px; /* More space between cases */
             padding: 0;
         }
 
         .case {
             display: flex;
             flex-direction: row;
-            align-items: stretch; /* 确保内容区高度一致 */
+            align-items: stretch;
             width: 100%;
-            max-width: 100%; /* 案例卡片宽度 */
-            gap: 60px; /* 描述和视频间距 */
+            max-width: 100%;
+            gap: 70px; /* Increased gap */
             text-align: left;
             background-color: var(--bg-secondary);
-            border-radius: 15px; /* 更圆润的边角 */
-            box-shadow: 0 8px 25px var(--shadow-color-dark); /* 调整阴影 */
-            padding: 60px;
+            border-radius: 20px; /* Even rounder corners */
+            box-shadow: 0 12px 30px var(--shadow-dark);
+            padding: 70px; /* Increased padding */
             box-sizing: border-box;
             border: 1px solid var(--border-color);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            position: relative; /* For the subtle glow */
-            overflow: hidden; /* Ensure glow stays within bounds */
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px); /* Subtle blur for depth */
+            -webkit-backdrop-filter: blur(5px);
         }
 
-        /* Removed the case::before glow on hover to simplify effect */
         .case:hover {
-            transform: translateY(-12px); /* 更明显的悬停效果 */
-            box-shadow: 0 18px 35px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light); /* 更强的悬停阴影和强调色光晕 */
+            transform: translateY(-15px); /* More lift */
+            box-shadow: 0 25px 45px var(--shadow-dark), 0 0 40px var(--shadow-light-accent); /* Enhanced hover shadow and glow */
         }
 
         .case-content {
-            position: relative; /* Ensure content is above ::before */
+            position: relative;
             z-index: 1;
             display: flex;
             flex-direction: row;
             width: 100%;
-            gap: inherit; /* Inherit gap from parent */
-            align-items: center; /* Vertically align content within the case-content */
+            gap: inherit;
+            align-items: center;
         }
 
         .case-description {
-            flex: 1; /* Make description and video equal width */
+            flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .video-frame {
-            flex: 1; /* Make description and video equal width */
+            flex: 1.2; /* Slightly larger video area */
             display: flex;
             justify-content: center;
             align-items: center;
+            min-width: 0; /* Allow iframe to shrink */
         }
 
         .video-frame iframe {
             width: 100%;
             aspect-ratio: 16 / 9;
             height: auto;
-            border-radius: 12px; /* 更圆润的视频边框 */
-            box-shadow: 0 6px 15px var(--shadow-color-dark);
-            border: 1px solid var(--border-color); /* Default border color */
-            transition: border-color 0.3s ease-in-out; /* Transition for border color */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--border-color); /* Thicker default border */
+            transition: border-color var(--transition-speed) ease-in-out;
         }
 
         .video-frame iframe:hover {
-            border: 2px solid var(--accent-hover); /* Border changes to accent-hover color on hover */
+            border: 3px solid var(--accent-hover); /* More pronounced hover border */
         }
 
         .case h2 {
-            font-size: 3.2em; /* 调整案例标题字体大小 */
+            font-size: 3.8em; /* Larger case title */
             margin-top: 0;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
             color: var(--text-primary);
             font-weight: 700;
             text-align: left;
-            border-bottom: 3px solid var(--accent-color); /* 强调色底部边框 */
-            padding-bottom: 20px;
-            line-height: 1.2;
-            letter-spacing: -0.03em;
+            border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
+            padding-bottom: 25px;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
         }
 
         .case ul {
-            padding-left: 40px; /* 增加列表左侧填充 */
+            padding-left: 45px; /* More padding */
             margin-top: 0;
-            list-style-type: '👉 '; /* 自定义列表图标 */
+            list-style-type: '🚀 '; /* More thematic emoji */
             color: var(--text-primary);
             text-align: left;
         }
 
         .case li {
-            margin-bottom: 18px;
-            font-size: 1.18em; /* 稍大列表项字体 */
-            line-height: 1.8;
+            margin-bottom: 20px; /* More space between list items */
+            font-size: 1.25em; /* Larger list item font */
+            line-height: 1.7;
         }
 
         .case strong {
-            color: var(--accent-hover); /* 强调色高亮 */
+            color: var(--accent-hover);
             font-weight: 700;
         }
 
+        /* Separator Line */
         hr {
             border: none;
-            border-top: 2px dashed var(--border-color); /* 虚线分隔线 */
-            margin: 90px auto; /* 增加上下间距 */
-            width: 80%; /* 调整宽度 */
-            opacity: 0.5;
+            border-top: 3px dashed var(--border-color); /* Thicker dashed line */
+            margin: 100px auto; /* More vertical space */
+            width: 70%; /* Slightly narrower */
+            opacity: 0.6;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
         }
 
+        /* Contact Info */
         .contact-info {
             width: 100%;
-            max-width: 700px; /* 扩大联系信息区域宽度 */
-            margin-top: 100px;
-            padding: 50px;
+            max-width: 800px; /* Wider contact area */
+            margin-top: 120px; /* More space from last project */
+            padding: 60px; /* More padding */
             background-color: var(--bg-secondary);
-            border-radius: 15px;
-            box-shadow: 0 -6px 20px var(--shadow-color-dark);
+            border-radius: 20px;
+            box-shadow: 0 -8px 25px var(--shadow-dark);
             border: 1px solid var(--border-color);
             text-align: center;
             margin-left: auto;
             margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+            animation: rotateGlow 30s linear infinite; /* Subtle rotating glow */
+            z-index: -1;
+        }
+
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .contact-info p {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--text-primary);
-            font-size: 1.15em;
-            line-height: 1.7;
+            font-size: 1.2em; /* Larger font */
+            line-height: 1.8;
+            font-weight: 300;
         }
 
         .contact-info strong {
             font-weight: 700;
+            color: var(--accent-hover);
         }
 
         .contact-info a {
             color: var(--accent-color);
             text-decoration: none;
-            transition: color 0.2s ease, text-decoration 0.2s ease;
+            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
+            font-weight: 600;
         }
 
         .contact-info a:hover {
@@ -370,15 +400,258 @@
             color: var(--accent-hover);
         }
 
-        /* 移动端适配 */
-        @media (max-width: 992px) { /* Adjust breakpoint for better tablet support */
-            :root {
-                --nav-width: 100%; /* Full width for smaller screens */
-            }
+        /* --- Scroll to Top Button (New Element) --- */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 30px; /* Place at the bottom */
+            right: 30px; /* Place at the right */
+            z-index: 99; /* High z-index to be on top */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: var(--accent-color); /* Set a background color */
+            color: var(--bg-primary); /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px 20px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 1.1em; /* Increase font size */
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--shadow-dark);
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
 
+        #scrollToTopBtn:hover {
+            background-color: var(--accent-hover); /* Darker background on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
+        }
+
+        /* --- Project Modal (New Element) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-out forwards;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-secondary);
+            margin: auto;
+            padding: 40px 60px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 80%; /* Adjusted width */
+            max-width: 1000px; /* Maximum width */
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            position: relative;
+            animation: slideIn 0.4s ease-out forwards;
+            overflow-y: auto; /* Allow scrolling within modal content */
+            max-height: 90vh; /* Limit height to viewport */
+        }
+
+        .modal-close {
+            color: var(--text-secondary);
+            font-size: 40px;
+            font-weight: bold;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            cursor: pointer;
+            transition: color var(--transition-speed), transform var(--transition-speed);
+        }
+
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--accent-hover);
+            transform: scale(1.1);
+        }
+
+        .modal h2 {
+            color: var(--accent-color);
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-hover);
+            padding-bottom: 20px;
+        }
+
+        .modal-section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .modal-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .modal-section h3 {
+            color: var(--text-primary);
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            line-height: 1.3;
+        }
+
+        .modal-section p, .modal-section ul {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            padding-left: 0;
+        }
+
+        .modal-section ul {
+            list-style-type: '✨ ';
+            padding-left: 30px;
+        }
+
+        .modal-section li {
+            margin-bottom: 10px;
+        }
+
+        .modal-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-images img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .modal-images img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 140, 0, 0.1);
+        }
+
+        /* Modal Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* --- Scroll Indicator (New Element) --- */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--bg-tertiary);
+            z-index: 1000;
+        }
+
+        .scroll-indicator-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            transition: width 0.1s linear;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            body {
+                font-size: 17px;
+            }
+            .sidebar-nav {
+                padding: 40px 25px;
+                width: 250px;
+                min-width: 250px;
+            }
+            .sidebar-nav h3 {
+                font-size: 1.6em;
+                margin-bottom: 40px;
+            }
+            .sidebar-nav a {
+                padding: 12px 20px;
+                font-size: 1.15em;
+            }
+            main {
+                padding: 60px 40px;
+            }
+            h1 {
+                font-size: 4.5em;
+                margin-bottom: 25px;
+            }
+            .note-text {
+                font-size: 1.15em;
+                margin-bottom: 50px;
+            }
+            .resume-button {
+                padding: 16px 35px;
+                font-size: 1.2em;
+                margin-bottom: 80px;
+            }
+            .case-container {
+                gap: 70px;
+            }
+            .case {
+                padding: 50px;
+                gap: 50px;
+            }
+            .case h2 {
+                font-size: 3em;
+                margin-bottom: 30px;
+            }
+            .case li {
+                font-size: 1.15em;
+            }
+            .contact-info {
+                padding: 40px;
+                margin-top: 90px;
+            }
+            .contact-info p {
+                font-size: 1.1em;
+            }
+            .modal-content {
+                width: 90%;
+                padding: 30px 40px;
+            }
+            .modal h2 {
+                font-size: 3em;
+            }
+            .modal-section h3 {
+                font-size: 2em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 1.05em;
+            }
+        }
+
+        @media (max-width: 992px) { /* Tablets and smaller desktops */
             body {
                 flex-direction: column;
                 padding: 0;
+                font-size: 16px;
             }
             .sidebar-nav {
                 position: relative;
@@ -402,7 +675,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 15px; /* Adjust gap for better spacing */
+                gap: 15px;
                 width: 100%;
                 padding: 0 15px;
             }
@@ -429,20 +702,20 @@
             main {
                 padding: 40px 25px;
                 width: 100%;
-                max-width: 100%; /* Reset max-width for mobile */
+                max-width: 100%;
             }
-
             h1 {
-                font-size: 3.5em;
+                font-size: 3.8em;
                 text-align: center;
             }
             .note-text {
                 margin-bottom: 40px;
                 text-align: center;
                 max-width: 100%;
+                font-size: 1.1em;
             }
             .resume-button {
-                padding: 12px 25px;
+                padding: 14px 30px;
                 font-size: 1.1em;
                 margin-bottom: 60px;
             }
@@ -453,13 +726,13 @@
                 flex-direction: column;
                 align-items: center;
                 text-align: center;
-                padding: 45px;
-                gap: 45px;
-                max-width: 98%; /* More margin for smaller screens */
+                padding: 40px;
+                gap: 40px;
+                max-width: 98%;
             }
             .case-content {
                 flex-direction: column;
-                gap: 45px;
+                gap: 40px;
             }
             .case-description, .video-frame {
                 width: 100%;
@@ -471,12 +744,12 @@
                 margin-bottom: 30px;
             }
             .case ul {
-                padding-left: 20px; /* Adjust padding for mobile */
-                text-align: left; /* Keep list left-aligned for readability */
+                padding-left: 20px;
+                text-align: left;
             }
             .case li {
                 margin-bottom: 15px;
-                font-size: 1.1em;
+                font-size: 1.05em;
             }
             hr {
                 margin: 60px auto;
@@ -488,60 +761,74 @@
                 max-width: 98%;
             }
             .contact-info p {
-                font-size: 1.05em;
+                font-size: 1.0em;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 25px 30px;
+            }
+            .modal h2 {
+                font-size: 2.8em;
+            }
+            .modal-section h3 {
+                font-size: 1.8em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 1em;
             }
         }
 
-        @media (max-width: 576px) { /* Even smaller screens */
+        @media (max-width: 576px) { /* Mobile */
             body {
-                font-size: min(16px, 4.5vw);
+                font-size: 15px;
             }
             .sidebar-nav {
-                padding: 20px 10px;
+                padding: 15px 10px;
             }
             .sidebar-nav h3 {
-                font-size: 1.4em;
+                font-size: 1.2em;
+                margin-bottom: 15px;
             }
             .sidebar-nav ul {
-                gap: 10px;
+                gap: 8px;
                 padding: 0 5px;
             }
             .sidebar-nav a {
                 padding: 8px 12px;
-                font-size: 0.95em;
+                font-size: 0.9em;
             }
             main {
                 padding: 30px 15px;
             }
             h1 {
-                font-size: 2.8em;
+                font-size: 2.5em;
                 margin-bottom: 20px;
             }
             .note-text {
                 margin-bottom: 30px;
-                font-size: 1em;
+                font-size: 0.95em;
             }
             .resume-button {
                 padding: 10px 20px;
-                font-size: 0.95em;
+                font-size: 0.9em;
                 margin-bottom: 40px;
             }
             .case-container {
                 gap: 35px;
             }
             .case {
-                padding: 30px;
-                gap: 30px;
+                padding: 25px;
+                gap: 25px;
             }
             .case h2 {
-                font-size: 2.2em;
+                font-size: 2em;
                 margin-bottom: 20px;
             }
             .case ul {
                 padding-left: 15px;
             }
             .case li {
-                font-size: 1em;
+                font-size: 0.95em;
             }
             hr {
                 margin: 40px auto;
@@ -551,15 +838,41 @@
                 margin-top: 50px;
             }
             .contact-info p {
-                font-size: 1em;
+                font-size: 0.9em;
+            }
+            .modal-content {
+                padding: 20px 25px;
+                max-height: 95vh;
+            }
+            .modal h2 {
+                font-size: 2.2em;
+            }
+            .modal-close {
+                font-size: 30px;
+                top: 10px;
+                right: 20px;
+            }
+            .modal-section h3 {
+                font-size: 1.6em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 0.9em;
+            }
+            .modal-images {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
+    <div class="scroll-indicator">
+        <div class="scroll-indicator-bar"></div>
+    </div>
+
     <nav class="sidebar-nav">
         <h3>Lotto's 作品集</h3>
         <ul>
+            <li><a href="#about">关于我</a></li>
             <li><a href="#case1">XR 交互开发</a></li>
             <li><a href="#case2">SteamVR 博物馆</a></li>
             <li><a href="#case3">敦煌莫高窟项目</a></li>
@@ -568,8 +881,19 @@
     </nav>
 
     <main>
-        <h1>Lotto's XR 开发作品集</h1>
-        <p class="note-text">欢迎来到我的 XR 开发世界！这里展示了我近期在虚拟现实 (VR) 和增强现实 (AR) 领域的一些实践项目，旨在探索沉浸式体验的无限可能。由于视频资源托管于 YouTube，部分地区可能需要网络代理才能流畅观看。</p>
+        <section id="about" style="width: 100%; max-width: 1200px; text-align: center; margin-bottom: 100px;">
+            <img src="image_8f2be8.png-b80112f9-697c-4c72-bb6a-167c12061ef7" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);">
+            <h1 style="font-size: 4.5em; margin-bottom: 20px;">Lotto's XR 开发作品集</h1>
+            <p class="note-text" style="font-size: 1.3em; max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
+                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能，并将抽象概念转化为具象的互动成果。由于部分视频资源托管于 YouTube，部分地区可能需要网络代理才能流畅观看，敬请谅解。
+            </p>
+            <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
+                我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
+            </p>
+            <a href="resume_lotto_xr_developer.pdf" target="_blank" class="resume-button">下载我的简历</a>
+        </section>
+
+        <hr style="margin-top: 0;">
 
         <div class="case-container">
             <div class="case" id="case1">
@@ -583,9 +907,13 @@
                             <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
                             <li><strong>PXR_Manager 应用</strong>：深入探索<strong>无手柄交互</strong>的潜力，实践了包括<strong>虚拟钢琴演奏、多样手势指令识别和沉浸式射击体验</strong>在内的多项创新应用。</li>
                         </ul>
+                        <button class="view-details-btn" data-project="project1" style="
+                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                        ">查看更多细节</button>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/6" title="XR Interactive Development" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="XR Interactive Development Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -602,9 +930,13 @@
                             <li><strong>DoTween 插件</strong>：巧妙运用 DoTween 插件，为 UI 元素和场景动画增添流畅自然的过渡效果，提升用户体验。</li>
                             <li><strong>SteamVR 交互</strong>：针对 SteamVR 平台深度定制交互系统，实现包括<strong>自定义抓取手势</strong>和高效的<strong>手柄射线检测交互</strong>在内的多种互动方式。</li>
                         </ul>
+                        <button class="view-details-btn" data-project="project2" style="
+                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                        ">查看更多细节</button>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/7" title="SteamVR Museum Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="SteamVR Museum Project Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -622,9 +954,13 @@
                             <li><strong>拼接游戏模块</strong>：设计并实现了互动拼接游戏，精确运用<strong>碰撞检测、材质动态切换、严谨的顺序逻辑判断</strong>，确保游戏互动的准确性和趣味性。</li>
                             <li><strong>竞赛样题背景</strong>：此项目是为<strong>2025 年福建省职业院校技能大赛样题</strong>进行的实战演练，旨在模拟比赛环境，在<strong>4 小时限时内</strong>完成核心功能开发。部分细节尚待进一步优化。</li>
                         </ul>
+                        <button class="view-details-btn" data-project="project3" style="
+                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                        ">查看更多细节</button>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/8" title="Mogao Grottoes Museum Project" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Mogao Grottoes Museum Project Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -639,5 +975,274 @@
             <p><strong>期待您的来信！</strong></p>
         </div>
     </main>
+
+    <button id="scrollToTopBtn" title="回到顶部">顶部</button>
+
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent">
+                </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Smooth Scrolling for Navigation ---
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Active Navigation Highlight (Intersection Observer) ---
+        const sections = document.querySelectorAll('main section, .case, .contact-info');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
+
+        const observerOptions = {
+            root: null, // viewport
+            rootMargin: '0px',
+            threshold: 0.3 // percentage of section visible to be considered active
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+
+        // --- Scroll to Top Button Logic ---
+        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.addEventListener("click", function() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
+        // --- Scroll Progress Indicator ---
+        const scrollIndicatorBar = document.querySelector('.scroll-indicator-bar');
+        window.addEventListener('scroll', () => {
+            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollIndicatorBar.style.width = scrollPercent + '%';
+        });
+
+        // --- Project Modal Logic ---
+        const projectModal = document.getElementById('projectModal');
+        const modalCloseBtn = document.querySelector('.modal-close');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalContent = document.getElementById('modalContent');
+        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+        // Dummy data for detailed project content (replace with actual content)
+        const projectDetails = {
+            project1: {
+                title: "案例 1: PicoSDK 和 XRToolkit 交互开发深度解析",
+                content: `
+                    <div class="modal-section">
+                        <h3>项目概述</h3>
+                        <p>该项目致力于探索在 Pico 平台下 XR Interaction Toolkit 的高级应用，特别是无手柄交互的实现。通过对 PicoSDK 的深入集成和 XR Interaction Toolkit 的灵活运用，我们旨在打造一个高度自然、直观的虚拟现实交互体验。</p>
+                        <p>主要目标包括：实现精确的凝视、手势识别，开发逼真的攀爬系统，以及构建模块化的 Socket 交互。</p>
+                        <div class="modal-images">
+                            <img src="image_e93dd7.jpg-0896a41c-f1d2-40cf-a6ee-d29210e3fbbb" alt="PicoSDK Interaction Screenshot 1" style="width: 48%;">
+                            <img src="image_e8e39f.jpg-c2d45821-4c6a-4e68-a882-3380490db909" alt="PicoSDK Interaction Screenshot 2" style="width: 48%;">
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3>核心技术与挑战</h3>
+                        <ul>
+                            <li><strong>凝视交互的优化</strong>：我们使用了自定义的光线投射逻辑和 UI 高亮反馈，确保用户在没有手柄的情况下也能准确选择目标。主要的挑战在于如何减少误触和提高选择的精准性。</li>
+                            <li><strong>手势识别与追踪</strong>：结合 PicoSDK 提供的手部追踪数据，开发了一套手势识别算法，能够识别捏合、张开、指向等多种手势，并将其映射到游戏内动作。例如，在虚拟钢琴演奏中，每个手指的关节数据都被精确捕捉。</li>
+                            <li><strong>角色攀爬系统的实现</strong>：通过物理引擎和自定义碰撞体，实现了用户抓住虚拟物体即可攀爬的体验。难点在于平滑的角色移动和状态切换，以及在攀爬过程中如何处理重力和其他物理约束。</li>
+                            <li><strong>Socket 组件通信</strong>：设计了一套基于 Unity Event 和自定义接口的 Socket 交互系统，使得不同虚拟对象可以方便地进行插拔和互动，极大地提升了项目的可扩展性。</li>
+                            <li><strong>PXR_Manager 的高级应用</strong>：
+                                <ul>
+                                    <li><strong>虚拟钢琴演奏</strong>：通过手部追踪数据，实时模拟手指敲击钢琴键，并发出对应的音效。</li>
+                                    <li><strong>多样手势指令识别</strong>：开发了多组手势指令，如“挥手”激活菜单，“握拳”发射子弹等，使交互更加自然。</li>
+                                    <li><strong>沉浸式射击体验</strong>：结合手势控制射击方向和触发，为用户提供无手柄的射击乐趣。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3>学到的经验</h3>
+                        <p>在Pico平台进行无手柄XR开发，最大的体会是需要更精细地处理用户意图。手势交互虽然自然，但容错率较低，需要大量的测试和迭代来优化用户体验。同时，性能优化在移动XR设备上至关重要，URP和批处理是不可或缺的工具。</p>
+                        <p>未来，我将继续探索更多创新的无手柄交互模式，并深入研究AI在手势识别和行为预测方面的应用。</p>
+                    </div>
+                    <div class="modal-section">
+                        <h3>视频展示</h3>
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PicoSDK Advanced Interaction Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `
+            },
+            project2: {
+                title: "案例 2: SteamVR 博物馆项目实践详述",
+                content: `
+                    <div class="modal-section">
+                        <h3>项目概述</h3>
+                        <p>这个SteamVR博物馆项目旨在为用户提供一个沉浸式的虚拟艺术空间，用户可以自由探索展馆，近距离欣赏艺术品，并通过控制器进行互动。项目重点在于视觉效果优化和多样的交互设计。</p>
+                        <div class="modal-images">
+                            <img src="image_e8d7fe.jpg-1a8929b4-28d9-4523-88c0-ebf29bc89cf1" alt="SteamVR Museum Screenshot 1" style="width: 48%;">
+                            <img src="image_e93dd7.jpg-0896a41c-f1d2-40cf-a6ee-d29210e3fbbb" alt="SteamVR Museum Screenshot 2" style="width: 48%;">
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3>技术亮点与实施细节</h3>
+                        <ul>
+                            <li><strong>URP（通用渲染管线）的应用</strong>：全面采用 URP，对材质、Shader 进行优化，确保在保证高质量视觉效果的同时，达到 SteamVR 所需的流畅帧率。特别是针对复杂几何体和大量灯光场景，URP 的批处理和可编程性提供了极大的帮助。</li>
+                            <li><strong>精细化光照探针与烘焙</strong>：
+                                <ul>
+                                    <li>利用 Unity 的光照烘焙系统，为整个博物馆场景预计算光照，包括全局照明、阴影和间接光照。这显著提升了场景的真实感，并减少了运行时计算，提高了性能。</li>
+                                    <li>设置了大量光照探针，以捕捉环境光照信息，确保动态物体（如用户角色和可互动展品）在移动时能正确地融入场景光照环境。</li>
+                                </ul>
+                            </li>
+                            <li><strong>DoTween 插件在 UI 和动画中的运用</strong>：
+                                <ul>
+                                    <li><strong>UI 动画</strong>：菜单、信息面板的淡入淡出、缩放、移动等动画效果都通过 DoTween 实现，动画曲线平滑自然，提升了用户界面的响应感和舒适度。</li>
+                                    <li><strong>场景互动动画</strong>：例如，当用户触发某个展品时，展品模型会进行旋转、放大或显示信息，这些平滑的动画过渡都由 DoTween 驱动。</li>
+                                </ul>
+                            </li>
+                            <li><strong>SteamVR 平台深度交互定制</strong>：
+                                <ul>
+                                    <li><strong>自定义抓取手势</strong>：除了基础的抓取，我们还根据不同物品的特性（如画框、雕塑），设计了特定的抓取姿态，让用户感觉像是真正用手拿起物品。通过自定义 Hand Posing 和动画融合实现。</li>
+                                    <li><strong>手柄射线检测交互</strong>：实现了高效、精准的射线检测系统，用于远处物体的选择、按钮点击和导航。同时，为射线增加了视觉反馈（如目标高亮、粒子效果），增强用户感知。</li>
+                                    <li><strong>VR 传送系统</strong>：优化了传送逻辑，加入了平滑过渡效果和音效，减少晕动症。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3>心得体会</h3>
+                        <p>在SteamVR环境下开发，性能和沉浸感是两大核心。URP和光照烘焙在性能优化方面发挥了关键作用，而DoTween则让交互动画更上一层楼。自定义交互手势虽然增加了开发成本，但极大地提升了用户体验的真实性。</p>
+                    </div>
+                     <div class="modal-section">
+                        <h3>视频展示</h3>
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="SteamVR Museum Project Full Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `
+            },
+            project3: {
+                title: "案例 3: 敦煌莫高窟博物馆项目细节揭秘",
+                content: `
+                    <div class="modal-section">
+                        <h3>项目概述与背景</h3>
+                        <p>此项目是为了<strong>2025 年福建省职业院校技能大赛样题</strong>而进行的实战演练，旨在模拟比赛的高压环境，在<strong>4 小时限时内</strong>完成核心功能开发。项目以敦煌莫高窟为主题，将文化遗产与XR技术相结合，创造一个互动式的虚拟博物馆体验。</p>
+                        <p>虽然是在严格的时间限制下完成，但项目涵盖了XR应用的关键要素，展示了快速原型开发和核心功能实现的专业能力。</p>
+                         <div class="modal-images">
+                            <img src="image_e8e39f.jpg-c2d45821-4c6a-4e68-a882-3380490db909" alt="Dunhuang Project Screenshot 1" style="width: 48%;">
+                            <img src="image_e8d7fe.jpg-1a8929b4-28d9-4523-88c0-ebf29bc89cf1" alt="Dunhuang Project Screenshot 2" style="width: 48%;">
+                        </div>
+                    </div>
+                    <div class="modal-section">
+                        <h3>核心功能与技术实现</h3>
+                        <ul>
+                            <li><strong>协程函数的高效应用</strong>：
+                                <ul>
+                                    <li><strong>打字机效果</strong>：用于模拟文字逐字显示的效果，增加了信息呈现的生动性，通过协程控制每个字符的显示间隔。</li>
+                                    <li><strong>场景淡入淡出</strong>：实现了平滑的场景过渡效果，提升了用户在不同洞窟或区域间切换时的沉浸感，避免了生硬的画面切换。</li>
+                                    <li><strong>平滑移动</strong>：角色或相机在特定路径上的平滑移动，减少了晕动症的发生，提升了舒适度，例如导览路径的自动平移。</li>
+                                </ul>
+                                协程的合理运用确保了这些动画与游戏逻辑的分离，提高了代码的可读性和维护性。
+                            </li>
+                            <li><strong>XRTK（XR Interaction Toolkit）深度集成</strong>：
+                                <ul>
+                                    <li>利用 XRTK 提供的标准交互系统（如 Direct Interactor, Ray Interactor），快速构建了抓取、选择、按钮点击等基础 VR 交互。</li>
+                                    <li>针对敦煌主题，定制了部分交互行为，例如对壁画的放大查看、对雕塑的旋转鉴赏等，确保交互既符合通用性，又贴合内容需求。</li>
+                                </ul>
+                            </li>
+                            <li><strong>PXR 场景切换特效的开发</strong>：为 Pico 平台开发了多种独具特色的场景切换特效，例如基于粒子系统的空间穿梭效果，或是特定几何体的溶解、重构等，使得场景间的切换本身也成为一种视觉享受。</li>
+                            <li><strong>互动拼接游戏模块的实现</strong>：
+                                <ul>
+                                    <li><strong>碰撞检测</strong>：利用 Unity 的物理引擎，精确检测拼接块之间的碰撞，判断拼接是否成功。</li>
+                                    <li><strong>材质动态切换</strong>：根据拼接块的状态（未放置、正确放置、错误放置），动态切换其材质，提供即时视觉反馈。</li>
+                                    <li><strong>严谨的顺序逻辑判断</strong>：设计了复杂的逻辑来判断拼接块是否按照预设的正确顺序和位置进行，确保游戏的挑战性和准确性。此模块是比赛中的一个关键得分点，需要极高的逻辑严谨性。</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3>项目挑战与未来优化</h3>
+                        <p>最大的挑战是<strong>4 小时限时开发</strong>，这要求在功能实现和性能之间做快速权衡。因此，部分艺术资源和细节动画未能得到充分优化。未来计划对以下方面进行完善：</p>
+                        <ul>
+                            <li>增加更多敦煌文化元素的深度互动，例如对壁画内容的语音导览。</li>
+                            <li>进一步优化场景的几何体和纹理，以提升视觉 fidelity。</li>
+                            <li>扩展拼接游戏的复杂度和趣味性，引入更多互动谜题。</li>
+                            <li>对代码结构进行重构，提高可维护性和可扩展性。</li>
+                        </ul>
+                    </div>
+                    <div class="modal-section">
+                        <h3>视频展示</h3>
+                        <div class="video-frame">
+                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dunhuang Mogao Grottoes Project Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        viewDetailsButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const projectId = button.dataset.project;
+                const details = projectDetails[projectId];
+
+                if (details) {
+                    modalTitle.textContent = details.title;
+                    modalContent.innerHTML = details.content;
+                    projectModal.style.display = 'flex'; // Use flex to center the modal
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling body when modal is open
+                }
+            });
+        });
+
+        modalCloseBtn.addEventListener('click', () => {
+            projectModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        });
+
+        // Close modal when clicking outside of modal content
+        window.addEventListener('click', (event) => {
+            if (event.target === projectModal) {
+                projectModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Placeholder for real YouTube embeds
+        // In a real scenario, you'd fetch actual YouTube video IDs for each project.
+        // For demonstration, all iframes point to the same placeholder video.
+        document.querySelectorAll('iframe[src^="http://googleusercontent.com/youtube.com/"]').forEach(iframe => {
+            const youtubeId = iframe.src.split('/').pop(); // Extracts '10', '11', '12'
+            // Replace with actual YouTube embed URL format
+            iframe.src = `https://www.youtube.com/embed/dQw4w9WgXcQ`; // Using a placeholder video for example
+        });
+
+    </script>
 </body>
 </html>
