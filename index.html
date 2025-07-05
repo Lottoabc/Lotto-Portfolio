@@ -183,7 +183,7 @@
             color: var(--text-primary);
             font-weight: 800; /* 更粗的字体 */
             letter-spacing: -0.05em;
-            text-align: left;
+            text-align: center; /* Changed from left to center */
             width: 100%; /* 确保标题占据可用宽度 */
             max-width: 1100px; /* 与案例容器对齐 */
         }
@@ -193,10 +193,10 @@
             font-size: 1.15em; /* 稍大字体 */
             margin-bottom: 50px;
             max-width: 1100px; /* 与案例容器对齐 */
-            text-align: left;
+            text-align: center; /* Changed from left to center */
             line-height: 1.8;
-            margin-left: 0;
-            margin-right: auto;
+            margin-left: auto; /* Added to center */
+            margin-right: auto; /* Added to center */
         }
 
         .resume-button {
@@ -568,8 +568,10 @@
 </head>
 <body>
     <nav class="sidebar-nav">
-        <h3>Lotto's 作品集</h3> <ul>
-            <li><a href="#case1">XR 交互开发</a></li> <li><a href="#case2">SteamVR 博物馆</a></li>
+        <h3>Lotto's 作品集</h3>
+        <ul>
+            <li><a href="#case1">XR 交互开发</a></li>
+            <li><a href="#case2">SteamVR 博物馆</a></li>
             <li><a href="#case3">敦煌莫高窟项目</a></li>
             <li><a href="#contact">联系我</a></li>
         </ul>
@@ -581,7 +583,8 @@
 
         <div class="case-container">
             <div class="case" id="case1">
-                <div class="case-content"> <div class="case-description">
+                <div class="case-content">
+                    <div class="case-description">
                         <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
                         <ul>
                             <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
