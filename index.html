@@ -1,1174 +1,1089 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        /* CSS Variables - Enhanced and more detailed color palette */
-        :root {
-            --bg-primary: #080808; /* Even deeper primary background */
-            --bg-secondary: #1A1A1A; /* Card background, subtle difference */
-            --bg-tertiary: #282828; /* Used for subtle section breaks or internal elements */
-            --text-primary: #EDEDED; /* Brighter primary text for contrast */
-            --text-secondary: #B0B0B0; /* Softer secondary text */
-            --accent-color: #FF8C00; /* Vibrant Orange */
-            --accent-hover: #FFA500; /* Brighter Orange on hover */
-            --accent-light: rgba(255, 140, 0, 0.1); /* Light accent for backgrounds */
-            --border-color: #383838; /* Stronger border for definition */
-            --shadow-dark: rgba(0, 0, 0, 0.8); /* Deeper, more pronounced shadow */
-            --shadow-light-accent: rgba(255, 140, 0, 0.2); /* Accent-colored light shadow/glow */
-            --nav-width: 280px; /* Slightly wider navigation for more content */
-            --transition-speed: 0.3s; /* Global transition speed */
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* CSS Variables - Enhanced and more detailed color palette */
+        :root {
+            --bg-primary: #080808; /* Even deeper primary background */
+            --bg-secondary: #1A1A1A; /* Card background, subtle difference */
+            --bg-tertiary: #282828; /* Used for subtle section breaks or internal elements */
+            --text-primary: #EDEDED; /* Brighter primary text for contrast */
+            --text-secondary: #B0B0B0; /* Softer secondary text */
+            --accent-color: #FF8C00; /* Vibrant Orange */
+            --accent-hover: #FFA500; /* Brighter Orange on hover */
+            --accent-light: rgba(255, 140, 0, 0.1); /* Light accent for backgrounds */
+            --border-color: #383838; /* Stronger border for definition */
+            --shadow-dark: rgba(0, 0, 0, 0.8); /* Deeper, more pronounced shadow */
+            --shadow-light-accent: rgba(255, 140, 0, 0.2); /* Accent-colored light shadow/glow */
+            --nav-width: 280px; /* Slightly wider navigation for more content */
+            --transition-speed: 0.3s; /* Global transition speed */
+        }
 
-        /* Base styles */
-        body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-            margin: 0;
-            padding: 0;
-            font-size: 18px; /* Slightly larger base font for readability */
-            line-height: 1.7; /* Improved line height */
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-            background-image:
-                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.1"/></svg>'),
-                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 75%),
-                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
-                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
-                linear-gradient(to bottom, var(--bg-primary), #000000); /* Darker bottom gradient */
-            background-repeat: repeat;
-            background-blend-mode: overlay, normal, normal, normal, normal;
-            position: relative;
-            overflow-x: hidden;
-            box-sizing: border-box;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            justify-content: flex-start;
-            scroll-behavior: smooth;
-        }
+        /* Base styles */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            margin: 0;
+            padding: 0;
+            font-size: 18px; /* Slightly larger base font for readability */
+            line-height: 1.7; /* Improved line height */
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            background-image:
+                url('data:image/svg+xml;utf8,<svg width="2" height="2" viewBox="0 0 2 2" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="%231f1f1f" opacity="0.1"/><rect x="1" y="1" width="1" height="1" fill="%231f1f1f" opacity="0.1"/></svg>'),
+                radial-gradient(at 50% 0%, rgba(255, 255, 255, 0.05) 0%, transparent 75%),
+                radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+                radial-gradient(at 100% 100%, rgba(255, 255, 255, 0.04) 0%, transparent 65%),
+                linear-gradient(to bottom, var(--bg-primary), #000000); /* Darker bottom gradient */
+            background-repeat: repeat;
+            background-blend-mode: overlay, normal, normal, normal, normal;
+            position: relative;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            justify-content: flex-start;
+            scroll-behavior: smooth;
+        }
 
-        /* Dynamic background particle layer */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="0.8" fill="rgba(255, 255, 255, 0.15)"/></svg>');
-            background-size: 150px 150px; /* Larger and denser particles */
-            background-repeat: repeat;
-            opacity: 0.12;
-            z-index: -1;
-            animation: moveBackground 100s linear infinite, fadeBackground 15s ease-in-out infinite alternate;
-        }
+        /* Dynamic background particle layer */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg width="8" height="8" viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="0.8" fill="rgba(255, 255, 255, 0.15)"/></svg>');
+            background-size: 150px 150px; /* Larger and denser particles */
+            background-repeat: repeat;
+            opacity: 0.12;
+            z-index: -1;
+            animation: moveBackground 100s linear infinite, fadeBackground 15s ease-in-out infinite alternate;
+        }
 
-        @keyframes moveBackground {
-            from { background-position: 0 0; }
-            to { background-position: 300% 300%; } /* Slower, more expansive movement */
-        }
+        @keyframes moveBackground {
+            from { background-position: 0 0; }
+            to { background-position: 300% 300%; } /* Slower, more expansive movement */
+        }
 
-        @keyframes fadeBackground {
-            0% { opacity: 0.1; }
-            50% { opacity: 0.2; }
-            100% { opacity: 0.1; }
-        }
+        @keyframes fadeBackground {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 0.1; }
+        }
 
-        /* Sidebar Navigation */
-        .sidebar-nav {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: var(--nav-width);
-            min-width: var(--nav-width);
-            height: 100vh;
-            background-color: #050505; /* Even darker nav background */
-            padding: 50px 30px; /* Increased padding */
-            box-sizing: border-box;
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            overflow-y: auto;
-            z-index: 100;
-            box-shadow: 3px 0 15px var(--shadow-dark); /* Stronger shadow */
-        }
+        /* Sidebar Navigation */
+        .sidebar-nav {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: var(--nav-width);
+            min-width: var(--nav-width);
+            height: 100vh;
+            background-color: #050505; /* Even darker nav background */
+            padding: 50px 30px; /* Increased padding */
+            box-sizing: border-box;
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 3px 0 15px var(--shadow-dark); /* Stronger shadow */
+        }
 
-        .sidebar-nav h3 {
-            color: var(--accent-color);
-            font-size: 1.8em;
-            margin-top: 0;
-            margin-bottom: 50px; /* More space below title */
-            text-align: left;
-            width: 100%;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
+        .sidebar-nav h3 {
+            color: var(--accent-color);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 50px; /* More space below title */
+            text-align: left;
+            width: 100%;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
 
-        .sidebar-nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-        }
+        .sidebar-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            width: 100%;
+        }
 
-        .sidebar-nav li {
-            margin-bottom: 25px; /* Increased spacing */
-            width: 100%;
-        }
+        .sidebar-nav li {
+            margin-bottom: 25px; /* Increased spacing */
+            width: 100%;
+        }
 
-        .sidebar-nav a {
-            display: block;
-            color: var(--text-secondary);
-            text-decoration: none;
-            padding: 14px 22px; /* Larger clickable area */
-            border-radius: 12px; /* Softer corners */
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            text-align: left;
-            font-size: 1.2em; /* Larger font for readability */
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: 600;
-            position: relative;
-        }
+        .sidebar-nav a {
+            display: block;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 14px 22px; /* Larger clickable area */
+            border-radius: 12px; /* Softer corners */
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            text-align: left;
+            font-size: 1.2em; /* Larger font for readability */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 600;
+            position: relative;
+        }
 
-        .sidebar-nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 6px; /* Adjust underline position */
-            left: 22px;
-            width: 0%;
-            height: 3px; /* Thicker underline */
-            background-color: var(--accent-hover);
-            transition: width var(--transition-speed) ease-out;
-        }
+        .sidebar-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 6px; /* Adjust underline position */
+            left: 22px;
+            width: 0%;
+            height: 3px; /* Thicker underline */
+            background-color: var(--accent-hover);
+            transition: width var(--transition-speed) ease-out;
+        }
 
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            background-color: var(--accent-light);
-            color: var(--accent-hover);
-            transform: translateX(15px); /* More pronounced slide effect */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.1); /* Subtle accent glow */
-        }
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            background-color: var(--accent-light);
+            color: var(--accent-hover);
+            transform: translateX(15px); /* More pronounced slide effect */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 140, 0, 0.1); /* Subtle accent glow */
+        }
 
-        .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
-            width: calc(100% - 44px); /* Underline width adjusted for padding */
-        }
+        .sidebar-nav a:hover::after, .sidebar-nav a.active::after {
+            width: calc(100% - 44px); /* Underline width adjusted for padding */
+        }
 
-        /* Main Content Area */
-        main {
-            flex-grow: 1;
-            padding: 80px 60px; /* Increased padding for main content */
-            box-sizing: border-box;
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            max-width: calc(100% - var(--nav-width));
-            margin: 0 auto;
-            position: relative; /* For scroll indicators */
-        }
+        /* Main Content Area */
+        main {
+            flex-grow: 1;
+            padding: 80px 60px; /* Increased padding for main content */
+            box-sizing: border-box;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: calc(100% - var(--nav-width));
+            margin: 0 auto;
+            position: relative; /* For scroll indicators */
+        }
 
-        h1 {
-            font-size: 5.5em; /* Significantly larger heading */
-            margin-bottom: 30px;
-            color: var(--text-primary);
-            font-weight: 800;
-            letter-spacing: -0.06em;
-            text-align: center;
-            width: 100%;
-            max-width: 1400px;
-            line-height: 1.1;
-            text-shadow: 0 0 15px rgba(255, 140, 0, 0.2); /* Soft text shadow */
-        }
+        h1 {
+            font-size: 5.5em; /* Significantly larger heading */
+            margin-bottom: 30px;
+            color: var(--text-primary);
+            font-weight: 800;
+            letter-spacing: -0.06em;
+            text-align: center;
+            width: 100%;
+            max-width: 1400px;
+            line-height: 1.1;
+            text-shadow: 0 0 15px rgba(255, 140, 0, 0.2); /* Soft text shadow */
+        }
 
-        .note-text {
-            color: var(--text-secondary);
-            font-size: 1.25em; /* Larger and more prominent note */
-            margin-bottom: 60px;
-            max-width: 1000px;
-            text-align: center;
-            line-height: 1.9;
-            font-weight: 400;
-        }
+        .note-text {
+            color: var(--text-secondary);
+            font-size: 1.25em; /* Larger and more prominent note */
+            margin-bottom: 60px;
+            max-width: 1000px;
+            text-align: center;
+            line-height: 1.9;
+            font-weight: 400;
+        }
 
-        .resume-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--bg-primary);
-            padding: 18px 40px; /* Larger button */
-            border-radius: 15px; /* More rounded */
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.35em; /* Larger font */
-            margin-bottom: 100px;
-            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--accent-color); /* Thicker border */
-            text-transform: uppercase; /* Uppercase for more impact */
-            letter-spacing: 0.05em;
-        }
+        .resume-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--bg-primary);
+            padding: 18px 40px; /* Larger button */
+            border-radius: 15px; /* More rounded */
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.35em; /* Larger font */
+            margin-bottom: 100px;
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--accent-color); /* Thicker border */
+            text-transform: uppercase; /* Uppercase for more impact */
+            letter-spacing: 0.05em;
+        }
 
-        .resume-button:hover {
-            background-color: var(--accent-hover);
-            transform: translateY(-8px); /* More pronounced lift */
-            box-shadow: 0 15px 30px var(--shadow-dark), 0 0 25px var(--shadow-light-accent); /* Stronger glow */
-        }
+        .resume-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-8px); /* More pronounced lift */
+            box-shadow: 0 15px 30px var(--shadow-dark), 0 0 25px var(--shadow-light-accent); /* Stronger glow */
+        }
 
-        /* Project Cards (Cases) */
-        .case-container {
-            width: 100%;
-            max-width: 1400px; /* Wider container */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 90px; /* More space between cases */
-            padding: 0;
-        }
+        /* Project Cards (Cases) */
+        .case-container {
+            width: 100%;
+            max-width: 1400px; /* Wider container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 90px; /* More space between cases */
+            padding: 0;
+        }
 
-        .case {
-            display: flex;
-            flex-direction: column; /* Changed to column for top/bottom layout */
-            align-items: center; /* Center items in column layout */
-            width: 100%;
-            max-width: 100%;
-            gap: 40px; /* Adjusted gap for column layout */
-            text-align: center; /* Center text for column layout */
-            background-color: var(--bg-secondary);
-            border-radius: 20px; /* Even rounder corners */
-            box-shadow: 0 12px 30px var(--shadow-dark);
-            padding: 70px; /* Increased padding */
-            box-sizing: border-box;
-            border: 1px solid var(--border-color);
-            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(5px); /* Subtle blur for depth */
-            -webkit-backdrop-filter: blur(5px);
-        }
+        .case {
+            display: flex;
+            flex-direction: column; /* Changed to column for top/bottom layout */
+            align-items: center; /* Center items in column layout */
+            width: 100%;
+            max-width: 100%;
+            gap: 40px; /* Adjusted gap for column layout */
+            text-align: center; /* Center text for column layout */
+            background-color: var(--bg-secondary);
+            border-radius: 20px; /* Even rounder corners */
+            box-shadow: 0 12px 30px var(--shadow-dark);
+            padding: 70px; /* Increased padding */
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px); /* Subtle blur for depth */
+            -webkit-backdrop-filter: blur(5px);
+        }
 
-        .case:hover {
-            transform: translateY(-15px); /* More lift */
-            box-shadow: 0 25px 45px var(--shadow-dark), 0 0 40px var(--shadow-light-accent); /* Enhanced hover shadow and glow */
-        }
+        .case:hover {
+            transform: translateY(-15px); /* More lift */
+            box-shadow: 0 25px 45px var(--shadow-dark), 0 0 40px var(--shadow-light-accent); /* Enhanced hover shadow and glow */
+        }
 
-        .case-description {
-            width: 100%; /* Take full width in column layout */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            text-align: center; /* Center text description */
-        }
+        .case-description {
+            width: 100%; /* Take full width in column layout */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center; /* Center text description */
+        }
 
-        .video-frame {
-            width: 100%; /* Take full width in column layout */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 0; /* Allow iframe to shrink */
-        }
+        .video-frame {
+            width: 100%; /* Take full width in column layout */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 0; /* Allow iframe to shrink */
+        }
 
-        .video-frame iframe {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px var(--shadow-dark);
-            border: 2px solid var(--border-color); /* Thicker default border */
-            transition: border-color var(--transition-speed) ease-in-out;
-        }
+        .video-frame iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px var(--shadow-dark);
+            border: 2px solid var(--border-color); /* Thicker default border */
+            transition: border-color var(--transition-speed) ease-in-out;
+        }
 
-        .video-frame iframe:hover {
-            border: 3px solid var(--accent-hover); /* More pronounced hover border */
-        }
+        .video-frame iframe:hover {
+            border: 3px solid var(--accent-hover); /* More pronounced hover border */
+        }
 
-        .case h2 {
-            font-size: 3.8em; /* Larger case title */
-            margin-top: 0;
-            margin-bottom: 40px;
-            color: var(--text-primary);
-            font-weight: 700;
-            text-align: center; /* Center title */
-            border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
-            padding-bottom: 25px;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            width: fit-content; /* Make border fit content */
-            margin-left: auto;
-            margin-right: auto;
-        }
+        .case h2 {
+            font-size: 3.8em; /* Larger case title */
+            margin-top: 0;
+            margin-bottom: 40px;
+            color: var(--text-primary);
+            font-weight: 700;
+            text-align: center; /* Center title */
+            border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
+            padding-bottom: 25px;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            width: fit-content; /* Make border fit content */
+            margin-left: auto;
+            margin-right: auto;
+        }
 
-        .case ul {
-            padding-left: 0; /* Remove default padding as text is centered */
-            margin-top: 0;
-            list-style: none; /* Remove default list style */
-            color: var(--text-primary);
-            text-align: center; /* Center list items */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .case ul {
+            padding-left: 0; /* Remove default padding as text is centered */
+            margin-top: 0;
+            list-style: none; /* Remove default list style */
+            color: var(--text-primary);
+            text-align: center; /* Center list items */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-        .case li {
-            margin-bottom: 20px; /* More space between list items */
-            font-size: 1.25em; /* Larger list item font */
-            line-height: 1.7;
-            position: relative; /* For custom bullet */
-            padding-left: 35px; /* Space for custom bullet */
-            text-align: left; /* Align text within list item */
-        }
-        
-        .case li::before {
-            content: '🚀 '; /* More thematic emoji */
-            position: absolute;
-            left: 0;
-            color: var(--accent-hover);
-        }
+        .case li {
+            margin-bottom: 20px; /* More space between list items */
+            font-size: 1.25em; /* Larger list item font */
+            line-height: 1.7;
+            position: relative; /* For custom bullet */
+            padding-left: 35px; /* Space for custom bullet */
+            text-align: left; /* Align text within list item */
+        }
+        
+        .case li::before {
+            content: '🚀 '; /* More thematic emoji */
+            position: absolute;
+            left: 0;
+            color: var(--accent-hover);
+        }
 
-        .case strong {
-            color: var(--accent-hover);
-            font-weight: 700;
-        }
+        .case strong {
+            color: var(--accent-hover);
+            font-weight: 700;
+        }
 
-        /* Separator Line */
-        hr {
-            border: none;
-            border-top: 3px dashed var(--border-color); /* Thicker dashed line */
-            margin: 100px auto; /* More vertical space */
-            width: 70%; /* Slightly narrower */
-            opacity: 0.6;
-            background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
-            background-size: 100% 3px;
-            background-repeat: no-repeat;
-        }
+        /* Separator Line */
+        hr {
+            border: none;
+            border-top: 3px dashed var(--border-color); /* Thicker dashed line */
+            margin: 100px auto; /* More vertical space */
+            width: 70%; /* Slightly narrower */
+            opacity: 0.6;
+            background: linear-gradient(to right, transparent, var(--accent-color), transparent); /* Gradient dash */
+            background-size: 100% 3px;
+            background-repeat: no-repeat;
+        }
 
-        /* Contact Info */
-        .contact-info {
-            width: 100%;
-            max-width: 800px; /* Wider contact area */
-            margin-top: 120px; /* More space from last project */
-            padding: 60px; /* More padding */
-            background-color: var(--bg-secondary);
-            border-radius: 20px;
-            box-shadow: 0 -8px 25px var(--shadow-dark);
-            border: 1px solid var(--border-color);
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-            position: relative;
-            overflow: hidden;
-            z-index: 0;
-        }
+        /* Contact Info */
+        .contact-info {
+            width: 100%;
+            max-width: 800px; /* Wider contact area */
+            margin-top: 120px; /* More space from last project */
+            padding: 60px;
+            background-color: var(--bg-secondary);
+            border-radius: 20px;
+            box-shadow: 0 -8px 25px var(--shadow-dark);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            overflow: hidden;
+            z-index: 0;
+        }
 
-        .contact-info::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
-            animation: rotateGlow 30s linear infinite; /* Subtle rotating glow */
-            z-index: -1;
-        }
+        .contact-info::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+            animation: rotateGlow 30s linear infinite; /* Subtle rotating glow */
+            z-index: -1;
+        }
 
-        @keyframes rotateGlow {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
-        .contact-info p {
-            margin-bottom: 25px;
-            color: var(--text-primary);
-            font-size: 1.2em; /* Larger font */
-            line-height: 1.8;
-            font-weight: 300;
-        }
+        .contact-info p {
+            margin-bottom: 25px;
+            color: var(--text-primary);
+            font-size: 1.2em; /* Larger font */
+            line-height: 1.8;
+            font-weight: 300;
+        }
 
-        .contact-info strong {
-            font-weight: 700;
-            color: var(--accent-hover);
-        }
+        .contact-info strong {
+            font-weight: 700;
+            color: var(--accent-hover);
+        }
 
-        .contact-info a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
-            font-weight: 600;
-        }
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, text-decoration var(--transition-speed) ease;
+            font-weight: 600;
+        }
 
-        .contact-info a:hover {
-            text-decoration: underline;
-            color: var(--accent-hover);
-        }
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: var(--accent-hover);
+        }
 
-        /* --- Scroll to Top Button (New Element) --- */
-        #scrollToTopBtn {
-            display: none; /* Hidden by default */
-            position: fixed; /* Fixed position */
-            bottom: 30px; /* Place at the bottom */
-            right: 30px; /* Place at the right */
-            z-index: 99; /* High z-index to be on top */
-            border: none; /* Remove borders */
-            outline: none; /* Remove outline */
-            background-color: var(--accent-color); /* Set a background color */
-            color: var(--bg-primary); /* Text color */
-            cursor: pointer; /* Add a mouse pointer on hover */
-            padding: 15px 20px; /* Some padding */
-            border-radius: 10px; /* Rounded corners */
-            font-size: 1.1em; /* Increase font size */
-            font-weight: 600;
-            box-shadow: 0 4px 10px var(--shadow-dark);
-            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
-        }
+        /* --- Scroll to Top Button (New Element) --- */
+        #scrollToTopBtn {
+            display: none; /* Hidden by default */
+            position: fixed; /* Fixed position */
+            bottom: 30px; /* Place at the bottom */
+            right: 30px; /* Place at the right */
+            z-index: 99; /* High z-index to be on top */
+            border: none; /* Remove borders */
+            outline: none; /* Remove outline */
+            background-color: var(--accent-color); /* Set a background color */
+            color: var(--bg-primary); /* Text color */
+            cursor: pointer; /* Add a mouse pointer on hover */
+            padding: 15px 20px; /* Some padding */
+            border-radius: 10px; /* Rounded corners */
+            font-size: 1.1em; /* Increase font size */
+            font-weight: 600;
+            box-shadow: 0 4px 10px var(--shadow-dark);
+            transition: background-color var(--transition-speed), transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
 
-        #scrollToTopBtn:hover {
-            background-color: var(--accent-hover); /* Darker background on hover */
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
-        }
+        #scrollToTopBtn:hover {
+            background-color: var(--accent-hover); /* Darker background on hover */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px var(--shadow-dark), 0 0 10px var(--shadow-light-accent);
+        }
 
-        /* --- Project Modal (New Element) --- */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
-            backdrop-filter: blur(10px); /* Frosted glass effect */
-            -webkit-backdrop-filter: blur(10px);
-            animation: fadeIn 0.3s ease-out forwards;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        /* --- Project Modal (New Element) --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            animation: fadeIn 0.3s ease-out forwards;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-        .modal-content {
-            background-color: var(--bg-secondary);
-            margin: auto;
-            padding: 40px 60px;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            width: 80%; /* Adjusted width */
-            max-width: 1000px; /* Maximum width */
-            box-shadow: 0 15px 35px var(--shadow-dark);
-            position: relative;
-            animation: slideIn 0.4s ease-out forwards;
-            overflow-y: auto; /* Allow scrolling within modal content */
-            max-height: 90vh; /* Limit height to viewport */
-        }
+        .modal-content {
+            background-color: var(--bg-secondary);
+            margin: auto;
+            padding: 40px 60px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            width: 80%; /* Adjusted width */
+            max-width: 1000px; /* Maximum width */
+            box-shadow: 0 15px 35px var(--shadow-dark);
+            position: relative;
+            animation: slideIn 0.4s ease-out forwards;
+            overflow-y: auto; /* Allow scrolling within modal content */
+            max-height: 90vh; /* Limit height to viewport */
+        }
 
-        .modal-close {
-            color: var(--text-secondary);
-            font-size: 40px;
-            font-weight: bold;
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            cursor: pointer;
-            transition: color var(--transition-speed), transform var(--transition-speed);
-        }
+        .modal-close {
+            color: var(--text-secondary);
+            font-size: 40px;
+            font-weight: bold;
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            cursor: pointer;
+            transition: color var(--transition-speed), transform var(--transition-speed);
+        }
 
-        .modal-close:hover,
-        .modal-close:focus {
-            color: var(--accent-hover);
-            transform: scale(1.1);
-        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: var(--accent-hover);
+            transform: scale(1.1);
+        }
 
-        .modal h2 {
-            color: var(--accent-color);
-            font-size: 3.5em;
-            margin-bottom: 30px;
-            text-align: center;
-            border-bottom: 3px solid var(--accent-hover);
-            padding-bottom: 20px;
-        }
+        .modal h2 {
+            color: var(--accent-color);
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--accent-hover);
+            padding-bottom: 20px;
+        }
 
-        .modal-section {
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 1px dashed var(--border-color);
-        }
+        .modal-section {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
 
-        .modal-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
+        .modal-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
 
-        .modal-section h3 {
-            color: var(--text-primary);
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-            line-height: 1.3;
-        }
+        .modal-section h3 {
+            color: var(--text-primary);
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-color);
+            padding-left: 15px;
+            line-height: 1.3;
+        }
 
-        .modal-section p, .modal-section ul {
-            color: var(--text-secondary);
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            padding-left: 0;
-        }
+        .modal-section p, .modal-section ul {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            padding-left: 0;
+        }
 
-        .modal-section ul {
-            list-style-type: '✨ ';
-            padding-left: 30px;
-        }
+        .modal-section ul {
+            list-style-type: '✨ ';
+            padding-left: 30px;
+        }
 
-        .modal-section li {
-            margin-bottom: 10px;
-        }
+        .modal-section li {
+            margin-bottom: 10px;
+        }
 
-        .modal-images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-            margin-top: 20px;
-        }
+        .modal-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-        .modal-images img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
+        .modal-images img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
 
-        .modal-images img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 140, 0, 0.1);
-        }
+        .modal-images img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 140, 0, 0.1);
+        }
 
-        /* Modal Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        /* Modal Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
 
-        @keyframes slideIn {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
 
-        /* --- Scroll Indicator (New Element) --- */
-        .scroll-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: var(--bg-tertiary);
-            z-index: 1000;
-        }
+        /* --- Scroll Indicator (New Element) --- */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--bg-tertiary);
+            z-index: 1000;
+        }
 
-        .scroll-indicator-bar {
-            height: 100%;
-            width: 0%;
-            background-color: var(--accent-color);
-            transition: width 0.1s linear;
-        }
+        .scroll-indicator-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--accent-color);
+            transition: width 0.1s linear;
+        }
 
-        /* Responsive Design */
-        @media (max-width: 1200px) {
-            body {
-                font-size: 17px;
-            }
-            .sidebar-nav {
-                padding: 40px 25px;
-                width: 250px;
-                min-width: 250px;
-            }
-            .sidebar-nav h3 {
-                font-size: 1.6em;
-                margin-bottom: 40px;
-            }
-            .sidebar-nav a {
-                padding: 12px 20px;
-                font-size: 1.15em;
-            }
-            main {
-                padding: 60px 40px;
-            }
-            h1 {
-                font-size: 4.5em;
-                margin-bottom: 25px;
-            }
-            .note-text {
-                font-size: 1.15em;
-                margin-bottom: 50px;
-            }
-            .resume-button {
-                padding: 16px 35px;
-                font-size: 1.2em;
-                margin-bottom: 80px;
-            }
-            .case-container {
-                gap: 70px;
-            }
-            .case {
-                padding: 50px;
-                gap: 30px; /* Adjusted for column layout */
-            }
-            .case h2 {
-                font-size: 3em;
-                margin-bottom: 30px;
-            }
-            .case li {
-                font-size: 1.15em;
-            }
-            .contact-info {
-                padding: 40px;
-                margin-top: 90px;
-            }
-            .contact-info p {
-                font-size: 1.1em;
-            }
-            .modal-content {
-                width: 90%;
-                padding: 30px 40px;
-            }
-            .modal h2 {
-                font-size: 3em;
-            }
-            .modal-section h3 {
-                font-size: 2em;
-            }
-            .modal-section p, .modal-section ul {
-                font-size: 1.05em;
-            }
-        }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            body {
+                font-size: 17px;
+            }
+            .sidebar-nav {
+                padding: 40px 25px;
+                width: 250px;
+                min-width: 250px;
+            }
+            .sidebar-nav h3 {
+                font-size: 1.6em;
+                margin-bottom: 40px;
+            }
+            .sidebar-nav a {
+                padding: 12px 20px;
+                font-size: 1.15em;
+            }
+            main {
+                padding: 60px 40px;
+            }
+            h1 {
+                font-size: 4.5em;
+                margin-bottom: 25px;
+            }
+            .note-text {
+                font-size: 1.15em;
+                margin-bottom: 50px;
+            }
+            .resume-button {
+                padding: 16px 35px;
+                font-size: 1.2em;
+                margin-bottom: 80px;
+            }
+            .case-container {
+                gap: 70px;
+            }
+            .case {
+                padding: 50px;
+                gap: 30px; /* Adjusted for column layout */
+            }
+            .case h2 {
+                font-size: 3em;
+                margin-bottom: 30px;
+            }
+            .case li {
+                font-size: 1.15em;
+            }
+            .contact-info {
+                padding: 40px;
+                margin-top: 90px;
+            }
+            .contact-info p {
+                font-size: 1.1em;
+            }
+            .modal-content {
+                width: 90%;
+                padding: 30px 40px;
+            }
+            .modal h2 {
+                font-size: 3em;
+            }
+            .modal-section h3 {
+                font-size: 2em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 1.05em;
+            }
+        }
 
-        @media (max-width: 992px) { /* Tablets and smaller desktops */
-            body {
-                flex-direction: column;
-                padding: 0;
-                font-size: 16px;
-            }
-            .sidebar-nav {
-                position: relative;
-                width: 100%;
-                height: auto;
-                padding: 25px 20px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                overflow-y: visible;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-            }
-            .sidebar-nav h3 {
-                width: 100%;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-            .sidebar-nav ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-                width: 100%;
-                padding: 0 15px;
-            }
-            .sidebar-nav li {
-                margin-bottom: 0;
-                width: auto;
-            }
-            .sidebar-nav a {
-                padding: 10px 18px;
-                font-size: 1.05em;
-                text-align: center;
-                white-space: normal;
-                overflow: visible;
-                text-overflow: clip;
-                border-radius: 8px;
-            }
-            .sidebar-nav a:hover, .sidebar-nav a.active {
-                transform: none;
-            }
-            .sidebar-nav a::after {
-                content: none; /* Remove underline on mobile */
-            }
+        @media (max-width: 992px) { /* Tablets and smaller desktops */
+            body {
+                flex-direction: column;
+                padding: 0;
+                font-size: 16px;
+            }
+            .sidebar-nav {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 25px 20px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                overflow-y: visible;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+            }
+            .sidebar-nav h3 {
+                width: 100%;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            .sidebar-nav ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                width: 100%;
+                padding: 0 15px;
+            }
+            .sidebar-nav li {
+                margin-bottom: 0;
+                width: auto;
+            }
+            .sidebar-nav a {
+                padding: 10px 18px;
+                font-size: 1.05em;
+                text-align: center;
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip;
+                border-radius: 8px;
+            }
+            .sidebar-nav a:hover, .sidebar-nav a.active {
+                transform: none;
+            }
+            .sidebar-nav a::after {
+                content: none; /* Remove underline on mobile */
+            }
 
-            main {
-                padding: 40px 25px;
-                width: 100%;
-                max-width: 100%;
-            }
-            h1 {
-                font-size: 3.8em;
-                text-align: center;
-            }
-            .note-text {
-                margin-bottom: 40px;
-                text-align: center;
-                max-width: 100%;
-                font-size: 1.1em;
-            }
-            .resume-button {
-                padding: 14px 30px;
-                font-size: 1.1em;
-                margin-bottom: 60px;
-            }
-            .case-container {
-                gap: 50px;
-            }
-            .case {
-                flex-direction: column; /* Ensure column layout */
-                align-items: center;
-                text-align: center;
-                padding: 40px;
-                gap: 30px; /* Adjusted for column layout */
-                max-width: 98%;
-            }
-            .case-description, .video-frame {
-                width: 100%;
-                padding: 0;
-            }
-            .case h2 {
-                font-size: 2.8em;
-                text-align: center;
-                margin-bottom: 30px;
-            }
-            .case ul {
-                padding-left: 20px;
-                text-align: left;
-            }
-            .case li {
-                margin-bottom: 15px;
-                font-size: 1.05em;
-            }
-            hr {
-                margin: 60px auto;
-                width: 90%;
-            }
-            .contact-info {
-                padding: 35px;
-                margin-top: 70px;
-                max-width: 98%;
-            }
-            .contact-info p {
-                font-size: 1.0em;
-            }
-            .modal-content {
-                width: 95%;
-                padding: 25px 30px;
-            }
-            .modal h2 {
-                font-size: 2.8em;
-            }
-            .modal-section h3 {
-                font-size: 1.8em;
-            }
-            .modal-section p, .modal-section ul {
-                font-size: 1em;
-            }
-        }
+            main {
+                padding: 40px 25px;
+                width: 100%;
+                max-width: 100%;
+            }
+            h1 {
+                font-size: 3.8em;
+                text-align: center;
+            }
+            .note-text {
+                margin-bottom: 40px;
+                text-align: center;
+                max-width: 100%;
+                font-size: 1.1em;
+            }
+            .resume-button {
+                padding: 14px 30px;
+                font-size: 1.1em;
+                margin-bottom: 60px;
+            }
+            .case-container {
+                gap: 50px;
+            }
+            .case {
+                flex-direction: column; /* Ensure column layout */
+                align-items: center;
+                text-align: center;
+                padding: 40px;
+                gap: 30px; /* Adjusted for column layout */
+                max-width: 98%;
+            }
+            .case-description, .video-frame {
+                width: 100%;
+                padding: 0;
+            }
+            .case h2 {
+                font-size: 2.8em;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+            .case ul {
+                padding-left: 20px;
+                text-align: left;
+            }
+            .case li {
+                margin-bottom: 15px;
+                font-size: 1.05em;
+            }
+            hr {
+                margin: 60px auto;
+                width: 90%;
+            }
+            .contact-info {
+                padding: 35px;
+                margin-top: 70px;
+                max-width: 98%;
+            }
+            .contact-info p {
+                font-size: 1.0em;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 25px 30px;
+            }
+            .modal h2 {
+                font-size: 2.8em;
+            }
+            .modal-section h3 {
+                font-size: 1.8em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 1em;
+            }
+        }
 
-        @media (max-width: 576px) { /* Mobile */
-            body {
-                font-size: 15px;
-            }
-            .sidebar-nav {
-                padding: 15px 10px;
-            }
-            .sidebar-nav h3 {
-                font-size: 1.2em;
-                margin-bottom: 15px;
-            }
-            .sidebar-nav ul {
-                gap: 8px;
-                padding: 0 5px;
-            }
-            .sidebar-nav a {
-                padding: 8px 12px;
-                font-size: 0.9em;
-            }
-            main {
-                padding: 30px 15px;
-            }
-            h1 {
-                font-size: 2.5em;
-                margin-bottom: 20px;
-            }
-            .note-text {
-                margin-bottom: 30px;
-                font-size: 0.95em;
-            }
-            .resume-button {
-                padding: 10px 20px;
-                font-size: 0.9em;
-                margin-bottom: 40px;
-            }
-            .case-container {
-                gap: 35px;
-            }
-            .case {
-                padding: 25px;
-                gap: 25px;
-            }
-            .case h2 {
-                font-size: 2em;
-                margin-bottom: 20px;
-            }
-            .case ul {
-                padding-left: 15px;
-            }
-            .case li {
-                font-size: 0.95em;
-            }
-            hr {
-                margin: 40px auto;
-            }
-            .contact-info {
-                padding: 25px;
-                margin-top: 50px;
-            }
-            .contact-info p {
-                font-size: 0.9em;
-            }
-            .modal-content {
-                padding: 20px 25px;
-                max-height: 95vh;
-            }
-            .modal h2 {
-                font-size: 2.2em;
-            }
-            .modal-close {
-                font-size: 30px;
-                top: 10px;
-                right: 20px;
-            }
-            .modal-section h3 {
-                font-size: 1.6em;
-            }
-            .modal-section p, .modal-section ul {
-                font-size: 0.9em;
-            }
-            .modal-images {
-                flex-direction: column;
-            }
-        }
-    </style>
+        @media (max-width: 576px) { /* Mobile */
+            body {
+                font-size: 15px;
+            }
+            .sidebar-nav {
+                padding: 15px 10px;
+            }
+            .sidebar-nav h3 {
+                font-size: 1.2em;
+                margin-bottom: 15px;
+            }
+            .sidebar-nav ul {
+                gap: 8px;
+                padding: 0 5px;
+            }
+            .sidebar-nav a {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+            main {
+                padding: 30px 15px;
+            }
+            h1 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+            .note-text {
+                margin-bottom: 30px;
+                font-size: 0.95em;
+            }
+            .resume-button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                margin-bottom: 40px;
+            }
+            .case-container {
+                gap: 35px;
+            }
+            .case {
+                padding: 25px;
+                gap: 25px;
+            }
+            .case h2 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+            .case ul {
+                padding-left: 15px;
+            }
+            .case li {
+                font-size: 0.95em;
+            }
+            hr {
+                margin: 40px auto;
+            }
+            .contact-info {
+                padding: 25px;
+                margin-top: 50px;
+            }
+            .contact-info p {
+                font-size: 0.9em;
+            }
+            .modal-content {
+                padding: 20px 25px;
+                max-height: 95vh;
+            }
+            .modal h2 {
+                font-size: 2.2em;
+            }
+            .modal-close {
+                font-size: 30px;
+                top: 10px;
+                right: 20px;
+            }
+            .modal-section h3 {
+                font-size: 1.6em;
+            }
+            .modal-section p, .modal-section ul {
+                font-size: 0.9em;
+            }
+            .modal-images {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="scroll-indicator">
-        <div class="scroll-indicator-bar"></div>
-    </div>
+    <div class="scroll-indicator">
+        <div class="scroll-indicator-bar"></div>
+    </div>
 
-    <nav class="sidebar-nav">
-        <h3>Lotto's 作品集</h3>
-        <ul>
-            <li><a href="#about">关于我</a></li>
-            <li><a href="#case1">XR 交互开发</a></li>
-            <li><a href="#case2">SteamVR 博物馆</a></li>
-            <li><a href="#case3">敦煌莫高窟项目</a></li>
-            <li><a href="#contact">联系我</a></li>
-        </ul>
-    </nav>
+    <nav class="sidebar-nav">
+        <h3>Lotto's 作品集</h3>
+        <ul>
+            <li><a href="#about">关于我</a></li>
+            <li><a href="#case1">XR 交互开发</a></li>
+            <li><a href="#case2">SteamVR 博物馆</a></li>
+            <li><a href="#case3">敦煌莫高窟项目</a></li>
+            <li><a href="#contact">联系我</a></li>
+        </ul>
+    </nav>
 
-    <main>
-        <section id="about" style="width: 100%; max-width: 1200px; text-align: center; margin-bottom: 100px;">
-            <img src="https://lottoabc.github.io/SomeStudyNote/img/profile.jpg" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);">
-            <h1 style="font-size: 4.5em; margin-bottom: 20px;">Lotto's XR 开发作品集</h1>
-            <p class="note-text" style="font-size: 1.3em; max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
-                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能。
-            </p>
-            <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
-                我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
-            </p>
-            <a href="resume_lotto_xr_developer.pdf" target="_blank" class="resume-button">下载我的简历</a>
-        </section>
+    <main>
+        <section id="about" style="width: 100%; max-width: 1200px; text-align: center; margin-bottom: 100px;">
+            <img src="https://lottoabc.github.io/SomeStudyNote/img/profile.jpg" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);">
+            <h1 style="font-size: 4.5em; margin-bottom: 20px;">Lotto's XR 开发作品集</h1>
+            <p class="note-text" style="font-size: 1.3em; max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
+                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能。
+            </p>
+            <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
+                我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
+            </p>
+            <a href="resume_lotto_xr_developer.pdf" target="_blank" class="resume-button">下载我的简历</a>
+        </section>
 
-        <hr style="margin-top: 0;">
+        <hr style="margin-top: 0;">
 
-        <div class="case-container">
-            <div class="case" id="case1">
-                <div class="case-description">
-                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                    <ul>
-                        <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
-                        <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
-                        <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
-                        <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
-                        <li><strong>PXR_Manager 应用</strong>：深入探索无手柄交互的潜力，实践了包括虚拟钢琴演奏、多样手势指令识别和沉浸式射击体验在内的多项创新应用。</li>
-                    </ul>
-                    <button class="view-details-btn" data-project="project1" style="
-                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                    ">查看更多细节</button>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
+        <div class="case-container">
+            <div class="case" id="case1">
+                <div class="case-description">
+                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                    <ul>
+                        <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
+                        <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
+                        <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
+                        <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
+                        <li><strong>PXR_Manager 组件</strong>：深入集成 Pico SDK 的核心管理功能，优化设备性能。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://youtu.be/lkxX5npWaH0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
 
-            <hr>
+            <div class="case" id="case2">
+                <div class="case-description">
+                    <h2>案例 2: SteamVR 博物馆交互开发</h2>
+                    <ul>
+                        <li><strong>沉浸式导览</strong>：在虚拟博物馆中实现自由漫游与艺术品互动。</li>
+                        <li><strong>展品信息系统</strong>：通过交互式面板展示详细的展品介绍和背景故事。</li>
+                        <li><strong>多语言支持</strong>：集成多语言切换功能，满足不同用户的需求。</li>
+                        <li><strong>性能优化</strong>：针对 VR 环境进行渲染优化，确保流畅的体验。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://youtu.be/VGgtfCvVX90" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
 
-            <div class="case" id="case2">
-                <div class="case-description">
-                    <h2>案例 2: SteamVR 博物馆项目</h2>
-                    <ul>
-                        <li><strong>VR 场景漫游</strong>：构建支持 SteamVR 的虚拟博物馆场景，提供自由的探索体验。</li>
-                        <li><strong>多媒体展示</strong>：集成图片、文字、音频、视频等多种媒体形式，丰富展览内容。</li>
-                        <li><strong>交互式展品</strong>：设计可互动展品，提升用户参与度和学习兴趣。</li>
-                        <li><strong>性能优化</strong>：针对 VR 环境进行性能优化，确保流畅的帧率和沉浸感。</li>
-                        <li><strong>跨平台兼容</strong>：确保项目在不同的 SteamVR 兼容头戴设备上稳定运行。</li>
-                    </ul>
-                    <button class="view-details-btn" data-project="project2" style="
-                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                    ">查看更多细节</button>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
+            <div class="case" id="case3">
+                <div class="case-description">
+                    <h2>案例 3: 敦煌莫高窟 VR 交互项目</h2>
+                    <ul>
+                        <li><strong>文化遗产数字化</strong>：高精度还原莫高窟场景，提供沉浸式文化体验。</li>
+                        <li><strong>壁画细节交互</strong>：用户可近距离观察壁画细节，并触发相关语音讲解。</li>
+                        <li><strong>历史信息集成</strong>：结合历史资料，提供丰富的背景知识和文化解读。</li>
+                        <li><strong>跨平台兼容</strong>：优化项目以支持多种 VR 设备。</li>
+                    </ul>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://youtube.com/shorts/RVqD44g99II" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
 
-            <hr>
+        <hr>
 
-            <div class="case" id="case3">
-                <div class="case-description">
-                    <h2>案例 3: 敦煌莫高窟数字孪生项目</h2>
-                    <ul>
-                        <li><strong>高精度模型构建</strong>：利用摄影测量和三维重建技术，还原莫高窟壁画和洞窟结构。</li>
-                        <li><strong>沉浸式文化体验</strong>：用户可以在虚拟环境中自由穿梭，近距离欣赏文化遗产。</li>
-                        <li><strong>智能导览系统</strong>：提供多语言解说、历史背景介绍和互动问答。</li>
-                        <li><strong>光影复原技术</strong>：模拟洞窟内自然光照变化，展现壁画在不同光线下的色彩和细节。</li>
-                        <li><strong>教育与研究应用</strong>：为文化遗产保护、教育和学术研究提供新的工具和平台。</li>
-                    </ul>
-                    <button class="view-details-btn" data-project="project3" style="
-                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                    ">查看更多细节</button>
-                </div>
-                <div class="video-frame">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div>
+        <section id="contact" class="contact-info">
+            <p>如果您对我的作品感兴趣，或有任何合作意向，欢迎随时与我联系！</p>
+            <p>邮箱: <strong>your.email@example.com</strong></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+            <p>GitHub: <a href="https://github.com/yourgithub" target="_blank">github.com/yourgithub</a></p>
+        </section>
+    </main>
 
-        <section id="contact" class="contact-info">
-            <p><strong>感谢您访问我的作品集！</strong></p>
-            <p>如果您对我的项目感兴趣，或有任何合作意向，欢迎通过以下方式联系我：</p>
-            <p>邮箱: <a href="mailto:lotto.developer@email.com">lotto.developer@email.com</a></p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/lotto-developer" target="_blank">linkedin.com/in/lotto-developer</a></p>
-        </section>
-    </main>
+    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">回到顶部</button>
 
-    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">顶部</button>
+        <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <h2 id="modalTitle"></h2>
-            <div id="modalBody"></div>
-        </div>
-    </div>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
 
-    <script>
-        // Smooth scrolling for sidebar navigation
-        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Remove active from all and add to clicked
-                document.querySelectorAll('.sidebar-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
 
-        // Highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('main section, .case');
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
+                // Update active class
+                document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
 
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - sectionHeight / 3) {
-                    current = section.getAttribute('id');
-                }
-            });
+        // Highlight active section in sidebar on scroll
+        const sections = document.querySelectorAll('main section, .case');
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjusted offset
+                    current = section.getAttribute('id');
+                }
+            });
 
-            // Show/hide scroll to top button
-            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                scrollToTopBtn.style.display = "block";
-            } else {
-                scrollToTopBtn.style.display = "none";
-            }
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.href.includes(current)) {
+                    link.classList.add('active');
+                }
+            });
 
-            // Scroll indicator
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
-        });
+            // Show/hide scroll to top button
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                document.getElementById("scrollToTopBtn").style.display = "block";
+            } else {
+                document.getElementById("scrollToTopBtn").style.display = "none";
+            }
 
-        // Scroll to top function
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
+            // Update scroll indicator bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
+        });
 
-        // Modal functionality
-        const modal = document.getElementById("projectModal");
-        const modalCloseBtn = document.getElementsByClassName("modal-close")[0];
-        const modalTitle = document.getElementById("modalTitle");
-        const modalBody = document.getElementById("modalBody");
+        // Scroll to top function
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
 
-        // Data for modal content
-        const projectDetails = {
-            project1: {
-                title: "案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发",
-                content: `
-                    <div class="modal-section">
-                        <h3>项目概述</h3>
-                        <p>此项目深入探索了<strong>Pico SDK</strong>和<strong>XR Interaction Toolkit</strong>在XR应用开发中的融合与创新。我们致力于构建一个高度沉浸式、交互丰富的虚拟体验，通过多种先进的交互方式，让用户能够以前所未有的自然和直观的方式与虚拟世界进行互动。</p>
-                        <p>主要目标是展示在Pico设备上实现复杂交互的潜力，并为未来的XR应用开发提供可靠的实践范例。</p>
-                    </div>
-                    <div class="modal-section">
-                        <h3>核心交互技术</h3>
-                        <ul>
-                            <li><strong>凝视交互</strong>：利用Pico设备的高精度视线追踪能力，实现基于用户眼球焦点的高效UI选择和对象互动，大大简化了操作流程。</li>
-                            <li><strong>手势识别与追踪</strong>：集成先进的手部追踪技术，允许用户使用自然手势（如抓取、捏合、指向等）直接操控虚拟物体，增强了交互的沉浸感和直观性。</li>
-                            <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，结合物理模拟和动画，为用户带来真实的身体反馈，极大地提升了VR游戏的沉浸感和挑战性。</li>
-                            <li><strong>Socket 组件交互</strong>：通过模块化的<strong>Socket组件</strong>系统，实现了不同虚拟物体之间的灵活通信和互动逻辑，提升了项目的可扩展性和维护性。</li>
-                        </ul>
-                    </div>
-                    <div class="modal-section">
-                        <h3>PXR_Manager 应用实践</h3>
-                        <p>我们基于<strong>PXR_Manager</strong>进行了一系列创新应用，充分展示了无手柄交互的巨大潜力：</p>
-                        <ul>
-                            <li><strong>虚拟钢琴演奏</strong>：用户可以通过手部追踪，在虚拟钢琴上进行自由演奏，实时反馈音效和触感模拟。</li>
-                            <li><strong>多样手势指令识别</strong>：开发了一套灵活的手势识别系统，用户可以通过自定义手势触发不同的应用功能或游戏指令。</li>
-                            <li><strong>沉浸式射击体验</strong>：利用手部姿态进行瞄准和射击，结合触觉反馈，为用户提供更为真实的射击感受。</li>
-                        </ul>
-                    </div>
-                    <div class="modal-section">
-                        <h3>技术栈</h3>
-                        <p><strong>引擎</strong>: Unity 3D</p>
-                        <p><strong>SDK</strong>: Pico SDK, XR Interaction Toolkit</p>
-                        <p><strong>编程语言</strong>: C#</p>
-                    </div>
-                    <div class="modal-images">
-                        <img src="https://via.placeholder.com/400x250?text=Project+1+Image+1" alt="Project 1 Image 1">
-                        <img src="https://via.placeholder.com/400x250?text=Project+1+Image+2" alt="Project 1 Image 2">
-                    </div>
-                `
-            },
-            project2: {
-                title: "案例 2: SteamVR 博物馆项目",
-                content: `
-                    <div class="modal-section">
-                        <h3>项目概述</h3>
-                        <p>这是一个为SteamVR平台开发的虚拟博物馆项目，旨在通过VR技术为用户提供一个高度沉浸式、互动性强的文化艺术体验。用户可以在虚拟空间中自由漫游，欣赏各类数字化的艺术品和历史文物。</p>
-                    </div>
-                    <div class="modal-section">
-                        <h3>核心功能与亮点</h3>
-                        <ul>
-                            <li><strong>VR 场景漫游</strong>：用户可以通过VR头显在精细建模的博物馆环境中自由行走和探索，享受身临其境的漫游体验。</li>
-                            <li><strong>多媒体展示</strong>：博物馆内集成图片、文字、音频、视频等多种媒体形式，为展品提供丰富的背景信息和深度解读。</li>
-                            <li><strong>交互式展品</strong>：部分展品设计了互动机制，如旋转模型、播放讲解视频、触发特定动画等，提升用户参与度和学习兴趣。</li>
-                            <li><strong>性能优化</strong>：针对VR设备的性能要求，项目进行了细致的优化，确保在主流VR硬件上都能保持流畅的帧率，减少晕动症。</li>
-                            <li><strong>跨平台兼容性</strong>：项目基于SteamVR开发，兼容HTC Vive、Oculus Rift、Valve Index等多种主流VR头戴设备。</li>
-                        </ul>
-                    </div>
-                    <div class="modal-section">
-                        <h3>技术栈</h3>
-                        <p><strong>引擎</strong>: Unity 3D</p>
-                        <p><strong>SDK</strong>: SteamVR SDK</p>
-                        <p><strong>编程语言</strong>: C#</p>
-                    </div>
-                    <div class="modal-images">
-                        <img src="https://via.placeholder.com/400x250?text=Project+2+Image+1" alt="Project 2 Image 1">
-                        <img src="https://via.placeholder.com/400x250?text=Project+2+Image+2" alt="Project 2 Image 2">
-                    </div>
-                `
-            },
-            project3: {
-                title: "案例 3: 敦煌莫高窟数字孪生项目",
-                content: `
-                    <div class="modal-section">
-                        <h3>项目概述</h3>
-                        <p>此项目致力于通过高精度数字孪生技术，将世界文化遗产敦煌莫高窟在虚拟世界中进行还原。用户可以通过VR设备进入数字化的莫高窟，近距离欣赏珍贵的壁画和彩塑，感受历史文化的魅力。</p>
-                    </div>
-                    <div class="modal-section">
-                        <h3>核心技术与特色</h3>
-                        <ul>
-                            <li><strong>高精度模型构建</strong>：利用先进的摄影测量、激光扫描和三维重建技术，对莫高窟的洞窟结构、壁画细节和彩塑进行厘米级的高精度还原，确保数字内容的真实性和精确性。</li>
-                            <li><strong>沉浸式文化体验</strong>：用户可以在虚拟环境中自由穿梭于不同洞窟之间，通过VR技术获得身临其境的文化遗产体验，突破地域和时间的限制。</li>
-                            <li><strong>智能导览系统</strong>：集成了多语言解说系统、历史背景介绍、壁画故事解读和互动问答功能，提供深度且个性化的学习体验。</li>
-                            <li><strong>光影复原技术</strong>：模拟洞窟内自然光照随时间变化的规律，展现壁画在不同光线下的色彩、纹理和细节，重现其历史原貌。</li>
-                            <li><strong>教育与研究应用</strong>：该数字孪生平台不仅是文化展示的窗口，更可作为考古学、艺术史研究和公众教育的强大工具，为文化遗产的保护、传承和创新利用提供新的可能性。</li>
-                        </ul>
-                    </div>
-                    <div class="modal-section">
-                        <h3>技术栈</h3>
-                        <p><strong>引擎</strong>: Unity 3D</p>
-                        <p><strong>建模软件</strong>: Agisoft Metashape, Blender</p>
-                        <p><strong>编程语言</strong>: C#</p>
-                    </div>
-                    <div class="modal-images">
-                        <img src="https://via.placeholder.com/400x250?text=Project+3+Image+1" alt="Project 3 Image 1">
-                        <img src="https://via.placeholder.com/400x250?text=Project+3+Image+2" alt="Project 3 Image 2">
-                    </div>
-                `
-            }
-        };
+        // Modal functionality
+        const modal = document.getElementById("projectModal");
+        const span = document.getElementsByClassName("modal-close")[0];
 
-        document.querySelectorAll('.view-details-btn').forEach(button => {
-            button.addEventListener('click', function() {
-                const projectId = this.dataset.project;
-                const details = projectDetails[projectId];
-                if (details) {
-                    modalTitle.textContent = details.title;
-                    modalBody.innerHTML = details.content;
-                    modal.style.display = "flex"; // Use flex to center
-                }
-            });
-        });
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
 
-        modalCloseBtn.addEventListener('click', function() {
-            modal.style.display = "none";
-            modalBody.innerHTML = ''; // Clear content on close
-        });
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-                modalBody.innerHTML = ''; // Clear content on close
-            }
-        });
-    </script>
+        // Function to open modal with project details
+        function openProjectModal(title, contentHtml) {
+            document.getElementById("modalTitle").innerText = title;
+            document.getElementById("modalContent").innerHTML = contentHtml;
+            modal.style.display = "flex";
+        }
+
+        // Example usage (you would call this from your "查看项目概述" buttons)
+        // For example:
+        /*
+        document.getElementById('openCase1Modal').onclick = function() {
+            openProjectModal(
+                '案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发 - 概述',
+                `
+                <div class="modal-section">
+                    <h3>项目背景与目标</h3>
+                    <p>此项目旨在探索 PicoVR 设备在 XR 交互开发中的潜力，通过集成 PicoSDK 和 Unity XR Interaction Toolkit，实现多种先进的交互方式，为用户提供流畅自然的沉浸式体验。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>核心技术与实现</h3>
+                    <ul>
+                        <li><strong>凝视交互</strong>：利用 PicoVR 的眼动追踪能力，实现基于用户凝视点的 UI 交互和对象选择。</li>
+                        <li><strong>手势识别与追踪</strong>：结合 Pico 的手部追踪功能，用户可以通过自然手势（如抓取、捏合、指向）与虚拟对象进行互动，无需控制器。</li>
+                        <li><strong>角色攀爬系统</strong>：开发了一套物理驱动的攀爬系统，用户可以真实地抓住并拉动自己，在虚拟环境中进行攀爬移动，增强了运动自由度和沉浸感。</li>
+                        <li><strong>Socket 组件交互</strong>：利用 XR Interaction Toolkit 的 Socket Interactor，实现了虚拟物品的吸附和放置功能，例如将工具放入工具槽，或将物品放置在特定位置。</li>
+                        <li><strong>PXR_Manager 组件</strong>：深入理解并利用 Pico SDK 提供的 PXR_Manager，对设备性能、渲染模式、用户舒适度等方面进行了优化配置。</li>
+                    </ul>
+                </div>
+                <div class="modal-section">
+                    <h3>项目亮点与挑战</h3>
+                    <p>亮点在于多种先进交互方式的无缝集成，以及对 Pico 硬件特性的充分利用。挑战主要在于优化手势识别的准确性和响应速度，以及确保攀爬系统在不同物理条件下都能保持稳定和真实感。</p>
+                </div>
+                <div class="modal-section">
+                    <h3>项目图片</h3>
+                    <div class="modal-images">
+                        <img src="https://lottoabc.github.io/SomeStudyNote/img/pico_interaction_1.jpg" alt="Pico Interaction Screenshot 1">
+                        <img src="https://lottoabc.github.io/SomeStudyNote/img/pico_interaction_2.jpg" alt="Pico Interaction Screenshot 2">
+                    </div>
+                </div>
+                `
+            );
+        };
+        */
+    </script>
 </body>
 </html>
