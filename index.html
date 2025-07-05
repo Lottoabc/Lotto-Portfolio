@@ -369,10 +369,10 @@
             margin-top: 0;
             list-style: none; /* Remove default list style */
             color: var(--text-primary);
-            text-align: center; /* Align list items to the left */
+            text-align: center; /* Align list items to the center */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Align list items to the left within the ul */
+            align-items: center; /* Align list items to the center within the ul */
             max-width: 100%; /* Adjust max-width for list items */
         }
 
@@ -381,16 +381,18 @@
             font-size: 1.15em;
             line-height: 1.7;
             position: relative; /* For custom bullet */
-            padding-left: 35px; /* Space for custom bullet */
-            text-align: left; /* Keep text within list item aligned left */
-            width: 100%; /* Make li take full width to align content left */
+            padding-left: 0; /* Space for custom bullet - REMOVED or set to 0 */
+            text-align: center; /* Keep text within list item aligned center */
+            /* width: 100%; /* REMOVED - let width adapt to content */ */
         }
         
         .case li::before {
             content: '✨ '; /* Different emoji */
-            position: absolute;
-            left: 0;
+            /* REMOVED position: absolute; */
+            /* REMOVED left: 0; */
             color: var(--accent-hover);
+            margin-right: 8px; /* Added margin for spacing between emoji and text */
+            display: inline-block; /* Ensure it stays in line with text */
         }
 
         .case strong {
@@ -811,7 +813,7 @@
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when_cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -832,7 +834,7 @@
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when_cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -854,7 +856,7 @@
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when_cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -868,60 +870,66 @@
     <button id="scrollToTopBtn" title="回到顶部">顶部</button>
 
     <script>
-        // Smooth scrolling for sidebar navigation
-        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+            const sections = document.querySelectorAll('main > div, main > section'); // Select direct children of main that are sections or divs
 
-                // Remove active class from all and add to clicked
-                document.querySelectorAll('.sidebar-nav a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
-        });
+            function setActiveLink() {
+                let currentActiveSectionId = '';
 
-        // Highlight active sidebar link on scroll
-        const sections = document.querySelectorAll('main section, .case-container .case, h1'); // Include cases and h1 for section detection
-        const navLinks = document.querySelectorAll('.sidebar-nav a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150; // Adjust offset for better timing
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                    if (!current && section.classList.contains('case')) {
-                        // For case elements, use their ID
-                        current = section.id;
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    // Determine if the section is mostly in view or its top is just above the viewport
+                    if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
+                        currentActiveSectionId = section.id;
                     }
-                }
-            });
+                });
 
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Show/hide scroll to top button
-            if (window.pageYOffset > 300) {
-                document.getElementById("scrollToTopBtn").style.display = "block";
-            } else {
-                document.getElementById("scrollToTopBtn").style.display = "none";
+                sidebarLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentActiveSectionId) {
+                        link.classList.add('active');
+                    }
+                });
             }
-        });
 
-        // Scroll to top button functionality
-        document.getElementById("scrollToTopBtn").addEventListener("click", function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            // Set active link on scroll
+            window.addEventListener('scroll', setActiveLink);
+
+            // Set active link on load
+            setActiveLink();
+
+            // Smooth scrolling for sidebar links
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20, // Adjust scroll position for padding/header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Scroll to top button functionality
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > 300) { // Show button after scrolling down 300px
+                    scrollToTopBtn.style.display = "block";
+                } else {
+                    scrollToTopBtn.style.display = "none";
+                }
+            });
+
+            scrollToTopBtn.addEventListener("click", function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
             });
         });
     </script>
