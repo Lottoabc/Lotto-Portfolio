@@ -341,15 +341,15 @@
         }
 
         .case-description {
-            flex: 1; /* Allow it to take available space */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start; /* Align text to the top */
-            align-items: flex-start; /* Align content of .case-description to the left */
-            max-width: 50%; /* Can adjust as needed, e.g., 600px */
-            box-sizing: border-box; /* Include padding in width calculation */
-            padding-right: 20px; /* Add some space between description and video */
-        }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* **核心：让内部内容在垂直方向上居中** */
+    align-items: flex-start; /* **核心：让内部内容在水平方向上靠左对齐** */
+    max-width: 50%;
+    box-sizing: border-box;
+    padding-right: 20px;
+}
 
         .video-frame {
             flex-shrink: 0; /* Prevent shrinking */
