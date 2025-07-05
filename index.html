@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotto's XR 开发作品集 | 沉浸式体验与创新</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <style>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
         /* CSS 变量 - 更新强调色为橙色调，增加更多细节颜色 */
         :root {
             --bg-primary: #0A0A0A; /* 更深的背景，增加对比度 */
@@ -183,20 +184,20 @@
             color: var(--text-primary);
             font-weight: 800; /* 更粗的字体 */
             letter-spacing: -0.05em;
-            text-align: center; /* Changed from left to center */
+            text-align: center;
             width: 100%; /* 确保标题占据可用宽度 */
-            max-width: 1100px; /* 与案例容器对齐 */
+            max-width: 1200px; /* 增加最大宽度 */
         }
 
         .note-text {
             color: var(--text-secondary);
             font-size: 1.15em; /* 稍大字体 */
             margin-bottom: 50px;
-            max-width: 1100px; /* 与案例容器对齐 */
-            text-align: center; /* Changed from left to center */
+            max-width: 1200px; /* 增加最大宽度 */
+            text-align: center;
             line-height: 1.8;
-            margin-left: auto; /* Added to center */
-            margin-right: auto; /* Added to center */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .resume-button {
@@ -222,7 +223,7 @@
 
         .case-container {
             width: 100%;
-            max-width: 1100px; /* 案例容器宽度 */
+            max-width: 1200px; /* 案例容器宽度，增加以适应更宽的视频 */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -249,27 +250,10 @@
             overflow: hidden; /* Ensure glow stays within bounds */
         }
 
-        .case::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, var(--accent-hover) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            z-index: 0;
-        }
-
+        /* Removed the case::before glow on hover to simplify effect */
         .case:hover {
             transform: translateY(-12px); /* 更明显的悬停效果 */
             box-shadow: 0 18px 35px var(--shadow-color-dark), 0 0 30px var(--shadow-color-light); /* 更强的悬停阴影和强调色光晕 */
-        }
-
-        .case:hover::before {
-            opacity: 0.1; /* 悬停时显示光晕 */
-            transform: scale(1.1);
         }
 
         .case-content {
@@ -279,17 +263,18 @@
             flex-direction: row;
             width: 100%;
             gap: inherit; /* Inherit gap from parent */
+            align-items: center; /* Vertically align content within the case-content */
         }
 
         .case-description {
-            flex: 3;
+            flex: 1; /* Make description and video equal width */
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .video-frame {
-            flex: 2;
+            flex: 1; /* Make description and video equal width */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -301,7 +286,12 @@
             height: auto;
             border-radius: 12px; /* 更圆润的视频边框 */
             box-shadow: 0 6px 15px var(--shadow-color-dark);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color); /* Default border color */
+            transition: border-color 0.3s ease-in-out; /* Transition for border color */
+        }
+
+        .video-frame iframe:hover {
+            border: 2px solid var(--accent-hover); /* Border changes to accent-hover color on hover */
         }
 
         .case h2 {
