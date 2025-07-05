@@ -233,12 +233,12 @@
 
         .case {
             display: flex;
-            flex-direction: row;
-            align-items: stretch;
+            flex-direction: column; /* Changed to column for top/bottom layout */
+            align-items: center; /* Center items in column layout */
             width: 100%;
             max-width: 100%;
-            gap: 70px; /* Increased gap */
-            text-align: left;
+            gap: 40px; /* Adjusted gap for column layout */
+            text-align: center; /* Center text for column layout */
             background-color: var(--bg-secondary);
             border-radius: 20px; /* Even rounder corners */
             box-shadow: 0 12px 30px var(--shadow-dark);
@@ -257,25 +257,16 @@
             box-shadow: 0 25px 45px var(--shadow-dark), 0 0 40px var(--shadow-light-accent); /* Enhanced hover shadow and glow */
         }
 
-        .case-content {
-            position: relative;
-            z-index: 1;
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            gap: inherit;
-            align-items: center;
-        }
-
         .case-description {
-            flex: 1;
+            width: 100%; /* Take full width in column layout */
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: center; /* Center text description */
         }
 
         .video-frame {
-            flex: 1.2; /* Slightly larger video area */
+            width: 100%; /* Take full width in column layout */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -302,25 +293,41 @@
             margin-bottom: 40px;
             color: var(--text-primary);
             font-weight: 700;
-            text-align: left;
+            text-align: center; /* Center title */
             border-bottom: 4px solid var(--accent-color); /* Thicker accent border */
             padding-bottom: 25px;
             line-height: 1.1;
             letter-spacing: -0.04em;
+            width: fit-content; /* Make border fit content */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .case ul {
-            padding-left: 45px; /* More padding */
+            padding-left: 0; /* Remove default padding as text is centered */
             margin-top: 0;
-            list-style-type: '🚀 '; /* More thematic emoji */
+            list-style: none; /* Remove default list style */
             color: var(--text-primary);
-            text-align: left;
+            text-align: center; /* Center list items */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .case li {
             margin-bottom: 20px; /* More space between list items */
             font-size: 1.25em; /* Larger list item font */
             line-height: 1.7;
+            position: relative; /* For custom bullet */
+            padding-left: 35px; /* Space for custom bullet */
+            text-align: left; /* Align text within list item */
+        }
+        
+        .case li::before {
+            content: '🚀 '; /* More thematic emoji */
+            position: absolute;
+            left: 0;
+            color: var(--accent-hover);
         }
 
         .case strong {
@@ -616,7 +623,7 @@
             }
             .case {
                 padding: 50px;
-                gap: 50px;
+                gap: 30px; /* Adjusted for column layout */
             }
             .case h2 {
                 font-size: 3em;
@@ -723,16 +730,12 @@
                 gap: 50px;
             }
             .case {
-                flex-direction: column;
+                flex-direction: column; /* Ensure column layout */
                 align-items: center;
                 text-align: center;
                 padding: 40px;
-                gap: 40px;
+                gap: 30px; /* Adjusted for column layout */
                 max-width: 98%;
-            }
-            .case-content {
-                flex-direction: column;
-                gap: 40px;
             }
             .case-description, .video-frame {
                 width: 100%;
@@ -882,10 +885,10 @@
 
     <main>
         <section id="about" style="width: 100%; max-width: 1200px; text-align: center; margin-bottom: 100px;">
-            <img src="image_8f2be8.png-b80112f9-697c-4c72-bb6a-167c12061ef7" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);">
+            <img src="https://lottoabc.github.io/SomeStudyNote/img/profile.jpg" alt="Lotto's Profile Picture" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 30px; border: 4px solid var(--accent-color); box-shadow: 0 0 25px var(--shadow-light-accent);">
             <h1 style="font-size: 4.5em; margin-bottom: 20px;">Lotto's XR 开发作品集</h1>
             <p class="note-text" style="font-size: 1.3em; max-width: 900px; margin-left: auto; margin-right: auto; margin-bottom: 40px;">
-                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能，并将抽象概念转化为具象的互动成果。由于部分视频资源托管于 YouTube，部分地区可能需要网络代理才能流畅观看，敬请谅解。
+                欢迎来到我的 XR 开发世界！我是一名专注于虚拟现实 (VR) 和增强现实 (AR) 领域的开发者，致力于通过创新技术创造沉浸式、有意义的数字体验。这里展示了我近期的一些实践项目，旨在探索 XR 的无限可能。
             </p>
             <p class="note-text" style="font-size: 1.2em; max-width: 900px; margin-left: auto; margin-right: auto;">
                 我对 XR 技术充满热情，善于利用 Unity 3D、C#、Pico SDK、SteamVR 等工具，结合 XR Interaction Toolkit 进行高效开发。从精妙的交互逻辑到优化的渲染性能，我享受将想法变为现实的整个过程。期待我的作品能为您带来启发！
@@ -897,352 +900,275 @@
 
         <div class="case-container">
             <div class="case" id="case1">
-                <div class="case-content">
-                    <div class="case-description">
-                        <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
-                        <ul>
-                            <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
-                            <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
-                            <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
-                            <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
-                            <li><strong>PXR_Manager 应用</strong>：深入探索<strong>无手柄交互</strong>的潜力，实践了包括<strong>虚拟钢琴演奏、多样手势指令识别和沉浸式射击体验</strong>在内的多项创新应用。</li>
-                        </ul>
-                        <button class="view-details-btn" data-project="project1" style="
-                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                        ">查看更多细节</button>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="XR Interactive Development Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+                <div class="case-description">
+                    <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
+                    <ul>
+                        <li><strong>凝视交互</strong>：通过精准的视线追踪实现直观高效的交互逻辑。</li>
+                        <li><strong>手势识别与追踪</strong>：结合先进的手部追踪技术，让用户能以自然手势操控虚拟环境。</li>
+                        <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，极大增强沉浸感与物理反馈。</li>
+                        <li><strong>Socket 组件交互</strong>：构建灵活的组件通信与互动逻辑，提升系统模块化和扩展性。</li>
+                        <li><strong>PXR_Manager 应用</strong>：深入探索无手柄交互的潜力，实践了包括虚拟钢琴演奏、多样手势指令识别和沉浸式射击体验在内的多项创新应用。</li>
+                    </ul>
+                    <button class="view-details-btn" data-project="project1" style="
+                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                    ">查看更多细节</button>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case2">
-                <div class="case-content">
-                    <div class="case-description">
-                        <h2>案例 2: SteamVR 和 XRToolkit 博物馆项目实践</h2>
-                        <ul>
-                            <li><strong>URP（通用渲染管线）</strong>：采用 URP 优化项目渲染性能，同时实现高质量的视觉呈现效果。</li>
-                            <li><strong>光照探针与烘焙</strong>：通过精细的光照探针和光照烘焙技术，营造真实且富有层次感的展馆光影环境。</li>
-                            <li><strong>DoTween 插件</strong>：巧妙运用 DoTween 插件，为 UI 元素和场景动画增添流畅自然的过渡效果，提升用户体验。</li>
-                            <li><strong>SteamVR 交互</strong>：针对 SteamVR 平台深度定制交互系统，实现包括<strong>自定义抓取手势</strong>和高效的<strong>手柄射线检测交互</strong>在内的多种互动方式。</li>
-                        </ul>
-                        <button class="view-details-btn" data-project="project2" style="
-                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                        ">查看更多细节</button>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="SteamVR Museum Project Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+                <div class="case-description">
+                    <h2>案例 2: SteamVR 博物馆项目</h2>
+                    <ul>
+                        <li><strong>VR 场景漫游</strong>：构建支持 SteamVR 的虚拟博物馆场景，提供自由的探索体验。</li>
+                        <li><strong>多媒体展示</strong>：集成图片、文字、音频、视频等多种媒体形式，丰富展览内容。</li>
+                        <li><strong>交互式展品</strong>：设计可互动展品，提升用户参与度和学习兴趣。</li>
+                        <li><strong>性能优化</strong>：针对 VR 环境进行性能优化，确保流畅的帧率和沉浸感。</li>
+                        <li><strong>跨平台兼容</strong>：确保项目在不同的 SteamVR 兼容头戴设备上稳定运行。</li>
+                    </ul>
+                    <button class="view-details-btn" data-project="project2" style="
+                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                    ">查看更多细节</button>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
             <hr>
 
             <div class="case" id="case3">
-                <div class="case-content">
-                    <div class="case-description">
-                        <h2>案例 3: 敦煌莫高窟博物馆项目</h2>
-                        <ul>
-                            <li><strong>协程函数应用</strong>：灵活运用协程函数，实现<strong>打字机效果、场景淡入淡出、平滑移动</strong>等复杂动画和状态控制。</li>
-                            <li><strong>XRTK 深度交互集成</strong>：将 XRTK（XR Interaction Toolkit）与项目核心功能深度融合，构建稳定且富有沉浸感的交互体系。</li>
-                            <li><strong>PXR 场景切换特效</strong>：开发了多样的 PXR 场景切换特效，确保用户在不同场景间切换时拥有流畅且富有艺术感的视觉体验。</li>
-                            <li><strong>拼接游戏模块</strong>：设计并实现了互动拼接游戏，精确运用<strong>碰撞检测、材质动态切换、严谨的顺序逻辑判断</strong>，确保游戏互动的准确性和趣味性。</li>
-                            <li><strong>竞赛样题背景</strong>：此项目是为<strong>2025 年福建省职业院校技能大赛样题</strong>进行的实战演练，旨在模拟比赛环境，在<strong>4 小时限时内</strong>完成核心功能开发。部分细节尚待进一步优化。</li>
-                        </ul>
-                        <button class="view-details-btn" data-project="project3" style="
-                            background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
-                            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-                        ">查看更多细节</button>
-                    </div>
-                    <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Mogao Grottoes Museum Project Preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+                <div class="case-description">
+                    <h2>案例 3: 敦煌莫高窟数字孪生项目</h2>
+                    <ul>
+                        <li><strong>高精度模型构建</strong>：利用摄影测量和三维重建技术，还原莫高窟壁画和洞窟结构。</li>
+                        <li><strong>沉浸式文化体验</strong>：用户可以在虚拟环境中自由穿梭，近距离欣赏文化遗产。</li>
+                        <li><strong>智能导览系统</strong>：提供多语言解说、历史背景介绍和互动问答。</li>
+                        <li><strong>光影复原技术</strong>：模拟洞窟内自然光照变化，展现壁画在不同光线下的色彩和细节。</li>
+                        <li><strong>教育与研究应用</strong>：为文化遗产保护、教育和学术研究提供新的工具和平台。</li>
+                    </ul>
+                    <button class="view-details-btn" data-project="project3" style="
+                        background-color: var(--accent-color); color: var(--bg-primary); padding: 12px 25px; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; margin-top: 20px; transition: background-color 0.2s, transform 0.2s;
+                        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+                    ">查看更多细节</button>
+                </div>
+                <div class="video-frame">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
-        <hr>
-
-        <div class="contact-info" id="contact">
-            <p>感谢您耐心浏览我的 XR 开发作品集！</p>
-            <p>如果您对我的项目感兴趣，或有任何合作意向，期待与您交流。</p>
-            <p><strong>邮箱:</strong> <a href="mailto:lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
-            <p><strong>期待您的来信！</strong></p>
-        </div>
+        <section id="contact" class="contact-info">
+            <p><strong>感谢您访问我的作品集！</strong></p>
+            <p>如果您对我的项目感兴趣，或有任何合作意向，欢迎通过以下方式联系我：</p>
+            <p>邮箱: <a href="mailto:lotto.developer@email.com">lotto.developer@email.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/lotto-developer" target="_blank">linkedin.com/in/lotto-developer</a></p>
+        </section>
     </main>
 
-    <button id="scrollToTopBtn" title="回到顶部">顶部</button>
+    <button onclick="topFunction()" id="scrollToTopBtn" title="回到顶部">顶部</button>
 
     <div id="projectModal" class="modal">
         <div class="modal-content">
             <span class="modal-close">&times;</span>
             <h2 id="modalTitle"></h2>
-            <div id="modalContent">
-                </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
     <script>
-        // --- Smooth Scrolling for Navigation ---
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for sidebar navigation
+        document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Remove active from all and add to clicked
+                document.querySelectorAll('.sidebar-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
             });
         });
 
-        // --- Active Navigation Highlight (Intersection Observer) ---
-        const sections = document.querySelectorAll('main section, .case, .contact-info');
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main section, .case');
         const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-        const observerOptions = {
-            root: null, // viewport
-            rootMargin: '0px',
-            threshold: 0.3 // percentage of section visible to be considered active
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href') === '#' + entry.target.id) {
-                            link.classList.add('active');
-                        }
-                    });
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, observerOptions);
 
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
 
-
-        // --- Scroll to Top Button Logic ---
-        const scrollToTopBtn = document.getElementById("scrollToTopBtn");
-
-        window.onscroll = function() {
-            if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+            // Show/hide scroll to top button
+            const scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 scrollToTopBtn.style.display = "block";
             } else {
                 scrollToTopBtn.style.display = "none";
             }
-        };
 
-        scrollToTopBtn.addEventListener("click", function() {
+            // Scroll indicator
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector(".scroll-indicator-bar").style.width = scrolled + "%";
+        });
+
+        // Scroll to top function
+        function topFunction() {
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        });
+        }
 
-        // --- Scroll Progress Indicator ---
-        const scrollIndicatorBar = document.querySelector('.scroll-indicator-bar');
-        window.addEventListener('scroll', () => {
-            const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
-            scrollIndicatorBar.style.width = scrollPercent + '%';
-        });
+        // Modal functionality
+        const modal = document.getElementById("projectModal");
+        const modalCloseBtn = document.getElementsByClassName("modal-close")[0];
+        const modalTitle = document.getElementById("modalTitle");
+        const modalBody = document.getElementById("modalBody");
 
-        // --- Project Modal Logic ---
-        const projectModal = document.getElementById('projectModal');
-        const modalCloseBtn = document.querySelector('.modal-close');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalContent = document.getElementById('modalContent');
-        const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-
-        // Dummy data for detailed project content (replace with actual content)
+        // Data for modal content
         const projectDetails = {
             project1: {
-                title: "案例 1: PicoSDK 和 XRToolkit 交互开发深度解析",
+                title: "案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发",
                 content: `
                     <div class="modal-section">
                         <h3>项目概述</h3>
-                        <p>该项目致力于探索在 Pico 平台下 XR Interaction Toolkit 的高级应用，特别是无手柄交互的实现。通过对 PicoSDK 的深入集成和 XR Interaction Toolkit 的灵活运用，我们旨在打造一个高度自然、直观的虚拟现实交互体验。</p>
-                        <p>主要目标包括：实现精确的凝视、手势识别，开发逼真的攀爬系统，以及构建模块化的 Socket 交互。</p>
-                        <div class="modal-images">
-                            <img src="image_e93dd7.jpg-0896a41c-f1d2-40cf-a6ee-d29210e3fbbb" alt="PicoSDK Interaction Screenshot 1" style="width: 48%;">
-                            <img src="image_e8e39f.jpg-c2d45821-4c6a-4e68-a882-3380490db909" alt="PicoSDK Interaction Screenshot 2" style="width: 48%;">
-                        </div>
+                        <p>此项目深入探索了<strong>Pico SDK</strong>和<strong>XR Interaction Toolkit</strong>在XR应用开发中的融合与创新。我们致力于构建一个高度沉浸式、交互丰富的虚拟体验，通过多种先进的交互方式，让用户能够以前所未有的自然和直观的方式与虚拟世界进行互动。</p>
+                        <p>主要目标是展示在Pico设备上实现复杂交互的潜力，并为未来的XR应用开发提供可靠的实践范例。</p>
                     </div>
                     <div class="modal-section">
-                        <h3>核心技术与挑战</h3>
+                        <h3>核心交互技术</h3>
                         <ul>
-                            <li><strong>凝视交互的优化</strong>：我们使用了自定义的光线投射逻辑和 UI 高亮反馈，确保用户在没有手柄的情况下也能准确选择目标。主要的挑战在于如何减少误触和提高选择的精准性。</li>
-                            <li><strong>手势识别与追踪</strong>：结合 PicoSDK 提供的手部追踪数据，开发了一套手势识别算法，能够识别捏合、张开、指向等多种手势，并将其映射到游戏内动作。例如，在虚拟钢琴演奏中，每个手指的关节数据都被精确捕捉。</li>
-                            <li><strong>角色攀爬系统的实现</strong>：通过物理引擎和自定义碰撞体，实现了用户抓住虚拟物体即可攀爬的体验。难点在于平滑的角色移动和状态切换，以及在攀爬过程中如何处理重力和其他物理约束。</li>
-                            <li><strong>Socket 组件通信</strong>：设计了一套基于 Unity Event 和自定义接口的 Socket 交互系统，使得不同虚拟对象可以方便地进行插拔和互动，极大地提升了项目的可扩展性。</li>
-                            <li><strong>PXR_Manager 的高级应用</strong>：
-                                <ul>
-                                    <li><strong>虚拟钢琴演奏</strong>：通过手部追踪数据，实时模拟手指敲击钢琴键，并发出对应的音效。</li>
-                                    <li><strong>多样手势指令识别</strong>：开发了多组手势指令，如“挥手”激活菜单，“握拳”发射子弹等，使交互更加自然。</li>
-                                    <li><strong>沉浸式射击体验</strong>：结合手势控制射击方向和触发，为用户提供无手柄的射击乐趣。</li>
-                                </ul>
-                            </li>
+                            <li><strong>凝视交互</strong>：利用Pico设备的高精度视线追踪能力，实现基于用户眼球焦点的高效UI选择和对象互动，大大简化了操作流程。</li>
+                            <li><strong>手势识别与追踪</strong>：集成先进的手部追踪技术，允许用户使用自然手势（如抓取、捏合、指向等）直接操控虚拟物体，增强了交互的沉浸感和直观性。</li>
+                            <li><strong>角色攀爬系统</strong>：设计并实现了高度仿真的攀爬机制，结合物理模拟和动画，为用户带来真实的身体反馈，极大地提升了VR游戏的沉浸感和挑战性。</li>
+                            <li><strong>Socket 组件交互</strong>：通过模块化的<strong>Socket组件</strong>系统，实现了不同虚拟物体之间的灵活通信和互动逻辑，提升了项目的可扩展性和维护性。</li>
                         </ul>
                     </div>
                     <div class="modal-section">
-                        <h3>学到的经验</h3>
-                        <p>在Pico平台进行无手柄XR开发，最大的体会是需要更精细地处理用户意图。手势交互虽然自然，但容错率较低，需要大量的测试和迭代来优化用户体验。同时，性能优化在移动XR设备上至关重要，URP和批处理是不可或缺的工具。</p>
-                        <p>未来，我将继续探索更多创新的无手柄交互模式，并深入研究AI在手势识别和行为预测方面的应用。</p>
+                        <h3>PXR_Manager 应用实践</h3>
+                        <p>我们基于<strong>PXR_Manager</strong>进行了一系列创新应用，充分展示了无手柄交互的巨大潜力：</p>
+                        <ul>
+                            <li><strong>虚拟钢琴演奏</strong>：用户可以通过手部追踪，在虚拟钢琴上进行自由演奏，实时反馈音效和触感模拟。</li>
+                            <li><strong>多样手势指令识别</strong>：开发了一套灵活的手势识别系统，用户可以通过自定义手势触发不同的应用功能或游戏指令。</li>
+                            <li><strong>沉浸式射击体验</strong>：利用手部姿态进行瞄准和射击，结合触觉反馈，为用户提供更为真实的射击感受。</li>
+                        </ul>
                     </div>
                     <div class="modal-section">
-                        <h3>视频展示</h3>
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PicoSDK Advanced Interaction Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
+                        <h3>技术栈</h3>
+                        <p><strong>引擎</strong>: Unity 3D</p>
+                        <p><strong>SDK</strong>: Pico SDK, XR Interaction Toolkit</p>
+                        <p><strong>编程语言</strong>: C#</p>
+                    </div>
+                    <div class="modal-images">
+                        <img src="https://via.placeholder.com/400x250?text=Project+1+Image+1" alt="Project 1 Image 1">
+                        <img src="https://via.placeholder.com/400x250?text=Project+1+Image+2" alt="Project 1 Image 2">
                     </div>
                 `
             },
             project2: {
-                title: "案例 2: SteamVR 博物馆项目实践详述",
+                title: "案例 2: SteamVR 博物馆项目",
                 content: `
                     <div class="modal-section">
                         <h3>项目概述</h3>
-                        <p>这个SteamVR博物馆项目旨在为用户提供一个沉浸式的虚拟艺术空间，用户可以自由探索展馆，近距离欣赏艺术品，并通过控制器进行互动。项目重点在于视觉效果优化和多样的交互设计。</p>
-                        <div class="modal-images">
-                            <img src="image_e8d7fe.jpg-1a8929b4-28d9-4523-88c0-ebf29bc89cf1" alt="SteamVR Museum Screenshot 1" style="width: 48%;">
-                            <img src="image_e93dd7.jpg-0896a41c-f1d2-40cf-a6ee-d29210e3fbbb" alt="SteamVR Museum Screenshot 2" style="width: 48%;">
-                        </div>
+                        <p>这是一个为SteamVR平台开发的虚拟博物馆项目，旨在通过VR技术为用户提供一个高度沉浸式、互动性强的文化艺术体验。用户可以在虚拟空间中自由漫游，欣赏各类数字化的艺术品和历史文物。</p>
                     </div>
                     <div class="modal-section">
-                        <h3>技术亮点与实施细节</h3>
+                        <h3>核心功能与亮点</h3>
                         <ul>
-                            <li><strong>URP（通用渲染管线）的应用</strong>：全面采用 URP，对材质、Shader 进行优化，确保在保证高质量视觉效果的同时，达到 SteamVR 所需的流畅帧率。特别是针对复杂几何体和大量灯光场景，URP 的批处理和可编程性提供了极大的帮助。</li>
-                            <li><strong>精细化光照探针与烘焙</strong>：
-                                <ul>
-                                    <li>利用 Unity 的光照烘焙系统，为整个博物馆场景预计算光照，包括全局照明、阴影和间接光照。这显著提升了场景的真实感，并减少了运行时计算，提高了性能。</li>
-                                    <li>设置了大量光照探针，以捕捉环境光照信息，确保动态物体（如用户角色和可互动展品）在移动时能正确地融入场景光照环境。</li>
-                                </ul>
-                            </li>
-                            <li><strong>DoTween 插件在 UI 和动画中的运用</strong>：
-                                <ul>
-                                    <li><strong>UI 动画</strong>：菜单、信息面板的淡入淡出、缩放、移动等动画效果都通过 DoTween 实现，动画曲线平滑自然，提升了用户界面的响应感和舒适度。</li>
-                                    <li><strong>场景互动动画</strong>：例如，当用户触发某个展品时，展品模型会进行旋转、放大或显示信息，这些平滑的动画过渡都由 DoTween 驱动。</li>
-                                </ul>
-                            </li>
-                            <li><strong>SteamVR 平台深度交互定制</strong>：
-                                <ul>
-                                    <li><strong>自定义抓取手势</strong>：除了基础的抓取，我们还根据不同物品的特性（如画框、雕塑），设计了特定的抓取姿态，让用户感觉像是真正用手拿起物品。通过自定义 Hand Posing 和动画融合实现。</li>
-                                    <li><strong>手柄射线检测交互</strong>：实现了高效、精准的射线检测系统，用于远处物体的选择、按钮点击和导航。同时，为射线增加了视觉反馈（如目标高亮、粒子效果），增强用户感知。</li>
-                                    <li><strong>VR 传送系统</strong>：优化了传送逻辑，加入了平滑过渡效果和音效，减少晕动症。</li>
-                                </ul>
-                            </li>
+                            <li><strong>VR 场景漫游</strong>：用户可以通过VR头显在精细建模的博物馆环境中自由行走和探索，享受身临其境的漫游体验。</li>
+                            <li><strong>多媒体展示</strong>：博物馆内集成图片、文字、音频、视频等多种媒体形式，为展品提供丰富的背景信息和深度解读。</li>
+                            <li><strong>交互式展品</strong>：部分展品设计了互动机制，如旋转模型、播放讲解视频、触发特定动画等，提升用户参与度和学习兴趣。</li>
+                            <li><strong>性能优化</strong>：针对VR设备的性能要求，项目进行了细致的优化，确保在主流VR硬件上都能保持流畅的帧率，减少晕动症。</li>
+                            <li><strong>跨平台兼容性</strong>：项目基于SteamVR开发，兼容HTC Vive、Oculus Rift、Valve Index等多种主流VR头戴设备。</li>
                         </ul>
                     </div>
                     <div class="modal-section">
-                        <h3>心得体会</h3>
-                        <p>在SteamVR环境下开发，性能和沉浸感是两大核心。URP和光照烘焙在性能优化方面发挥了关键作用，而DoTween则让交互动画更上一层楼。自定义交互手势虽然增加了开发成本，但极大地提升了用户体验的真实性。</p>
+                        <h3>技术栈</h3>
+                        <p><strong>引擎</strong>: Unity 3D</p>
+                        <p><strong>SDK</strong>: SteamVR SDK</p>
+                        <p><strong>编程语言</strong>: C#</p>
                     </div>
-                     <div class="modal-section">
-                        <h3>视频展示</h3>
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="SteamVR Museum Project Full Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
+                    <div class="modal-images">
+                        <img src="https://via.placeholder.com/400x250?text=Project+2+Image+1" alt="Project 2 Image 1">
+                        <img src="https://via.placeholder.com/400x250?text=Project+2+Image+2" alt="Project 2 Image 2">
                     </div>
                 `
             },
             project3: {
-                title: "案例 3: 敦煌莫高窟博物馆项目细节揭秘",
+                title: "案例 3: 敦煌莫高窟数字孪生项目",
                 content: `
                     <div class="modal-section">
-                        <h3>项目概述与背景</h3>
-                        <p>此项目是为了<strong>2025 年福建省职业院校技能大赛样题</strong>而进行的实战演练，旨在模拟比赛的高压环境，在<strong>4 小时限时内</strong>完成核心功能开发。项目以敦煌莫高窟为主题，将文化遗产与XR技术相结合，创造一个互动式的虚拟博物馆体验。</p>
-                        <p>虽然是在严格的时间限制下完成，但项目涵盖了XR应用的关键要素，展示了快速原型开发和核心功能实现的专业能力。</p>
-                         <div class="modal-images">
-                            <img src="image_e8e39f.jpg-c2d45821-4c6a-4e68-a882-3380490db909" alt="Dunhuang Project Screenshot 1" style="width: 48%;">
-                            <img src="image_e8d7fe.jpg-1a8929b4-28d9-4523-88c0-ebf29bc89cf1" alt="Dunhuang Project Screenshot 2" style="width: 48%;">
-                        </div>
+                        <h3>项目概述</h3>
+                        <p>此项目致力于通过高精度数字孪生技术，将世界文化遗产敦煌莫高窟在虚拟世界中进行还原。用户可以通过VR设备进入数字化的莫高窟，近距离欣赏珍贵的壁画和彩塑，感受历史文化的魅力。</p>
                     </div>
                     <div class="modal-section">
-                        <h3>核心功能与技术实现</h3>
+                        <h3>核心技术与特色</h3>
                         <ul>
-                            <li><strong>协程函数的高效应用</strong>：
-                                <ul>
-                                    <li><strong>打字机效果</strong>：用于模拟文字逐字显示的效果，增加了信息呈现的生动性，通过协程控制每个字符的显示间隔。</li>
-                                    <li><strong>场景淡入淡出</strong>：实现了平滑的场景过渡效果，提升了用户在不同洞窟或区域间切换时的沉浸感，避免了生硬的画面切换。</li>
-                                    <li><strong>平滑移动</strong>：角色或相机在特定路径上的平滑移动，减少了晕动症的发生，提升了舒适度，例如导览路径的自动平移。</li>
-                                </ul>
-                                协程的合理运用确保了这些动画与游戏逻辑的分离，提高了代码的可读性和维护性。
-                            </li>
-                            <li><strong>XRTK（XR Interaction Toolkit）深度集成</strong>：
-                                <ul>
-                                    <li>利用 XRTK 提供的标准交互系统（如 Direct Interactor, Ray Interactor），快速构建了抓取、选择、按钮点击等基础 VR 交互。</li>
-                                    <li>针对敦煌主题，定制了部分交互行为，例如对壁画的放大查看、对雕塑的旋转鉴赏等，确保交互既符合通用性，又贴合内容需求。</li>
-                                </ul>
-                            </li>
-                            <li><strong>PXR 场景切换特效的开发</strong>：为 Pico 平台开发了多种独具特色的场景切换特效，例如基于粒子系统的空间穿梭效果，或是特定几何体的溶解、重构等，使得场景间的切换本身也成为一种视觉享受。</li>
-                            <li><strong>互动拼接游戏模块的实现</strong>：
-                                <ul>
-                                    <li><strong>碰撞检测</strong>：利用 Unity 的物理引擎，精确检测拼接块之间的碰撞，判断拼接是否成功。</li>
-                                    <li><strong>材质动态切换</strong>：根据拼接块的状态（未放置、正确放置、错误放置），动态切换其材质，提供即时视觉反馈。</li>
-                                    <li><strong>严谨的顺序逻辑判断</strong>：设计了复杂的逻辑来判断拼接块是否按照预设的正确顺序和位置进行，确保游戏的挑战性和准确性。此模块是比赛中的一个关键得分点，需要极高的逻辑严谨性。</li>
-                                </ul>
-                            </li>
+                            <li><strong>高精度模型构建</strong>：利用先进的摄影测量、激光扫描和三维重建技术，对莫高窟的洞窟结构、壁画细节和彩塑进行厘米级的高精度还原，确保数字内容的真实性和精确性。</li>
+                            <li><strong>沉浸式文化体验</strong>：用户可以在虚拟环境中自由穿梭于不同洞窟之间，通过VR技术获得身临其境的文化遗产体验，突破地域和时间的限制。</li>
+                            <li><strong>智能导览系统</strong>：集成了多语言解说系统、历史背景介绍、壁画故事解读和互动问答功能，提供深度且个性化的学习体验。</li>
+                            <li><strong>光影复原技术</strong>：模拟洞窟内自然光照随时间变化的规律，展现壁画在不同光线下的色彩、纹理和细节，重现其历史原貌。</li>
+                            <li><strong>教育与研究应用</strong>：该数字孪生平台不仅是文化展示的窗口，更可作为考古学、艺术史研究和公众教育的强大工具，为文化遗产的保护、传承和创新利用提供新的可能性。</li>
                         </ul>
                     </div>
                     <div class="modal-section">
-                        <h3>项目挑战与未来优化</h3>
-                        <p>最大的挑战是<strong>4 小时限时开发</strong>，这要求在功能实现和性能之间做快速权衡。因此，部分艺术资源和细节动画未能得到充分优化。未来计划对以下方面进行完善：</p>
-                        <ul>
-                            <li>增加更多敦煌文化元素的深度互动，例如对壁画内容的语音导览。</li>
-                            <li>进一步优化场景的几何体和纹理，以提升视觉 fidelity。</li>
-                            <li>扩展拼接游戏的复杂度和趣味性，引入更多互动谜题。</li>
-                            <li>对代码结构进行重构，提高可维护性和可扩展性。</li>
-                        </ul>
+                        <h3>技术栈</h3>
+                        <p><strong>引擎</strong>: Unity 3D</p>
+                        <p><strong>建模软件</strong>: Agisoft Metashape, Blender</p>
+                        <p><strong>编程语言</strong>: C#</p>
                     </div>
-                    <div class="modal-section">
-                        <h3>视频展示</h3>
-                        <div class="video-frame">
-                            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dunhuang Mogao Grottoes Project Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
+                    <div class="modal-images">
+                        <img src="https://via.placeholder.com/400x250?text=Project+3+Image+1" alt="Project 3 Image 1">
+                        <img src="https://via.placeholder.com/400x250?text=Project+3+Image+2" alt="Project 3 Image 2">
                     </div>
                 `
             }
         };
 
-        viewDetailsButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const projectId = button.dataset.project;
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const projectId = this.dataset.project;
                 const details = projectDetails[projectId];
-
                 if (details) {
                     modalTitle.textContent = details.title;
-                    modalContent.innerHTML = details.content;
-                    projectModal.style.display = 'flex'; // Use flex to center the modal
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling body when modal is open
+                    modalBody.innerHTML = details.content;
+                    modal.style.display = "flex"; // Use flex to center
                 }
             });
         });
 
-        modalCloseBtn.addEventListener('click', () => {
-            projectModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
+        modalCloseBtn.addEventListener('click', function() {
+            modal.style.display = "none";
+            modalBody.innerHTML = ''; // Clear content on close
         });
 
-        // Close modal when clicking outside of modal content
-        window.addEventListener('click', (event) => {
-            if (event.target === projectModal) {
-                projectModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                modalBody.innerHTML = ''; // Clear content on close
             }
         });
-
-        // Placeholder for real YouTube embeds
-        // In a real scenario, you'd fetch actual YouTube video IDs for each project.
-        // For demonstration, all iframes point to the same placeholder video.
-        document.querySelectorAll('iframe[src^="http://googleusercontent.com/youtube.com/"]').forEach(iframe => {
-            const youtubeId = iframe.src.split('/').pop(); // Extracts '10', '11', '12'
-            // Replace with actual YouTube embed URL format
-            iframe.src = `https://www.youtube.com/embed/dQw4w9WgXcQ`; // Using a placeholder video for example
-        });
-
     </script>
 </body>
 </html>
