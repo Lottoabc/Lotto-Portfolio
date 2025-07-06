@@ -760,6 +760,7 @@
                 font-size: 2.5em;
                 margin-bottom: 0;
                 padding-bottom: 15px;
+                border-bottom: 3px solid var(--accent-color);
                 text-align: left; /* Changed from center to left for smaller mobile */
                 margin-left: 0; /* Remove auto-centering */
                 margin-right: auto; /* Push to the left */
@@ -811,9 +812,7 @@
         <h1>Lotto's XR 开发作品集</h1>
         <p class="note-text">视频资源托管至 YouTube，可能需要网络代理。</p>
 
-<!--         <a href="https://github.com/Lottoabc/SomeStudyNote/raw/main/%E7%AE%80%E5%8E%86(uneditable).pdf" target="_blank" class="resume-button">查看我的简历</a> -->
-
-        <div class="case-container">
+<div class="case-container">
             <div class="case" id="case1">
                 <div class="case-header">
                     <h2>案例 1: 基于 PicoSDK 和 XRToolkit 的交互开发</h2>
@@ -847,12 +846,10 @@
                             <li><strong>光照探针与烘焙</strong>：优化展馆环境的光影真实感。</li>
                             <li><strong>DoTween 插件</strong>：丰富 UI 动画，提升用户体验。</li>
                             <li><strong>完善的UI界面</strong>：允许用户设置场景中的各种显示参数</li>
-                            <li><strong>SteamVR 交互</strong>：自定义<strong>抓取手势</strong>，实现<strong>射线检测交互</strong>。</li>
-
                         </ul>
                     </div>
                     <div class="video-frame">
-                        <iframe src="https://www.youtube.com/embed/VGgtfCvVX90" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
@@ -861,93 +858,93 @@
 
             <div class="case" id="case3">
                 <div class="case-header">
-                    <h2>案例 3: 敦煌莫高窟数字体验馆</h2>
+                    <h2>案例 3: 敦煌莫高窟 WebXR 实践</h2>
                 </div>
                 <div class="case-content">
                     <div class="case-description">
                         <ul>
-                            
-                            <li><strong>XRTK 深度交互集成</strong>：强化展馆核心互动机制。</li>
-                            <li><strong>PXR 场景切换特效</strong>：优化场景间的过渡流畅度。</li>
-                            <li><strong>协程函数应用</strong>：控制<strong>打字机效果、淡入淡出</strong>等动画。</li>
-                            <li><strong>拼接游戏模块</strong>：结合<strong>碰撞检测、材质切换、顺序逻辑</strong>，确保游戏互动准确性。</li>
-                            <li><strong>竞赛样题背景</strong>：此项目为<strong>2025 年福建省职业院校技能大赛样题</strong>，因赛时时长限制，部分细节待优化。</li>
+                            <li><strong>Unity WebGL 导出</strong>：跨平台发布，浏览器直接体验。</li>
+                            <li><strong>WebXR 技术</strong>：在网页中实现沉浸式 XR 体验。</li>
+                            <li><strong>沉浸式导航</strong>：用户可以在虚拟莫高窟中自由探索。</li>
+                            <li><strong>文化遗产数字化</strong>：探索 XR 在文化保护与传播中的应用。</li>
+                            <li><strong>交互式展品介绍</strong>：通过交互了解壁画和文物背后的故事。</li>
                         </ul>
                     </div>
                     <div class="video-frame">
-                <iframe src="https://www.youtube.com/embed/RVqD44g99II" frameborder="0" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/lkxX5npWaH0" frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <hr>
+            <hr>
 
-        <div class="contact-info" id="contact">
-            <p><strong>欢迎联系我了解更多！</strong></p>
-            <p><strong>邮箱:</strong> <a href="lotto125zero@gmail.com">lotto125zero@gmail.com</a></p>
+            <div class="contact-info" id="contact">
+                <p><strong>联系我</strong>: lottoxr@outlook.com</p>
+                <p>期待与您共同探索XR的无限可能！</p>
+            </div>
         </div>
     </main>
 
-    <button id="scrollToTopBtn" title="回到顶部">回到顶部</button>
+    <button id="scrollToTopBtn" title="回到顶部">顶部</button>
 
     <script>
-        // Smooth scrolling for sidebar navigation
+        // Smooth scrolling for sidebar links
         document.querySelectorAll('.sidebar-nav a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-
-                // Remove 'active' class from all links
+                // Remove active class from all and add to clicked one
                 document.querySelectorAll('.sidebar-nav a').forEach(link => {
                     link.classList.remove('active');
                 });
-                // Add 'active' class to the clicked link
                 this.classList.add('active');
             });
         });
 
-        // Highlight active sidebar link based on scroll position (optional, but good UX)
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('main > div[id], main > h1'); // Include h1 for the top section
-            const navLinks = document.querySelectorAll('.sidebar-nav a');
+        // Highlight active sidebar link on scroll
+        const sections = document.querySelectorAll('main > div[id], main > h1'); // Select main sections that have IDs
+        const navLinks = document.querySelectorAll('.sidebar-nav a');
 
-            let current = '';
+        function highlightNavLink() {
+            let currentActive = '';
             sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                // Adjust this value based on your header/fixed elements
-                if (pageYOffset >= sectionTop - 100) { 
-                    current = section.getAttribute('id');
+                const sectionTop = section.offsetTop - 100; // Adjust offset for better timing
+                const sectionBottom = sectionTop + section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+                    currentActive = section.getAttribute('id');
                 }
             });
 
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').includes(current)) {
+                if (link.getAttribute('href').substring(1) === currentActive) {
                     link.classList.add('active');
                 }
             });
-        });
+        }
+
+        window.addEventListener('scroll', highlightNavLink);
+        window.addEventListener('load', highlightNavLink); // Call on load to set initial active state
 
         // Scroll to Top Button functionality
         const scrollToTopBtn = document.getElementById("scrollToTopBtn");
 
-        // When the user scrolls down 200px from the top of the document, show the button
-        window.onscroll = function() { scrollFunction() };
-
-        function scrollFunction() {
+        window.onscroll = function() {
             if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
                 scrollToTopBtn.style.display = "block";
             } else {
                 scrollToTopBtn.style.display = "none";
             }
-        }
+        };
 
-        // When the user clicks on the button, scroll to the top of the document
         scrollToTopBtn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
@@ -955,23 +952,22 @@
             });
         });
 
-        // Set initial active state for sidebar links based on URL hash
-        window.addEventListener('load', () => {
-            if (window.location.hash) {
-                const targetId = window.location.hash;
-                const targetLink = document.querySelector(`.sidebar-nav a[href="${targetId}"]`);
-                if (targetLink) {
-                    targetLink.classList.add('active');
-                }
-            } else {
-                // If no hash, activate the first link or default section
-                const firstLink = document.querySelector('.sidebar-nav ul li:first-child a');
-                if (firstLink) {
-                    firstLink.classList.add('active');
-                }
-            }
-        });
+        // --- View Count Functionality (Added) ---
+        // This script counts page views per user using browser's Local Storage.
+        // It's not a global view counter for all visitors, only for the current browser.
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let viewCount = localStorage.getItem('page_visits_count');
 
+            if (viewCount) {
+                viewCount = parseInt(viewCount) + 1;
+            } else {
+                viewCount = 1;
+            }
+
+            localStorage.setItem('page_visits_count', viewCount);
+            console.log(`页面浏览次数 (此浏览器): ${viewCount}`);
+        });
+        // --- End View Count Functionality ---
     </script>
 </body>
 </html>
